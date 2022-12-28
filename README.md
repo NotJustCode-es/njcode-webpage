@@ -1,27 +1,54 @@
-# njcode-webpage
+# NJCode Webpage
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.9.
+<img src="./docs/njcode-logo.png" style="margin-bottom: 1rem">
 
-## Development server
+This project contains a webpage built using [Angular Universal](https://angular.io/guide/universal), a technology that allows for server-side rendering (SSR) of Angular applications. This ensures that the webpage can be easily indexed by search engines and provides a seamless experience for users, as the initial load of the webpage is faster.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+The server-side of this project is built using [NestJS](https://nestjs.com), a framework for building efficient, scalable server-side applications.
 
-## Code scaffolding
+The webpage also utilizes the [Contentful Delivery API](https://www.contentful.com/developers/docs/references/content-delivery-api/), a content management platform that allows for easy creation and management of content. This allows for more dynamic and flexible content on the webpage.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Get started
 
-## Build
+To get started with this project, you will need to have the following tools installed on your machine:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Node.js >= 16.16.0 (we recommend using NVM to manage your Node.js versions)
+- Angular CLI v14
 
-## Running unit tests
+Once you have these tools installed, you can clone this repository and install the necessary dependencies by running the following commands in the root directory of the project:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```
+npm install
+```
 
-## Running end-to-end tests
+Before you can run the project, you will need to set up an account with Contentful and obtain an API key. You can then create a .env file in the root directory of the project based on the following template:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```
+# Server configuration
+PORT=
+PREFIX=
 
-## Further help
+# Contentful configuration
+CONTENTFUL_URL=
+CONTENTFUL_SPACE_ID=
+CONTENTFUL_ACCESS_TOKEN=
+CONTENTFUL_ENVIRONMENT=
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Alternatively, you can copy the ```.env``` file to ```.env.dev``` and fill in the necessary values.
+
+With the dependencies installed and the API key set up, you can start the development server by running the following command:
+
+```
+npm run dev:ssr
+```
+
+This will compile and serve the webpage, which can be accessed at http://localhost:4200/. The development server will also automatically reload the webpage whenever you make changes to the code.
+
+To build a production version of the webpage, you can run the following command:
+
+```
+npm run build:ssr
+```
+
+This will create a production-ready version of the webpage and server in the dist directory, which can be deployed to a server.
