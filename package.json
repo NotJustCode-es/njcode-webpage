@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "eslint -c .eslintrc.json --ext .ts src/app",
+    "lint": "eslint -c .eslintrc.json --ext .ts .",
     "dev:ssr": "ng run njcode-webpage:serve-ssr",
     "serve:ssr": "node dist/njcode-webpage/server/main.js",
     "build:ssr": "ng build --configuration production && ng run njcode-webpage:server:production",

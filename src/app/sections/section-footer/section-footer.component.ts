@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { TypeSection__footerFields } from '@server/models/contentful-content-types/section-footer';
 
 @Component({
   selector: 'app-section-footer',
@@ -8,9 +9,6 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SectionFooterComponent implements OnInit {
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+export class SectionFooterComponent {
+  @Input() data!: TypeSection__footerFields;
 }

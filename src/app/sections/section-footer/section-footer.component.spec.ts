@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SectionFooterComponent } from './section-footer.component';
 
 describe('SectionFooterComponent', () => {
@@ -8,9 +7,9 @@ describe('SectionFooterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SectionFooterComponent ]
+      declarations: [SectionFooterComponent],
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

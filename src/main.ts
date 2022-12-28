@@ -7,8 +7,9 @@ if (environment.production) {
   enableProdMode();
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   platformBrowserDynamic()
     .bootstrapModule(AppModule)
+    // eslint-disable-next-line no-console
     .catch(err => console.log(err));
 });
