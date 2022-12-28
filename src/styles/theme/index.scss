@@ -1,0 +1,32 @@
+// Bootstrap Functions
+@import "~bootstrap/scss/functions";
+
+// Theme colors
+@import "theme-colors";
+
+// User variables
+@import 'user-variables';
+
+// Theme variables
+@import "variables";
+
+// Bootstrap configuration
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/maps";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/utilities";
+
+// Theme configuration
+@import "theme/functions";
+@import "theme/mixins";
+@import "theme/utilities";
+@import "theme/root";
+
+// Bootstrap layout & components
+@import "bootstrap";
+
+// Theme layout & components
+@import "theme/theme";
+
+// User custom styles
+@import 'user';

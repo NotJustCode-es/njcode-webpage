@@ -3,8 +3,15 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "dev:ssr",
+      "type": "chrome",
+      "request": "launch",
+      "preLaunchTask": "npm: dev:ssr",
+      "url": "http://localhost:4200/"
+    },
+    {
       "name": "ng serve",
-      "type": "pwa-chrome",
+      "type": "chrome",
       "request": "launch",
       "preLaunchTask": "npm: start",
       "url": "http://localhost:4200/"
@@ -15,6 +22,6 @@
       "request": "launch",
       "preLaunchTask": "npm: test",
       "url": "http://localhost:9876/debug.html"
-    }
+    },
   ]
 }

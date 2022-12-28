@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/njcode-webpage",
+            "outputPath": "dist/njcode-webpage/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -31,17 +31,45 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/@popperjs/core/dist/umd/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "src/assets/theme/js/vendor/isotope.pkgd.min.js",
+              "src/assets/theme/js/vendor/smoothscroll.js",
+              "src/assets/theme/js/vendor/prism.js",
+              "src/assets/theme/js/vendor/typer.js",
+              "src/assets/theme/js/vendor/glightbox.js",
+              "src/assets/theme/js/vendor/scrollCue.min.js",
+              "src/assets/theme/js/vendor/itooltip.min.js",
+              "src/assets/theme/js/vendor/clipboard.min.js",
+              "src/assets/theme/js/vendor/swiper-bundle.min.js",
+              "src/assets/theme/js/vendor/replaceme.min.js",
+              "src/assets/theme/js/vendor/svg-inject.min.js",
+              "src/assets/theme/js/vendor/progressbar.min.js",
+              "src/assets/theme/js/vendor/plyr.min.js",
+              "src/assets/theme/js/vendor/picturefill.min.js",
+              "src/assets/theme/js/vendor/counterup.min.js",
+              "src/assets/theme/js/vendor/noframework.waypoints.min.js",
+              "src/assets/theme/js/vendor/imagesloaded.pkgd.min.js",
+              "src/assets/theme/js/vendor/headhesive.min.js",
+              "src/assets/theme/js/vendor/rellax.min.js",
+              "src/assets/theme/js/theme.js"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles"
+              ]
+            }
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "2mb",
+                  "maximumError": "3mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -103,9 +131,91 @@
             ],
             "scripts": []
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/njcode-webpage/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json",
+            "inlineStyleLanguage": "scss",
+            "externalDependencies": [
+              "@nestjs/common",
+              "@nestjs/core",
+              "express",
+              "@nestjs/microservices",
+              "@nestjs/microservices/microservices-module",
+              "@nestjs/websockets",
+              "@nestjs/websockets/socket-module",
+              "cache-manager",
+              "contentful"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
+            },
+            "development": {
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "njcode-webpage:build:development",
+              "serverTarget": "njcode-webpage:server:development"
+            },
+            "production": {
+              "browserTarget": "njcode-webpage:build:production",
+              "serverTarget": "njcode-webpage:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "njcode-webpage:build:production",
+              "serverTarget": "njcode-webpage:server:production"
+            },
+            "development": {
+              "browserTarget": "njcode-webpage:build:development",
+              "serverTarget": "njcode-webpage:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
-  "defaultProject": "njcode-webpage"
+  "defaultProject": "njcode-webpage",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }
