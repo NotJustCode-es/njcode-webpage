@@ -1,6 +1,7 @@
 import {
-  ChangeDetectionStrategy, Component, Input, OnInit,
+  ChangeDetectionStrategy, Component, Input,
 } from '@angular/core';
+import { TypeSection__navbarFields } from '@server/models/contentful-content-types/section-navbar';
 
 @Component({
   selector: 'app-section-navbar',
@@ -10,11 +11,6 @@ import {
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SectionNavbarComponent implements OnInit {
-  @Input() data!: any;
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+export class SectionNavbarComponent {
+  @Input() data!: TypeSection__navbarFields;
 }
