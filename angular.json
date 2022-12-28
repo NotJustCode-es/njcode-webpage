@@ -214,8 +214,9 @@
       }
     }
   },
-  "defaultProject": "njcode-webpage",
   "cli": {
-    "defaultCollection": "@angular-eslint/schematics"
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }
