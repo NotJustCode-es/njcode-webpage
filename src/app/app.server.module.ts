@@ -1,7 +1,8 @@
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { ServerModule, ServerTransferStateModule } from '@angular/platform-server';
-import { ServerStateInterceptor } from './interceptors/server-state.interceptor';
+import { ServerModule } from '@angular/platform-server';
+import { ServerStateInterceptor } from '@interceptors/server-state.interceptor';
+import { UniversalInterceptorService } from '@interceptors/universal-interceptor.service';
 import { AppComponent } from './app.component';
 import { AppModule } from './app.module';
 
@@ -9,12 +10,16 @@ import { AppModule } from './app.module';
   imports: [
     AppModule,
     ServerModule,
-    ServerTransferStateModule,
   ],
   bootstrap: [
     AppComponent,
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: UniversalInterceptorService,
+      multi: true,
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ServerStateInterceptor,

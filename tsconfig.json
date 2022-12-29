@@ -29,6 +29,9 @@
       "@core/*": [
         "src/app/core/*"
       ],
+      "@interceptors/*": [
+        "src/app/interceptors/*"
+      ],
       "@sections/*": [
         "src/app/sections/*"
       ],
