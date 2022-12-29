@@ -11,7 +11,7 @@ export class ContentfulEntriesInterceptor implements NestInterceptor {
       switchMap((response: Observable<EntryCollection<unknown>>) => response),
       tap(data => {
         if (data.total === 0) {
-          throw new NotFoundException();
+          throw new NotFoundException(data);
         }
       }),
     );
