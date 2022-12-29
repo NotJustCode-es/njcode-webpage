@@ -6,6 +6,7 @@ import * as compression from 'compression';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
   app.setGlobalPrefix(process.env['PREFIX'] || '/api')
+  app.enableCors()
   app.use(compression())
   await app.listen(process.env['PORT'] || 4000)
 }
