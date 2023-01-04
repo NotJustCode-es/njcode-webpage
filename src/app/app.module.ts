@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserStateInterceptor } from '@interceptors/browser-state.interceptor';
+import { NotFoundInterceptor } from '@interceptors/not-found.interceptor';
 import { TransferHttpCacheModule } from '@nguniversal/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +23,11 @@ import { AppComponent } from './app.component';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: BrowserStateInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: NotFoundInterceptor,
       multi: true,
     },
   ],
