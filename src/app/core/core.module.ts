@@ -4,7 +4,7 @@ import {
   translocoConfig, TranslocoModule, TRANSLOCO_CONFIG, TRANSLOCO_LOADER,
 } from '@ngneat/transloco';
 import { I18nService } from './services/i18n.service';
-import { TranslocoHttpLoader } from './services/transloco-http-loader.service';
+import { TranslocoHttpLoaderService } from './services/transloco-http-loader.service';
 
 @NgModule({
   exports: [
@@ -21,7 +21,7 @@ import { TranslocoHttpLoader } from './services/transloco-http-loader.service';
     },
     {
       provide: TRANSLOCO_LOADER,
-      useClass: TranslocoHttpLoader,
+      useClass: TranslocoHttpLoaderService,
     },
     {
       provide: APP_INITIALIZER,

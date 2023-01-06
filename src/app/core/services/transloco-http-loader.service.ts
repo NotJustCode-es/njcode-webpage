@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class TranslocoHttpLoader implements TranslocoLoader {
+export class TranslocoHttpLoaderService implements TranslocoLoader {
   private readonly getTranslationPath = '/assets/i18n/';
 
   constructor(private httpClient: HttpClient) {}
