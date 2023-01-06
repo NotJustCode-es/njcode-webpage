@@ -4,9 +4,7 @@ import { TypeSection__footerFields } from '@server/models/contentful-content-typ
 @Component({
   selector: 'app-section-footer',
   templateUrl: './section-footer.component.html',
-  styleUrls: [
-    './section-footer.component.scss',
-  ],
+  styleUrls: ['./section-footer.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SectionFooterComponent {

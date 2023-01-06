@@ -16,6 +16,8 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
     "target": "es2020",
     "module": "es2020",
     "lib": [
@@ -37,6 +39,9 @@
       ],
       "@services/*": [
         "src/app/services/*"
+      ],
+      "@shared/*": [
+        "src/app/shared/*"
       ],
       "@server/models/*": [
         "server/models/*"
