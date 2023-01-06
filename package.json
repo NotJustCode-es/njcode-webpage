@@ -33,6 +33,7 @@
     "@nestjs/platform-express": "~8.4.7",
     "@nestjs/testing": "~8.4.7",
     "@ng-bootstrap/ng-bootstrap": "~13.1.1",
+    "@ngneat/transloco": "^4.2.1",
     "@nguniversal/express-engine": "~14.2.3",
     "@popperjs/core": "~2.11.6",
     "autoprefixer": "~10.4.5",
