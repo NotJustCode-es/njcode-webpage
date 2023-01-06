@@ -23,7 +23,7 @@
       "dom"
     ],
     "paths": {
-      "@environment/*": [
+      "@environments/*": [
         "src/environments/*"
       ],
       "@core/*": [
