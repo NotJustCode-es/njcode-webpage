@@ -1,9 +1,12 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { DynamicSection } from '@core/models/dynamic-section';
 import { ContentfulService } from '@core/services/contentful.service';
-import { Entry } from 'contentful';
-import { map, Observable } from 'rxjs';
+import { I18nService } from '@core/services/i18n.service';
+import { TypePageFields } from '@server/models/contentful-content-types/page';
+import { EntryCollectionWithLinkResolutionAndWithUnresolvableLinks } from 'contentful';
+import {
+  map, Observable, switchMap,
+} from 'rxjs';
 
 @Component({
   selector: 'app-dynamic-page',
@@ -19,7 +22,7 @@ export class DynamicPageComponent implements OnInit {
   sections$!: Observable<DynamicSection[]>;
 
   constructor(
-    private router: Router,
+    private i18nService: I18nService,
     private contentfulService: ContentfulService,
   ) { }
 
@@ -28,13 +31,17 @@ export class DynamicPageComponent implements OnInit {
   }
 
   private getSections(): void {
-    this.sections$ = this.contentfulService.getPage(this.router.url)
-      .pipe(
-        map(response => this.mapSectionsAndData(response.items[0].fields?.sections ?? [])),
-      );
+    this.sections$ = this.i18nService.languageChanges$.pipe(
+      switchMap((activeLanguage: string) => this.contentfulService.getPage(
+        this.i18nService.urlWithoutLanguage,
+        activeLanguage,
+      )),
+      map(page => this.mapSectionsAndDataFromPage(page)),
+    );
   }
 
-  private mapSectionsAndData(sections: Entry<Record<string, unknown>>[]): DynamicSection[] {
+  private mapSectionsAndDataFromPage(page: EntryCollectionWithLinkResolutionAndWithUnresolvableLinks<TypePageFields>): DynamicSection[] {
+    const sections = page.items[0].fields?.sections ?? [];
     return sections.map(section => {
       const { sys, fields } = section;
       return {
