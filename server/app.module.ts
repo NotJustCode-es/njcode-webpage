@@ -4,7 +4,7 @@ import { AngularUniversalModule } from '@nestjs/ng-universal';
 import { join } from 'path';
 import { AppServerModule } from '../src/main.server';
 import { ContentfulApiModule } from './contentful-api/contentful-api.module';
-import configuration from './core/config/configuration';
+import configFactory from './core/config/config-factory';
 
 const browserAppLocation = 'dist/njcode-webpage/browser';
 
@@ -20,12 +20,11 @@ const browserAppLocation = 'dist/njcode-webpage/browser';
         '.env.dev', '.env',
       ],
       load: [
-        configuration,
+        configFactory,
       ],
       isGlobal: true,
     }),
     ContentfulApiModule,
   ],
 })
-export class AppModule {
-}
+export class AppModule { }
