@@ -5,7 +5,7 @@ import { EntryCollectionWithLinkResolutionAndWithUnresolvableLinks } from 'conte
 import { Observable } from 'rxjs';
 import { ContentfulEntriesInterceptor } from '../interceptor/contentful-entries.interceptor';
 import { TypePageFields } from '../models/contentful-content-types/page';
-import { ContentfulPageParams } from '../models/contentful-page-params';
+import { ContentfulPageQueryParams } from '../models/contentful-page-query-params';
 import { ContentfulApiService } from './contentful-api.service';
 
 @Controller('contentful-api')
@@ -15,7 +15,7 @@ export class ContentfulApiController {
 
   @Get('/page')
   getPage(
-    @Query() params: ContentfulPageParams,
+    @Query() params: ContentfulPageQueryParams,
   ): Observable<EntryCollectionWithLinkResolutionAndWithUnresolvableLinks<TypePageFields>> {
     return this.contentfulApiService.getPage(params);
   }
