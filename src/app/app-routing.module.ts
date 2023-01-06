@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { i18nRoutes } from '@core/models/i18n-routes';
 
 const routes: Routes = [
   {
@@ -10,11 +11,11 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, {
+    RouterModule.forRoot(i18nRoutes(routes), {
       initialNavigation: 'enabledBlocking',
-      scrollPositionRestoration: 'enabled',
-      relativeLinkResolution: 'corrected',
       onSameUrlNavigation: 'reload',
+      relativeLinkResolution: 'corrected',
+      scrollPositionRestoration: 'enabled',
     }),
   ],
   exports: [
