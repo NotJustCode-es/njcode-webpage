@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-
 const routes: Routes = [
   {
     path: 'notfound',
@@ -27,7 +26,6 @@ const routes: Routes = [
     RouterModule,
   ],
   declarations: [
-    
   ],
 })
 export class AppRoutingModule { }
