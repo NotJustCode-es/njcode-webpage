@@ -3,13 +3,12 @@ import { Inject, Injectable } from '@angular/core';
 import { NavigationStart, Router, RoutesRecognized } from '@angular/router';
 import { environment } from '@environments/environment';
 import { TranslocoService } from '@ngneat/transloco';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class I18nService {
-  private readonly defaultRootPath = '/';
+  readonly defaultRootPath = '/';
 
   get defaultLanguage(): string {
     return environment.i18n.defaultLang;
@@ -35,10 +34,6 @@ export class I18nService {
     return this.translocoService.getActiveLang();
   }
 
-  get languageChanges$(): Observable<string> {
-    return this.translocoService.langChanges$;
-  }
-
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private router: Router,
@@ -57,7 +52,8 @@ export class I18nService {
   }
 
   setActiveLanguage(language?: string): void {
-    this.translocoService.setActiveLang(language || this.languageByUrlPath);
+    const futureActiveLanguage = language && this.availableLanguagesIncludes(language) ? language : this.languageByUrlPath;
+    this.translocoService.setActiveLang(futureActiveLanguage);
   }
 
   setLanguageSubscriptions(): void {

@@ -5,7 +5,7 @@ import { I18nService } from '@core/services/i18n.service';
 import { TypePageFields } from '@server/models/contentful-content-types/page';
 import { EntryCollectionWithLinkResolutionAndWithUnresolvableLinks } from 'contentful';
 import {
-  map, Observable, switchMap,
+  map, Observable,
 } from 'rxjs';
 
 @Component({
@@ -31,11 +31,10 @@ export class DynamicPageComponent implements OnInit {
   }
 
   private getSections(): void {
-    this.sections$ = this.i18nService.languageChanges$.pipe(
-      switchMap((activeLanguage: string) => this.contentfulService.getPage(
-        this.i18nService.urlWithoutLanguage,
-        activeLanguage,
-      )),
+    this.sections$ = this.contentfulService.getPage(
+      this.i18nService.urlWithoutLanguage,
+      this.i18nService.activeLanguage,
+    ).pipe(
       map(page => this.mapSectionsAndDataFromPage(page)),
     );
   }
