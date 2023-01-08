@@ -5,8 +5,8 @@ import { NotFoundInterceptor } from './not-found.interceptor';
 describe('NotFoundInterceptor', () => {
   beforeEach(() => TestBed.configureTestingModule({
     providers: [
-      NotFoundInterceptor
-      ]
+      NotFoundInterceptor,
+    ],
   }));
 
   it('should be created', () => {
