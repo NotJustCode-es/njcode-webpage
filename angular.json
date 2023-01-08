@@ -123,6 +123,9 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
+            "codeCoverageExclude": [
+              "src/app/shared/testing/**/*"
+            ],
             "assets": [
               "src/favicon.ico",
               "src/assets",
