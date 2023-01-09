@@ -5,7 +5,7 @@ import { RoutesEnum } from '@core/models/routes.enum';
 const routes: Routes = [
   {
     path: RoutesEnum.NotFound,
-    loadChildren: () => import('./pages/not-found/not-found.module').then(m => m.NotFoundModule),
+    loadChildren: () => import('./pages/not-found/not-found-routing.module').then(m => m.NotFoundRoutingModule),
   },
   {
     path: '**',
