@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { RoutesEnum } from '@core/models/routes.enum';
 
 const routes: Routes = [
   {
-    path: 'notfound',
+    path: RoutesEnum.NotFound,
     loadChildren: () => import('./pages/not-found/not-found.module').then(m => m.NotFoundModule),
   },
   {
