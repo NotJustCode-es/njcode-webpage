@@ -18,7 +18,7 @@ export class NotFoundInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError(error => {
         if (error.status === 404) {
-          this.router.navigateByUrl(RoutesEnum.NotFound, { replaceUrl: true });
+          this.router.navigateByUrl(RoutesEnum.NotFound);
           return EMPTY;
         }
         return throwError(() => new Error(error));
