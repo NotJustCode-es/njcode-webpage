@@ -6,13 +6,12 @@ import { RoutesEnum } from '@core/models/routes.enum';
 const routes: Routes = [
   {
     path: RoutesEnum.NotFound,
-    loadChildren: () => import('./pages/not-found/not-found-routing.module').then(m => m.NotFoundRoutingModule),
+    loadChildren: () => import('./pages/not-found/not-found.module').then(m => m.NotFoundModule),
   },
   {
     path: RoutesEnum.Dynamic,
     loadChildren: () => import('./pages/dynamic-page/dynamic-page.module').then(m => m.DynamicPageModule),
   },
-
 ];
 
 @NgModule({
@@ -26,8 +25,6 @@ const routes: Routes = [
   ],
   exports: [
     RouterModule,
-  ],
-  declarations: [
   ],
 })
 export class AppRoutingModule { }

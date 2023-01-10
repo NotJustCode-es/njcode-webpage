@@ -3,12 +3,13 @@ import { Inject, Injectable } from '@angular/core';
 import { NavigationStart, Router, RoutesRecognized } from '@angular/router';
 import { environment } from '@environments/environment';
 import { TranslocoService } from '@ngneat/transloco';
+import { RoutesEnum } from '../models/routes.enum';
 
 @Injectable({
   providedIn: 'root',
 })
 export class I18nService {
-  readonly defaultRootPath = '/';
+  readonly defaultRootPath = RoutesEnum.Home;
 
   get defaultLanguage(): string {
     return environment.i18n.defaultLang;
