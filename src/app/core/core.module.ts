@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, isDevMode, NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { environment } from '@environments/environment';
 import {
   translocoConfig, TranslocoModule, TRANSLOCO_CONFIG, TRANSLOCO_LOADER,
@@ -16,7 +16,7 @@ import { TranslocoHttpLoaderService } from './services/transloco-http-loader.ser
       useValue: translocoConfig({
         ...environment.i18n,
         reRenderOnLangChange: true,
-        prodMode: !isDevMode(),
+        prodMode: environment.production,
       }),
     },
     {
