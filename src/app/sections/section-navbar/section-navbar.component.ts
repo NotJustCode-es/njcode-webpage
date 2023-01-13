@@ -6,9 +6,7 @@ import { TypeSection__navbarFields } from '@server/models/contentful-content-typ
 @Component({
   selector: 'app-section-navbar',
   templateUrl: './section-navbar.component.html',
-  styleUrls: [
-    './section-navbar.component.scss',
-  ],
+  styleUrls: ['./section-navbar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SectionNavbarComponent {

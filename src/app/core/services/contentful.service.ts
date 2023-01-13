@@ -12,8 +12,10 @@ export class ContentfulService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getPage(url: string): Observable<EntryCollectionWithLinkResolutionAndWithUnresolvableLinks<TypePageFields>> {
-    const params = new HttpParams().set('slug', url);
+  getPage(url: string, locale: string): Observable<EntryCollectionWithLinkResolutionAndWithUnresolvableLinks<TypePageFields>> {
+    const params = new HttpParams()
+      .set('slug', url)
+      .set('locale', locale);
     return this.httpClient.get<EntryCollectionWithLinkResolutionAndWithUnresolvableLinks<TypePageFields>>(this.getPagePath, { params });
   }
 }

@@ -2,9 +2,17 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DynamicSection } from '@core/models/dynamic-section';
 import { TitleService } from '@core/services/title.service';
+import { RoutesEnum } from '@core/models/routes.enum';
 import { ContentfulService } from '@core/services/contentful.service';
-import { Entry } from 'contentful';
-import { map, Observable, tap } from 'rxjs';
+import { I18nService } from '@core/services/i18n.service';
+import { TypePageFields } from '@server/models/contentful-content-types/page';
+import { EntryCollectionWithLinkResolutionAndWithUnresolvableLinks } from 'contentful';
+import {
+  EMPTY,
+  map,
+  Observable, tap,
+} from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   template: `
@@ -20,6 +28,7 @@ export class DynamicPageComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private i18nService: I18nService,
     private contentfulService: ContentfulService,
     private titleService: TitleService,
   ) { }
@@ -29,33 +38,21 @@ export class DynamicPageComponent implements OnInit {
   }
 
   private getSections(): void {
-    this.sections$ = this.contentfulService.getPage(this.router.url)
-      .pipe(
-        // tap(response => console.log(`Title is: ${response.items[0].fields?.title}`)),
-        tap(response => this.titleService.setTitle(response.items[0].fields?.title)),
-        map(response => this.mapSectionsAndData(response.items[0].fields?.sections ?? [])),
-      );
+    this.sections$ = this.contentfulService.getPage(
+      this.i18nService.urlWithoutLanguage,
+      this.i18nService.activeLanguage,
+    ).pipe(
+      tap(response => this.titleService.setTitle(response.items[0].fields?.title)),
+      map(page => this.mapSectionsAndDataFromPage(page)),
+      catchError(() => {
+        this.router.navigate([RoutesEnum.NotFound]);
+        return EMPTY;
+      }),
+    );
   }
 
-  /*  private getTitle(): void {
-    this.title$ = this.contentfulService.getPage(this.router.url)
-      .pipe(
-        this.title$ => pluck
-        response => this.setTitle(response.items[0].fields?.Title?),
-      );
-  }
-
-  private setTitle(title: string): string {
-    return title.map((titleResponse: { string: any; }) => {
-      const { string } = titleResponse;
-      return {
-        id: sys.contentType.sys.id,
-        data: fields,
-      };
-    });
-  }
-*/
-  private mapSectionsAndData(sections: Entry<Record<string, unknown>>[]): DynamicSection[] {
+  private mapSectionsAndDataFromPage(page: EntryCollectionWithLinkResolutionAndWithUnresolvableLinks<TypePageFields>): DynamicSection[] {
+    const sections = page.items[0].fields?.sections ?? [];
     return sections.map(section => {
       const { sys, fields } = section;
       return {
