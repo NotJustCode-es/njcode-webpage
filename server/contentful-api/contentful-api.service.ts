@@ -5,7 +5,7 @@ import { from, Observable } from 'rxjs';
 import { ContentfulConfiguration } from '../core/models/contentful-configuration';
 import { ContentfulContentTypes } from '../models/contentful-content-types.enum';
 import { TypePageFields } from '../models/contentful-content-types/page';
-import { ContentfulPageParams } from '../models/contentful-page-params';
+import { ContentfulPageQueryParams } from '../models/contentful-page-query-params';
 
 @Injectable()
 export class ContentfulApiService {
@@ -24,9 +24,10 @@ export class ContentfulApiService {
     });
   }
 
-  getPage(pageParams: ContentfulPageParams): Observable<EntryCollectionWithLinkResolutionAndWithUnresolvableLinks<TypePageFields>> {
+  getPage(pageParams: ContentfulPageQueryParams): Observable<EntryCollectionWithLinkResolutionAndWithUnresolvableLinks<TypePageFields>> {
     return from(this.contentfulClient.getEntries<TypePageFields>({
       content_type: ContentfulContentTypes.Page,
+      locale: pageParams.locale,
       'fields.slug': pageParams.slug,
     }));
   }

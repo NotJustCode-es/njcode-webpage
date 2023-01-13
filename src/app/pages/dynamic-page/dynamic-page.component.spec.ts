@@ -1,5 +1,6 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { getTranslocoTestingModule } from '@shared/testing/transloco-testing.module';
 import { DynamicPageComponent } from './dynamic-page.component';
 
 describe('DynamicPageComponent', () => {
@@ -10,6 +11,10 @@ describe('DynamicPageComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [
         DynamicPageComponent,
+      ],
+      imports: [
+        HttpClientTestingModule,
+        getTranslocoTestingModule(),
       ],
     })
       .compileComponents();
