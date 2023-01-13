@@ -4,6 +4,10 @@
 
 export const environment = {
   production: false,
+  i18n: {
+    defaultLang: 'en',
+    availableLangs: ['en', 'es'],
+  },
 };
 
 /*
