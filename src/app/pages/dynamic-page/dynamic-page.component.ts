@@ -5,12 +5,12 @@ import { RoutesEnum } from '@core/models/routes.enum';
 import { ContentfulService } from '@core/services/contentful.service';
 import { I18nService } from '@core/services/i18n.service';
 import { TypePageFields } from '@server/models/contentful-content-types/page';
-import { EntryCollectionWithLinkResolutionAndWithUnresolvableLinks } from 'contentful';
 import {
+  catchError,
   EMPTY,
-  map, Observable,
+  map,
+  Observable,
 } from 'rxjs';
-import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dynamic-page',
@@ -48,8 +48,8 @@ export class DynamicPageComponent implements OnInit {
     );
   }
 
-  private mapSectionsAndDataFromPage(page: EntryCollectionWithLinkResolutionAndWithUnresolvableLinks<TypePageFields>): DynamicSection[] {
-    const sections = page.items[0].fields?.sections ?? [];
+  private mapSectionsAndDataFromPage(page: TypePageFields): DynamicSection[] {
+    const sections = page.sections || [];
     return sections.map(section => {
       const { sys, fields } = section;
       return {

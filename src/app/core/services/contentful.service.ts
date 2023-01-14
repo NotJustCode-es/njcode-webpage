@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TypePageFields } from '@server/models/contentful-content-types/page';
 import { EntryCollectionWithLinkResolutionAndWithUnresolvableLinks } from 'contentful';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -12,10 +12,16 @@ export class ContentfulService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getPage(url: string, locale: string): Observable<EntryCollectionWithLinkResolutionAndWithUnresolvableLinks<TypePageFields>> {
+  getPage(url: string, locale: string): Observable<TypePageFields> {
     const params = new HttpParams()
       .set('slug', url)
       .set('locale', locale);
-    return this.httpClient.get<EntryCollectionWithLinkResolutionAndWithUnresolvableLinks<TypePageFields>>(this.getPagePath, { params });
+    return this.httpClient.get<EntryCollectionWithLinkResolutionAndWithUnresolvableLinks<TypePageFields>>(
+      this.getPagePath,
+      { params },
+    )
+      .pipe(
+        map(response => response.items[0].fields),
+      );
   }
 }
