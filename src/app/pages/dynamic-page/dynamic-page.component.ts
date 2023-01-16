@@ -42,7 +42,7 @@ export class DynamicPageComponent implements OnInit {
       this.i18nService.urlWithoutLanguage,
       this.i18nService.activeLanguage,
     ).pipe(
-      tap(response => this.titleService.setTitle(response.items[0].fields?.title)),
+      tap(page => this.titleService.setTitle(page.items[0].fields?.title)),
       map(page => this.mapSectionsAndDataFromPage(page)),
       catchError(() => {
         this.router.navigate([RoutesEnum.NotFound]);
