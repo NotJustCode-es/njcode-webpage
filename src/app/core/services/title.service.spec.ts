@@ -16,14 +16,14 @@ describe('TitleService', () => {
   });
 
   it('Page title should be upgraded', () => {
-    const newTitle = 'newTitulo';
+    const newTitle = 'newTitle';
     service.setTitle(newTitle);
     title = TestBed.inject(Title);
     expect(title.getTitle()).toBe(newTitle);
   });
 
-  it('When undefined title is given, title should be default title NJCode ', () => {
-    const defaultTitle = 'NJCode';
+  it('When undefined title is given, title should be default title blank ', () => {
+    const defaultTitle = '';
     service.setTitle(undefined);
     title = TestBed.inject(Title);
     expect(title.getTitle()).toBe(defaultTitle);

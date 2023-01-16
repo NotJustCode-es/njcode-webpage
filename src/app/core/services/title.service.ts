@@ -10,7 +10,7 @@ export class TitleService {
 
   }
 
-  setTitle(givenTitle = 'NJCode'): void {
+  setTitle(givenTitle = ''): void {
     this.title.setTitle(givenTitle);
   }
 }
