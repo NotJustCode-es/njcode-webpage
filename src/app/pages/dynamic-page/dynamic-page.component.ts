@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DynamicSection } from '@core/models/dynamic-section';
+import { TitleService } from '@core/services/title.service';
 import { RoutesEnum } from '@core/models/routes.enum';
 import { ContentfulService } from '@core/services/contentful.service';
 import { I18nService } from '@core/services/i18n.service';
@@ -8,12 +9,12 @@ import { TypePageFields } from '@server/models/contentful-content-types/page';
 import { EntryCollectionWithLinkResolutionAndWithUnresolvableLinks } from 'contentful';
 import {
   EMPTY,
-  map, Observable,
+  map,
+  Observable, tap,
 } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-dynamic-page',
   template: `
     <ng-container *ngIf="sections$ | async as sections">
       <ng-template *ngFor="let section of sections" [appDynamicLoad]="section">
@@ -29,6 +30,7 @@ export class DynamicPageComponent implements OnInit {
     private router: Router,
     private i18nService: I18nService,
     private contentfulService: ContentfulService,
+    private titleService: TitleService,
   ) { }
 
   ngOnInit(): void {
@@ -40,6 +42,7 @@ export class DynamicPageComponent implements OnInit {
       this.i18nService.urlWithoutLanguage,
       this.i18nService.activeLanguage,
     ).pipe(
+      tap(page => this.titleService.setTitle(page.items[0].fields?.title)),
       map(page => this.mapSectionsAndDataFromPage(page)),
       catchError(() => {
         this.router.navigate([RoutesEnum.NotFound]);

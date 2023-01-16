@@ -17,4 +17,5 @@ const routes: Routes = [
     RouterModule,
   ],
 })
-export class DynamicPageRoutingModule { }
+export class DynamicPageRoutingModule {
+}
