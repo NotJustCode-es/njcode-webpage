@@ -6,13 +6,13 @@ import { RoutesEnum } from '@core/models/routes.enum';
 import { ContentfulService } from '@core/services/contentful.service';
 import { I18nService } from '@core/services/i18n.service';
 import { TypePageFields } from '@server/models/contentful-content-types/page';
-import { EntryCollectionWithLinkResolutionAndWithUnresolvableLinks } from 'contentful';
 import {
+  catchError,
   EMPTY,
   map,
-  Observable, tap,
+  Observable,
+  tap,
 } from 'rxjs';
-import { catchError } from 'rxjs/operators';
 
 @Component({
   template: `
@@ -42,7 +42,7 @@ export class DynamicPageComponent implements OnInit {
       this.i18nService.urlWithoutLanguage,
       this.i18nService.activeLanguage,
     ).pipe(
-      tap(page => this.titleService.setTitle(page.items[0].fields?.title)),
+      tap(page => this.titleService.setTitle(page.title)),
       map(page => this.mapSectionsAndDataFromPage(page)),
       catchError(() => {
         this.router.navigate([RoutesEnum.NotFound]);
@@ -51,8 +51,8 @@ export class DynamicPageComponent implements OnInit {
     );
   }
 
-  private mapSectionsAndDataFromPage(page: EntryCollectionWithLinkResolutionAndWithUnresolvableLinks<TypePageFields>): DynamicSection[] {
-    const sections = page.items[0].fields?.sections ?? [];
+  private mapSectionsAndDataFromPage(page: TypePageFields): DynamicSection[] {
+    const sections = page.sections || [];
     return sections.map(section => {
       const { sys, fields } = section;
       return {
