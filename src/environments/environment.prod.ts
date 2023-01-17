@@ -4,4 +4,7 @@ export const environment = {
     defaultLang: 'en',
     availableLangs: ['en', 'es'],
   },
+  analytics: {
+    googleAnalyticsId: 'G-6DENS4ZPR6',
+  },
 };
