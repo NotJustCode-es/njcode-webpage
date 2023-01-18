@@ -7,6 +7,7 @@ import { TestComponent } from '@shared/testing/components/test.component';
 import { DocumentStub } from '@shared/testing/stubs/document.stub';
 import { getTranslocoTestingModule } from '@shared/testing/transloco-testing.module';
 import { i18nRoutes } from '../models/i18n-routes';
+import { RoutesEnum } from '../models/routes.enum';
 import { I18nService } from './i18n.service';
 
 describe('I18nService', () => {
@@ -28,7 +29,7 @@ describe('I18nService', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule.withRoutes(i18nRoutes([{
-          path: '**',
+          path: RoutesEnum.Dynamic,
           component: TestComponent,
         }])),
         getTranslocoTestingModule(),
@@ -135,10 +136,8 @@ describe('I18nService', () => {
     });
 
     it('should not set the active language if the language is not available', () => {
+      createTestLocation('/');
       const newLanguage = 'invalidLanguage';
-      documentStub.testLocation = {
-        pathname: '/',
-      } as Location;
       service.setActiveLanguage(newLanguage);
       expect(service.activeLanguage).not.toBe(newLanguage);
     });
