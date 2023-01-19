@@ -12,7 +12,7 @@ import {
   Observable, tap,
 } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { MetadaService } from '@services/metada.service';
+import { MetadataService } from '@services/metadata.service';
 
 @Component({
   template: `
@@ -30,7 +30,7 @@ export class DynamicPageComponent implements OnInit {
     private router: Router,
     private i18nService: I18nService,
     private contentfulService: ContentfulService,
-    private metaService: MetadaService,
+    private metaService: MetadataService,
   ) { }
 
   ngOnInit(): void {
