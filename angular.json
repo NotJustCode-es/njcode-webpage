@@ -58,6 +58,9 @@
               "src/assets/theme/js/vendor/rellax.min.js",
               "src/assets/theme/js/theme.js"
             ],
+            "allowedCommonJsDependencies": [
+              "flat"
+            ],
             "stylePreprocessorOptions": {
               "includePaths": [
                 "src/styles"
