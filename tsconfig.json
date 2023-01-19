@@ -28,6 +28,9 @@
       "@environments/*": [
         "src/environments/*"
       ],
+      "@components/*": [
+        "src/app/components/*"
+      ],
       "@core/*": [
         "src/app/core/*"
       ],
