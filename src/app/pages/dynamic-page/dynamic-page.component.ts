@@ -37,12 +37,12 @@ export class DynamicPageComponent implements OnInit {
     this.getSections();
   }
 
-  private getSections(): void {
+  getSections(): void {
     this.sections$ = this.contentfulService.getPage(
       this.i18nService.urlWithoutLanguage,
       this.i18nService.activeLanguage,
     ).pipe(
-      tap(page => this.metadataService.setMetadata(page.metadata?.fields!)),
+      tap(page => this.metadataService.setMetadata(page.metadata?.fields)),
       map(page => this.mapSectionsAndDataFromPage(page)),
       catchError(() => {
         this.router.navigate([RoutesEnum.NotFound]);
@@ -51,7 +51,7 @@ export class DynamicPageComponent implements OnInit {
     );
   }
 
-  private mapSectionsAndDataFromPage(page: TypePageFields): DynamicSection[] {
+  mapSectionsAndDataFromPage(page: TypePageFields): DynamicSection[] {
     const sections = page.sections || [];
     return sections.map(section => {
       const { sys, fields } = section;
