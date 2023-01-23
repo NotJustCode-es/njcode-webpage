@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DynamicSection } from '@core/models/dynamic-section';
-import { TitleService } from '@core/services/title.service';
 import { RoutesEnum } from '@core/models/routes.enum';
 import { ContentfulService } from '@core/services/contentful.service';
 import { I18nService } from '@core/services/i18n.service';
@@ -13,6 +12,7 @@ import {
   Observable,
   tap,
 } from 'rxjs';
+import { MetadataService } from '@services/metadata.service';
 
 @Component({
   template: `
@@ -30,7 +30,7 @@ export class DynamicPageComponent implements OnInit {
     private router: Router,
     private i18nService: I18nService,
     private contentfulService: ContentfulService,
-    private titleService: TitleService,
+    private metaService: MetadataService,
   ) { }
 
   ngOnInit(): void {
@@ -42,7 +42,7 @@ export class DynamicPageComponent implements OnInit {
       this.i18nService.urlWithoutLanguage,
       this.i18nService.activeLanguage,
     ).pipe(
-      tap(page => this.titleService.setTitle(page.title)),
+      tap(page => this.metaService.setMetadata(page.metadata?.fields!)),
       map(page => this.mapSectionsAndDataFromPage(page)),
       catchError(() => {
         this.router.navigate([RoutesEnum.NotFound]);
