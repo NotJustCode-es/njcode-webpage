@@ -1,4 +1,4 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { getTranslocoTestingModule } from '@shared/testing/transloco-testing.module';
 import { DynamicPageComponent } from './dynamic-page.component';
@@ -6,6 +6,7 @@ import { DynamicPageComponent } from './dynamic-page.component';
 describe('DynamicPageComponent', () => {
   let component: DynamicPageComponent;
   let fixture: ComponentFixture<DynamicPageComponent>;
+  let controller: HttpTestingController;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -21,6 +22,7 @@ describe('DynamicPageComponent', () => {
   });
 
   beforeEach(() => {
+    controller = TestBed.inject(HttpTestingController);
     fixture = TestBed.createComponent(DynamicPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

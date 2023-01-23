@@ -2,13 +2,13 @@ import { DOCUMENT } from '@angular/common';
 import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { i18nRoutes } from '@core/models/i18n-routes';
+import { RoutesEnum } from '@core/models/routes.enum';
+import { I18nService } from '@core/services/i18n/i18n.service';
 import { environment } from '@environments/environment';
 import { TestComponent } from '@shared/testing/components/test.component';
 import { DocumentStub } from '@shared/testing/stubs/document.stub';
 import { getTranslocoTestingModule } from '@shared/testing/transloco-testing.module';
-import { i18nRoutes } from '../models/i18n-routes';
-import { RoutesEnum } from '../models/routes.enum';
-import { I18nService } from './i18n.service';
 
 describe('I18nService', () => {
   let service: I18nService;

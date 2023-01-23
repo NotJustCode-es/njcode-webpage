@@ -1,10 +1,10 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { I18nService } from '@core/services/i18n/i18n.service';
+import { TranslocoHttpLoaderService } from '@core/services/transloco-http-loader/transloco-http-loader.service';
 import { environment } from '@environments/environment';
 import {
   translocoConfig, TranslocoModule, TRANSLOCO_CONFIG, TRANSLOCO_LOADER,
 } from '@ngneat/transloco';
-import { I18nService } from './services/i18n.service';
-import { TranslocoHttpLoaderService } from './services/transloco-http-loader.service';
 
 @NgModule({
   exports: [

@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DynamicLoadDirective } from './dynamic-load.directive';
+import { NgModule } from '@angular/core';
+import { DynamicLoadDirective } from '@core/directives/dynamic-load/dynamic-load.directive';
 
 @NgModule({
   declarations: [

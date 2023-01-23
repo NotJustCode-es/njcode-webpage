@@ -21,7 +21,7 @@ export class ContentfulService {
       { params },
     )
       .pipe(
-        map(response => response.items[0].fields),
+        map(response => response.items[0]?.fields || {}),
       );
   }
 }
