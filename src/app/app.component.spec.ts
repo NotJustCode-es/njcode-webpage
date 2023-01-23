@@ -1,7 +1,7 @@
-import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { PageLoaderModule } from '@components/page-loader/page-loader.module';
-import { AppComponent } from './app.component';
+import { AppComponent } from 'src/app/app.component';
 
 describe('AppComponent', () => {
   let app: AppComponent;

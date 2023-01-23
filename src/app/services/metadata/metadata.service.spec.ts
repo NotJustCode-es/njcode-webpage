@@ -3,7 +3,7 @@ import { DOCUMENT } from '@angular/common';
 import { TypeMetadataFields } from '@server/models/contentful-content-types/metadata';
 import { MetadataService } from './metadata.service';
 
-describe('MetadaService', () => {
+describe('MetadataService', () => {
   let service: MetadataService;
   let document: Document;
   const myMetadata: TypeMetadataFields = {

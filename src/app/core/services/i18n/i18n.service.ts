@@ -1,9 +1,9 @@
 import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable } from '@angular/core';
 import { NavigationStart, Router, RoutesRecognized } from '@angular/router';
+import { RoutesEnum } from '@core/models/routes.enum';
 import { environment } from '@environments/environment';
 import { TranslocoService } from '@ngneat/transloco';
-import { RoutesEnum } from '../models/routes.enum';
 
 @Injectable({
   providedIn: 'root',
