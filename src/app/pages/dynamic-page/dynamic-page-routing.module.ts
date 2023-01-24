@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DynamicPageComponent } from './dynamic-page.component';
+import { DynamicPageComponent } from '@pages/dynamic-page/dynamic-page.component';
 
 const routes: Routes = [
   {

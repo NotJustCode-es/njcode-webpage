@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SectionFooterComponent } from './section-footer.component';
+import { NgModule } from '@angular/core';
+import { SectionFooterComponent } from '@sections/section-footer/section-footer.component';
 
 @NgModule({
   declarations: [

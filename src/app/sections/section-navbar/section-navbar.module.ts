@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SectionNavbarComponent } from './section-navbar.component';
+import { NgModule } from '@angular/core';
+import { SectionNavbarComponent } from '@sections/section-navbar/section-navbar.component';
 
 @NgModule({
   declarations: [

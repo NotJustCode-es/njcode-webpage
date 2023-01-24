@@ -1,6 +1,6 @@
-import { environment } from '@environments/environment';
 import { Injectable } from '@angular/core';
-import { ScriptService } from './script.service';
+import { environment } from '@environments/environment';
+import { ScriptService } from '@services/script/script.service';
 
 @Injectable({
   providedIn: 'root',

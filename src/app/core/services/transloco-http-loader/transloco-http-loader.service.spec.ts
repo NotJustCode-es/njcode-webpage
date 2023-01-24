@@ -1,7 +1,7 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { TranslocoHttpLoaderService } from '@core/services/transloco-http-loader/transloco-http-loader.service';
 import { environment } from '@environments/environment';
-import { TranslocoHttpLoaderService } from './transloco-http-loader.service';
 
 describe('TranslocoHttpLoaderService', () => {
   let service: TranslocoHttpLoaderService;
