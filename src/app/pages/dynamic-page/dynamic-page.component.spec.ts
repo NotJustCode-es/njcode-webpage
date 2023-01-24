@@ -46,7 +46,7 @@ describe('DynamicPageComponent', () => {
   });
 
   describe('#getSections', () => {
-    it('should not render nothing if no sections', () => {
+    it('should not render if there are no sections', () => {
       const { nativeElement } = fixture;
       const response = {
         items: [{
