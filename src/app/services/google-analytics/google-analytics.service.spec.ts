@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { GoogleAnalyticsService } from './google-analytics.service';
-import { ScriptService } from './script.service';
+import { ScriptService } from '../script/script.service';
 
 describe('GoogleAnalyticsService', () => {
   let service: GoogleAnalyticsService;

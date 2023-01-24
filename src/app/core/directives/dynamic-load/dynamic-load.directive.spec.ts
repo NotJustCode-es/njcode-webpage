@@ -1,6 +1,6 @@
 import { Injector, ViewContainerRef } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { DynamicLoadDirective } from './dynamic-load.directive';
+import { DynamicLoadDirective } from '@core/directives/dynamic-load/dynamic-load.directive';
 
 describe('DynamicLoadDirective', () => {
   beforeEach(async () => {

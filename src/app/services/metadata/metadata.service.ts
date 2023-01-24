@@ -10,7 +10,10 @@ export class MetadataService {
 
   constructor(private title: Title, private metadata: Meta) { }
 
-  setMetadata(meta: TypeMetadataFields): void {
+  setMetadata(meta?: TypeMetadataFields): void {
+    if (!meta) {
+      return;
+    }
     this.meta = meta;
     this.setName();
     this.setTitle();

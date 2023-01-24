@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { LoadingService } from '@services/loading.service';
-import { PageLoaderComponent } from './page-loader.component';
+import { PageLoaderComponent } from '@components/page-loader/page-loader.component';
+import { LoadingService } from '@services/loading/loading.service';
 
 describe('PageLoaderComponent', () => {
   let component: PageLoaderComponent;
