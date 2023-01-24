@@ -5,6 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { DynamicLoadModule } from '@core/directives/dynamic-load/dynamic-load.module';
 import { RoutesEnum } from '@core/models/routes.enum';
 import { TypePageFields } from '@server/models/contentful-content-types/page';
+import { MetadataService } from '@services/metadata/metadata.service';
 import { TestComponent } from '@shared/testing/components/test.component';
 import { getTranslocoTestingModule } from '@shared/testing/transloco-testing.module';
 import { DynamicPageComponent } from './dynamic-page.component';
@@ -14,6 +15,7 @@ describe('DynamicPageComponent', () => {
   let fixture: ComponentFixture<DynamicPageComponent>;
   let controller: HttpTestingController;
   let router: Router;
+  let metadataService: MetadataService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -36,6 +38,7 @@ describe('DynamicPageComponent', () => {
   beforeEach(() => {
     router = TestBed.inject(Router);
     controller = TestBed.inject(HttpTestingController);
+    metadataService = TestBed.inject(MetadataService);
     fixture = TestBed.createComponent(DynamicPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -59,6 +62,20 @@ describe('DynamicPageComponent', () => {
       req.flush(response);
       fixture.detectChanges();
       expect(nativeElement.querySelector('app-dynamic-load')).toBeFalsy();
+    });
+
+    it('should call MetadataService#setMetadata', () => {
+      const spySetMetadata = spyOn(metadataService, 'setMetadata');
+      const response = {
+        items: [{
+          fields: {
+            metadata: [],
+          },
+        }],
+      };
+      const req = controller.expectOne(() => true);
+      req.flush(response);
+      expect(spySetMetadata).toHaveBeenCalled();
     });
 
     it('should redirect to RoutesEnum.NotFound on getPage error', () => {
