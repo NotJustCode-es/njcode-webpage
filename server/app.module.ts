@@ -13,7 +13,6 @@ const browserAppLocation = 'dist/njcode-webpage/browser';
     AngularUniversalModule.forRoot({
       bootstrap: AppServerModule,
       viewsPath: join(process.cwd(), browserAppLocation),
-      inlineCriticalCss: false,
     }),
     ConfigModule.forRoot({
       envFilePath: [

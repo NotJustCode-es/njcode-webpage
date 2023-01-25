@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { TypeSection__heroFields } from '@server/models/contentful-content-types/hero';
+import { TypeSection__heroFields } from '@server/models/contentful-content-types/section-hero';
 
 @Component({
   selector: 'app-section-hero',
