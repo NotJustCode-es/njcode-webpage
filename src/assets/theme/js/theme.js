@@ -1,11 +1,5 @@
 'use strict';
 var theme = {
-  /**
-   * Theme's components/functions list
-   * Comment out or delete the unnecessary component.
-   * Some components have dependencies (plugins).
-   * Do not forget to remove dependency from src/js/vendor/ and recompile.
-   */
   init: function () {
     theme.stickyHeader();
     theme.subMenu();
@@ -60,7 +54,9 @@ var theme = {
         }
       }
     };
-    var banner = new Headhesive('.navbar', options);
+    setTimeout(() => {
+      new Headhesive('.navbar', options);
+    }, 500);
   },
   /**
    * Sub Menus
@@ -97,8 +93,6 @@ var theme = {
    * Enables offcanvas-nav, closes offcanvas on anchor clicks, focuses on input in search offcanvas
    */
   offCanvas: () => {
-    var navbar = document.querySelector(".navbar");
-    if (navbar == null) return;
     const navOffCanvasBtn = document.querySelectorAll(".offcanvas-nav-btn");
     const navOffCanvas = document.querySelector('.navbar:not(.navbar-clone) .offcanvas-nav');
     const bsOffCanvas = new bootstrap.Offcanvas(navOffCanvas, {scroll: true});
@@ -903,4 +897,5 @@ var theme = {
     });
   },
 }
+
 theme.init();
