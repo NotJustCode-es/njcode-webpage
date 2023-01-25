@@ -1,1 +1,4 @@
 // Use this to write your custom SCSS
+.gradient {
+  background: linear-gradient(145deg, $primary 10%, $secondary 100%);
+}
