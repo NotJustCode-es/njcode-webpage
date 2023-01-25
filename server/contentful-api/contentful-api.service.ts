@@ -28,6 +28,7 @@ export class ContentfulApiService {
     return from(this.contentfulClient.getEntries<TypePageFields>({
       content_type: ContentfulContentTypes.Page,
       locale: pageParams.locale,
+      include: 10,
       'fields.slug': pageParams.slug,
     }));
   }
