@@ -37,6 +37,7 @@ var theme = {
    * Requires assets/js/vendor/headhesive.min.js
   */
   stickyHeader: () => {
+    // TODO: fix: doesn't work with angular
     var navbar = document.querySelector(".navbar");
     if (navbar == null) return;
     var options = {
@@ -54,9 +55,7 @@ var theme = {
         }
       }
     };
-    setTimeout(() => {
-      new Headhesive('.navbar', options);
-    }, 500);
+    new Headhesive('.navbar', options);
   },
   /**
    * Sub Menus
@@ -898,4 +897,7 @@ var theme = {
   },
 }
 
-theme.init();
+window.addEventListener('load', function() {
+  // TODO: fix: Should initialize every page route
+  theme.init();
+});
