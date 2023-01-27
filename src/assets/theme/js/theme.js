@@ -1,5 +1,5 @@
 'use strict';
-var theme = {
+window.theme = {
   init: function () {
     theme.stickyHeader();
     theme.subMenu();
@@ -8,7 +8,6 @@ var theme = {
     theme.onepageHeaderOffset();
     theme.spyScroll();
     theme.anchorSmoothScroll();
-    theme.svgInject();
     theme.backgroundImage();
     theme.backgroundImageMobile();
     theme.imageHoverOverlay();
@@ -37,9 +36,14 @@ var theme = {
    * Requires assets/js/vendor/headhesive.min.js
   */
   stickyHeader: () => {
-    // TODO: fix: doesn't work with angular
     var navbar = document.querySelector(".navbar");
-    if (navbar == null) return;
+    if (navbar === null) {
+      return;
+    }
+    var navbarClone = document.querySelector(".navbar-clone");
+    if (navbarClone !== null) {
+      navbarClone.remove();
+    }
     var options = {
       offset: 350,
       offsetSide: 'top',
@@ -52,6 +56,10 @@ var theme = {
         var navbarClonedClass = this.clonedElem.classList;
         if (navbarClonedClass.contains('transparent') && navbarClonedClass.contains('navbar-dark')) {
           this.clonedElem.className = this.clonedElem.className.replace("navbar-dark","navbar-light");
+        }
+        const languageSelect = this.clonedElem.querySelector('.language-select');
+        if(languageSelect !== null) {
+          languageSelect.remove();
         }
       }
     };
@@ -236,23 +244,6 @@ var theme = {
         behavior: "smooth"
       });
     }
-  },
-  /**
-   * SVGInject
-   * Replaces an img element with an inline SVG so you can apply colors to your SVGs
-   * Requires assets/js/vendor/svg-inject.min.js
-   */
-  svgInject: () => {
-    SVGInject.setOptions({
-      onFail: function(img, svg) {
-        img.classList.remove('svg-inject');
-      }
-    });
-    document.addEventListener('DOMContentLoaded', function() {
-      SVGInject(document.querySelectorAll('img.svg-inject'), {
-        useCache: true
-      });
-    });
   },
   /**
    * Background Image
@@ -896,8 +887,3 @@ var theme = {
     });
   },
 }
-
-window.addEventListener('load', function() {
-  // TODO: fix: Should initialize every page route
-  theme.init();
-});

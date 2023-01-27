@@ -27,7 +27,7 @@ describe('ScriptService', () => {
 
   describe('#createScript', () => {
     it('should add script with src', () => {
-      const src = 'src';
+      const src = 'createSrc';
       service.createScript(src);
       expect(findScriptElementByAttribute(src)).toBeTruthy();
     });
@@ -38,6 +38,15 @@ describe('ScriptService', () => {
       const body = 'console.log("#createScriptWithBody test")';
       service.createScriptWithBody(body);
       expect(findScriptElementByAttribute(body, 'innerHTML')).toBeTruthy();
+    });
+  });
+
+  describe('#removeScript', () => {
+    it('should remove script with src', () => {
+      const src = 'removeSrc';
+      service.createScript(src);
+      service.removeScript(src);
+      expect(findScriptElementByAttribute(src)).toBeFalsy();
     });
   });
 });
