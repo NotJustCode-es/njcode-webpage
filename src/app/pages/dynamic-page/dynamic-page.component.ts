@@ -6,6 +6,7 @@ import { ContentfulService } from '@core/services/contentful/contentful.service'
 import { I18nService } from '@core/services/i18n/i18n.service';
 import { TypePageFields } from '@server/models/contentful-content-types/page';
 import { MetadataService } from '@services/metadata/metadata.service';
+import { PluginsService } from '@services/plugins/plugins.service';
 import {
   catchError,
   EMPTY,
@@ -31,6 +32,7 @@ export class DynamicPageComponent implements OnInit {
     private i18nService: I18nService,
     private contentfulService: ContentfulService,
     private metadataService: MetadataService,
+    private pluginsService: PluginsService,
   ) { }
 
   ngOnInit(): void {
@@ -42,6 +44,7 @@ export class DynamicPageComponent implements OnInit {
       this.i18nService.urlWithoutLanguage,
       this.i18nService.activeLanguage,
     ).pipe(
+      tap(() => this.pluginsService.loadPlugins()),
       tap(page => this.metadataService.setMetadata(page.metadata?.fields)),
       map(page => this.mapSectionsAndDataFromPage(page)),
       catchError(() => {
