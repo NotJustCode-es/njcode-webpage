@@ -37,6 +37,15 @@ export class ScriptService {
     }
   }
 
+  removeScript(src: string): void {
+    if (isPlatformBrowser(this.platform)) {
+      const script = this.document.querySelector(`script[src="${src}"]`);
+      if (script) {
+        this.renderer.removeChild(this.head, script);
+      }
+    }
+  }
+
   private createScriptElement(): HTMLScriptElement {
     const script = this.renderer.createElement('script');
     this.renderer.setAttribute(script, 'async', 'true');

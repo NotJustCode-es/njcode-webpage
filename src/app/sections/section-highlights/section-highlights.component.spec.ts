@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { SectionHighlightsComponent } from './section-highlights.component';
+import { SectionHighlightsComponent } from '@sections/section-highlights/section-highlights.component';
 
 describe('SectionHighlightsComponent', () => {
   let component: SectionHighlightsComponent;
@@ -8,9 +7,9 @@ describe('SectionHighlightsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SectionHighlightsComponent ]
+      declarations: [SectionHighlightsComponent],
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(SectionHighlightsComponent);
     component = fixture.componentInstance;
@@ -19,5 +18,12 @@ describe('SectionHighlightsComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('#getIconPath', () => {
+    it('should return icon path', () => {
+      const icon = 'icon';
+      expect(component.getIconPath(icon)).toEqual(`${component.iconsPath}/${icon}.svg`);
+    });
   });
 });
