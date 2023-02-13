@@ -7,7 +7,7 @@ export interface TypeClient__cardFields {
   position: Contentful.EntryFields.Symbol;
   description: Contentful.EntryFields.Symbol;
   socialMedia?: Contentful.Entry<TypeRouteLinkFields>[];
-  image: Contentful.EntryFields.Symbol;
+  clientPhoto: Contentful.Asset;
 }
 
 export type TypeClient__card = Contentful.Entry<TypeClient__cardFields>;
