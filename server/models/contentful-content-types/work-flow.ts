@@ -7,7 +7,7 @@ export interface TypeWorkflowFields {
   description: Contentful.EntryFields.Symbol;
   checklist: Contentful.EntryFields.Symbol[];
   learnMore?: Contentful.Entry<TypeRouteLinkFields>;
-  icon: Contentful.EntryFields.Symbol;
+  workflowImage: Contentful.Asset;
 }
 
 export type TypeWorkflow = Contentful.Entry<TypeWorkflowFields>;
