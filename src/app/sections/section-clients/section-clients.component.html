@@ -24,7 +24,7 @@
                                 <div class="item-inner">
                                     <div class="card">
                                         <div class="card-body">
-                                            <img [src]="getImgPath(card.fields.image)" [alt]="card.fields.clientName" />
+                                            <img [src]="card.fields.clientPhoto.fields.file?.url" [alt]="card.fields.clientName" />
                                             <h4 class="mb-1">{{card.fields.clientName}}</h4>
                                             <div class="meta mb-2">{{card.fields.position}}</div>
                                             <p class="mb-2">{{card.fields.description}}</p>
