@@ -40,7 +40,7 @@
             <div class="row gx-lg-8 gx-xl-12 gy-10 align-items-center">
                 <div class="col-lg-6">
                     <figure class="rounded shadow-lg">
-                        <img [src]="getImgPath(data.flow?.fields?.icon!)" [alt]="data.flow?.fields?.title" />
+                        <img [src]="data.flow?.fields?.workflowImage?.fields?.file?.url" [alt]="data.flow?.fields?.title" />
                     </figure>
                 </div>
                 <!--/column -->
