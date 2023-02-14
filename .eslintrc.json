@@ -19,7 +19,8 @@
   },
   "parser": "@typescript-eslint/parser",
   "plugins": [
-    "@typescript-eslint/eslint-plugin"
+    "@typescript-eslint/eslint-plugin",
+    "@html-eslint/eslint-plugin"
   ],
   "overrides": [
     {
@@ -124,10 +125,23 @@
       "files": [
         "*.html"
       ],
-      "extends": [
-        "plugin:@angular-eslint/template/recommended"
-      ],
-      "rules": {}
+      "parser": "@html-eslint/parser",
+      "rules": {
+        "@html-eslint/indent": [
+          "warn",
+          2
+        ],
+        "@html-eslint/no-extra-spacing-attrs": "warn",
+        "@html-eslint/no-multiple-empty-lines": [
+          "warn",
+          {
+            "max": 1
+          }
+        ],
+        "@html-eslint/no-inline-styles": "warn",
+        "@html-eslint/no-obsolete-tags": "warn",
+        "@html-eslint/no-duplicate-attrs": "warn"
+      }
     }
   ]
 }
