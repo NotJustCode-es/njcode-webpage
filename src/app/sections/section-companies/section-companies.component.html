@@ -1,0 +1,14 @@
+<section class="wrapper bg-light">
+  <div class="container pt-10 pt-md-14 pb-14 pb-md-16 text-center">
+    <!-- /.row -->
+    <p class="text-center mb-8">{{ data.title }}</p>
+    <div class="row row-cols-4 row-cols-md-4 row-cols-lg-7 row-cols-xl-7 gy-10 mb-2 d-flex align-items-center justify-content-center">
+      <ng-container *ngFor="let company of data?.companies">
+        <div class="col"><img class="img-fluid px-md-3 px-lg-0 px-xl-2 px-xxl-5" [src]="company.fields.file?.url" [alt]="company.fields.title"/></div>
+      </ng-container>
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container -->
+</section>
+<!-- /section -->
