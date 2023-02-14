@@ -12,13 +12,7 @@ export class SectionClientsComponent {
 
   readonly iconsPath = 'assets/theme/img/icons/solid';
 
-  readonly imgPath = 'assets/theme/img';
-
   getIconPath(icon: string): string {
     return `${this.iconsPath}/${icon}.svg`;
-  }
-
-  getImgPath(icon: string): string {
-    return `${this.imgPath}/${icon}.png`;
   }
 }
