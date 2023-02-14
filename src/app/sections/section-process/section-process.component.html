@@ -1,73 +1,60 @@
 <section class="wrapper bg-light">
-    <div class="row">
-        <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2 mx-auto text-center">
-            <h2 class="fs-16 text-uppercase text-muted mb-3">{{ data.question }}</h2>
-            <h3 class="display-3 mb-10 px-xl-10 px-xxl-15">{{ data.answer }}</h3>
-        </div>
-        <!-- /column -->
+  <div class="row">
+    <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2 mx-auto text-center">
+      <h2 class="fs-16 text-uppercase text-muted mb-3">{{ data.question }}</h2>
+      <h3 class="display-3 mb-10 px-xl-10 px-xxl-15">{{ data.answer }}</h3>
     </div>
+    <!-- /column -->
+  </div>
 
-    <!-- /.row -->
-    <div class="container pb-15 pb-md-17">
-        <div
-            class="nav nav-tabs nav-tabs-bg nav-tabs-shadow-lg d-flex justify-content-evenly nav-justified flex-lg-row flex-column">
-            <ng-container *ngFor="let highlight of data?.highligths">
-                <div class="col-md-6 col-xl-3">
-
-                    <div class="card-body">
-                        <img [src]="getIconPath(highlight.fields.icon)" class="icon-svg icon-svg-sm mb-3"
-                            [alt]="highlight.fields.title" />
-                        <h4>
-                            {{ highlight.fields.title }}
-                        </h4>
-                        <p class="mb-2">
-                            {{ highlight.fields.description }}
-                        </p>
-                    </div>
-                    <!--/.card-body -->
-
-                    <!--/.card -->
-                </div>
-                <!--/column -->
-            </ng-container>
+  <!-- /.row -->
+  <div class="container pb-15 pb-md-17">
+    <div
+      class="nav nav-tabs nav-tabs-bg nav-tabs-shadow-lg d-flex justify-content-evenly nav-justified flex-lg-row flex-column">
+      <ng-container *ngFor="let highlight of data?.highligths">
+        <div class="col-md-6 col-xl-3">
+          <div class="card-body">
+            <img [src]="getIconPath(highlight.fields.icon)" class="icon-svg icon-svg-sm mb-3"
+              [alt]="highlight.fields.title"/>
+            <h4>
+              {{ highlight.fields.title }}
+            </h4>
+            <p class="mb-2">
+              {{ highlight.fields.description }}
+            </p>
+          </div>
         </div>
-
-        <!--/.row -->
-
-        <!-- /.container -->
-        <!-- /.nav-tabs -->
-        <div class="tab-content mt-6 mt-lg-8">
-            <div class="row gx-lg-8 gx-xl-12 gy-10 align-items-center">
-                <div class="col-lg-6">
-                    <figure class="rounded shadow-lg">
-                        <img [src]="data.flow?.fields?.workflowImage?.fields?.file?.url" [alt]="data.flow?.fields?.title" />
-                    </figure>
-                </div>
-                <!--/column -->
-                <div class="col-lg-6">
-                    <h2 class="mb-3">{{data.flow?.fields?.title}}</h2>
-                    <p>
-                        {{data.flow?.fields?.description}}
-                    </p>
-                    <ng-container *ngFor="let checkitem of data?.flow?.fields?.checklist">
-                        <ul class="icon-list bullet-bg bullet-soft-fuchsia">
-                            <li>
-                                <i class="uil uil-check"></i>{{checkitem}}
-                            </li>
-                        </ul>
-                    </ng-container>
-                    <a href={{data.flow?.fields?.learnMore?.fields?.href}}
-                        class="btn btn-fuchsia mt-2">{{data.flow?.fields?.learnMore?.fields?.title}}</a>
-                </div>
-                <!--/column -->
-            </div>
-            <!--/.row -->
-        </div>
+        <!--/column -->
+      </ng-container>
     </div>
-    <!--/.tab-pane -->
-
-    <!-- /.tab-content -->
-
-    <!-- /.container -->
+    <!--/.row -->
+    <div class="tab-content mt-6 mt-lg-8">
+      <div class="row gx-lg-8 gx-xl-12 gy-10 align-items-center">
+        <div class="col-lg-6">
+          <figure class="rounded shadow-lg">
+            <img [src]="data.flow?.fields?.workflowImage?.fields?.file?.url" [alt]="data.flow?.fields?.title"/>
+          </figure>
+        </div>
+        <!--/column -->
+        <div class="col-lg-6">
+          <h2 class="mb-3">{{ data.flow?.fields?.title }}</h2>
+          <p>
+            {{ data.flow?.fields?.description }}
+          </p>
+          <ng-container *ngFor="let checkitem of data?.flow?.fields?.checklist">
+            <ul class="icon-list bullet-bg bullet-soft-fuchsia">
+              <li>
+                <i class="uil uil-check"></i>{{ checkitem }}
+              </li>
+            </ul>
+          </ng-container>
+          <a [href]="data.flow?.fields?.learnMore?.fields?.href"
+            class="btn btn-fuchsia mt-2">{{ data.flow?.fields?.learnMore?.fields?.title }}</a>
+        </div>
+        <!--/column -->
+      </div>
+      <!--/.row -->
+    </div>
+  </div>
 </section>
 <!-- /section -->
