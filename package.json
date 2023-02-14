@@ -25,6 +25,8 @@
     "@angular/platform-browser-dynamic": "~14.2.12",
     "@angular/platform-server": "~14.2.12",
     "@angular/router": "~14.2.12",
+    "@html-eslint/eslint-plugin": "~0.16.0",
+    "@html-eslint/parser": "~0.16.0",
     "@nestjs/axios": "~1.0.1",
     "@nestjs/common": "~8.4.7",
     "@nestjs/config": "~2.2.0",
