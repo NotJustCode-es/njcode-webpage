@@ -19,4 +19,8 @@ export const SECTIONS: Map<string, Function> = new Map([
     'section-process',
     (): Promise<unknown> => import('@sections/section-process/section-process.module').then(m => m.SectionProcessModule),
   ],
+  [
+    'section-projects',
+    (): Promise<unknown> => import('@sections/section-projects/section-projects.module').then(m => m.SectionProjectsModule),
+  ],
 ]);
