@@ -1,7 +1,7 @@
 import { TypeProjectCardFields } from '@server/models/contentful-content-types/project-card';
 import * as Contentful from 'contentful';
 
-export interface TypeSection__proyectosFields {
+export interface TypeSection__projectsFields {
   name: Contentful.EntryFields.Symbol;
   title: Contentful.EntryFields.Symbol;
   projectCards: Contentful.Entry<TypeProjectCardFields>[];
@@ -10,4 +10,4 @@ export interface TypeSection__proyectosFields {
   descriptionLastPart: Contentful.EntryFields.Symbol;
 }
 
-export type TypeSection__proyectos = Contentful.Entry<TypeSection__proyectosFields>;
+export type TypeSection__projects = Contentful.Entry<TypeSection__projectsFields>;
