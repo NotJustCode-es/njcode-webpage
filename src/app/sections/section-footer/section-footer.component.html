@@ -4,7 +4,9 @@
       <div class="col-lg-4">
         <div class="widget">
           <img class="mb-4" [src]="data.logo.fields.logo.fields.file?.url" [srcset]="data.logo.fields.logoX2.fields.file?.url" [alt]="data.logo.fields.description"/>
-          <p class="lead mb-0">{{ data.subtitle }}</p>
+          <p class="lead mb-0">
+            {{ data.subtitle }}
+          </p>
         </div>
         <!-- /.widget -->
       </div>
@@ -13,12 +15,20 @@
         <div class="widget">
           <div class="d-flex flex-row">
             <div>
-              <div class="icon text-primary fs-28 me-4 mt-n1"> <i class="uil uil-phone-volume"></i> </div>
+              <div class="icon text-primary fs-28 me-4 mt-n1"> 
+                <i class="uil uil-phone-volume">
+                </i> 
+              </div>
             </div>
             <div>
-              <h5 class="mb-1">{{ data.phoneTitle }}</h5>
+              <h5 class="mb-1">
+                {{ data.phoneTitle }}
+              </h5>
               <ng-container *ngFor="let phone of data?.phoneNumbers">
-                <p class="mb-0">{{ phone }}<br /></p>
+                <p class="mb-0">
+                  {{ phone }}
+                  <br />
+                </p>
               </ng-container>
             </div>
           </div>
@@ -34,8 +44,12 @@
               <div class="icon text-primary fs-28 me-4 mt-n1"> <i class="uil uil-location-pin-alt"></i> </div>
             </div>
             <div class="align-self-start justify-content-start">
-              <h5 class="mb-1">{{ data.addressTitle }}</h5>
-              <address>{{ data.adress }}</address>
+              <h5 class="mb-1">
+                {{ data.addressTitle }}
+              </h5>
+              <address>
+                {{ data.address }}
+              </address>
             </div>
           </div>
           <!--/div -->
@@ -47,10 +61,15 @@
     <!--/.row -->
     <hr class="mt-9 mt-md-10 mb-4"/>
     <div class="d-md-flex align-items-center justify-content-between">
-      <p class="mb-2 mb-lg-0">{{ data.rigths }}</p>
+      <p class="mb-2 mb-lg-0">
+        {{ data.rights }}
+      </p>
       <nav class="nav social social-muted mb-0 text-md-end">
         <ng-container *ngFor="let socialmedia of data?.socialmedia">
-          <a [href]="socialmedia.fields.href"><i class="uil uil-{{ socialmedia.fields.title }}"></i></a>
+          <a [href]="socialmedia.fields.href">
+            <i class="uil uil-{{ socialmedia.fields.title }}">
+            </i>
+          </a>
         </ng-container>
       </nav>
       <!-- /.social -->

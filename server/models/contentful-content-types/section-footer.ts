@@ -5,11 +5,11 @@ import * as Contentful from 'contentful';
 export interface TypeSection__footerFields {
   name: Contentful.EntryFields.Symbol;
   subtitle: Contentful.EntryFields.Symbol;
-  rigths: Contentful.EntryFields.Symbol;
+  rights: Contentful.EntryFields.Symbol;
   phoneTitle: Contentful.EntryFields.Symbol;
   addressTitle: Contentful.EntryFields.Symbol;
   phoneNumbers: Contentful.EntryFields.Symbol[];
-  adress: Contentful.EntryFields.Symbol;
+  address: Contentful.EntryFields.Symbol;
   logo: Contentful.Entry<TypeLogoFields>;
   socialmedia: Contentful.Entry<TypeRouteLinkFields>[];
 }
