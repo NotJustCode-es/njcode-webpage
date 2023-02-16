@@ -1,0 +1,54 @@
+<!-- /.row -->
+<div class="col-lg-10 offset-lg-1 col-xl-8 offset-xl-2">
+  <h2 class="display-4 mb-3 text-center">
+    {{ data.title }}
+  </h2>
+  <p class="lead text-center mb-10">
+    {{ data.subtitle }}
+  </p>
+  <form class="contact-form needs-validation" method="post" action="" novalidate>
+    <div class="row gx-8 justify-content-center">
+      <ng-container *ngFor="let entry of data?.regularEntries">
+        <div>
+          <div class="form-floating mb-4 mx-auto">
+            <input [id]="entry.fields.name" type="text" [placeholder]="entry.fields.placeholder" class="form-control" required>
+            <label [for]="entry.fields.name">
+              {{ entry.fields.label }}
+            </label>
+            <div class="valid-feedback"> 
+              {{ entry.fields.validFeedback }}
+            </div>
+            <div class="invalid-feedback"> 
+              {{ entry.fields.invalidFeedback }} 
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <div class="col-12">
+        <div class="form-floating mb-4">
+          <textarea id="form-message" class="form-control" [placeholder]="data.messageEntry.fields.placeholder" required></textarea>
+          <label for="form-message">
+            {{ data.messageEntry.fields.label }}
+          </label>
+          <div class="valid-feedback"> 
+            {{ data.messageEntry.fields.validFeedback }}
+          </div>
+          <div class="invalid-feedback"> 
+            {{ data.messageEntry.fields.invalidFeedback }} 
+          </div>
+        </div>
+      </div>
+      <!-- /column -->
+      <div class="col-12 text-center">
+        <input type="submit" class="btn btn-primary rounded-pill btn-send mb-3" [value]="data.submitButton">
+        <p class="text-muted">
+          {{ data.requiredExplanation }}
+        </p>
+      </div>
+      <!-- /column -->
+    </div>
+    <!-- /.row -->
+  </form>
+  <!-- /form -->
+</div>
+<!-- /column -->
