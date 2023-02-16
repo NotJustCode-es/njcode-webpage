@@ -10,7 +10,7 @@ export interface TypeSection__footerFields {
   addressTitle: Contentful.EntryFields.Symbol;
   phoneNumbers: Contentful.EntryFields.Symbol[];
   address: Contentful.EntryFields.Symbol;
-  logo: Contentful.Entry<TypeLogoFields>;
+  logo?: Contentful.Entry<TypeLogoFields>;
   socialmedia: Contentful.Entry<TypeRouteLinkFields>[];
 }
 
