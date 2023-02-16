@@ -8,31 +8,28 @@
           {{ data.title }}
         </h2>
         <h3 class="display-3 mb-10">
-          {{ data.descriptionInitialPart }}
-          <span class="underline-3 style-2 yellow">
-            {{ data.descriptionUnderlinedWord }}
-          </span>
-          {{ data.descriptionLastPart }}
+          {{ data.description }}
         </h3>
       </div>
       <!-- /column -->
     </div>
     <!-- /.row -->
-    <div class="swiper-container grid-view" data-margin="30" data-dots="true" data-items-xl="3" data-items-md="2"
-      data-items-xs="1">
+    <div class="swiper-container grid-view" data-margin="30" data-dots="true" data-items-xl="3" data-items-md="2"data-items-xs="1">
       <div class="swiper">
         <div class="swiper-wrapper">
           <ng-container *ngFor="let card of data?.projectCards">
             <div class="swiper-slide">
               <figure class="rounded mb-6">
-                <img [src]="card.fields.image.fields.file?.url" [alt]="card.fields.title"/><a class="item-link"
-                  [href]="card.fields.fullSizeImage.fields.file?.url" data-glightbox data-gallery="projects-group"><i
-                    class="uil uil-focus-add"></i></a>
+                <img [src]="card.fields.image.fields.file?.url" [alt]="card.fields.title"/>
+                <a class="item-link" [href]="card.fields.fullSizeImage.fields.file?.url" data-glightbox data-gallery="projects-group">
+                  <i class="uil uil-focus-add">
+                  </i>
+                </a>
               </figure>
               <div class="project-details d-flex justify-content-center flex-column">
                 <div class="post-header">
                   <h2 class="post-title h3">
-                    <a [href]="card.fields.projectLink" class="link-dark">
+                    <a [href]="card.fields.projectLink.fields.href" class="link-dark">
                       {{ card.fields.title }}
                     </a>
                   </h2>
