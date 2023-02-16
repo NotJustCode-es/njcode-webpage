@@ -14,6 +14,14 @@ describe('SectionProyectosComponent', () => {
 
     fixture = TestBed.createComponent(SectionProjectsComponent);
     component = fixture.componentInstance;
+    component.data = {
+      name: 'test',
+      title: 'test',
+      descriptionUnderlinedWord: 'test',
+      descriptionLastPart: 'test',
+      descriptionInitialPart: 'test',
+      projectCards: [],
+    };
     fixture.detectChanges();
   });
 

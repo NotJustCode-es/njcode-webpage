@@ -1,8 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SectionHighlightsComponent } from '@sections/section-highlights/section-highlights.component';
+import { AssetService } from '@services/assets/asset.service';
 
 describe('SectionHighlightsComponent', () => {
   let component: SectionHighlightsComponent;
+  let service: AssetService;
   let fixture: ComponentFixture<SectionHighlightsComponent>;
 
   beforeEach(async () => {
@@ -13,6 +15,7 @@ describe('SectionHighlightsComponent', () => {
 
     fixture = TestBed.createComponent(SectionHighlightsComponent);
     component = fixture.componentInstance;
+    service = TestBed.inject(AssetService);
     fixture.detectChanges();
   });
 
@@ -20,10 +23,10 @@ describe('SectionHighlightsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('#getIconPath', () => {
-    it('should return icon path', () => {
-      const icon = 'icon';
-      expect(component.getIconPath(icon)).toEqual(`${component.iconsPath}/${icon}.svg`);
-    });
+  it('should call getIconSolidPath', () => {
+    const icon = 'check';
+    const spySubscribable = spyOn(service, 'getIconSolidPath');
+    component.getIconPath(icon);
+    expect(spySubscribable).toHaveBeenCalled();
   });
 });
