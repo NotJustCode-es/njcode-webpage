@@ -9,4 +9,8 @@ import { TypeSection__footerFields } from '@server/models/contentful-content-typ
 })
 export class SectionFooterComponent {
   @Input() data!: TypeSection__footerFields;
+
+  getSocialMediaClass(socialMediaTitle: string): string {
+    return `uil uil-${socialMediaTitle}`;
+  }
 }

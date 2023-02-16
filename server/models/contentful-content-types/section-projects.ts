@@ -5,9 +5,7 @@ export interface TypeSection__projectsFields {
   name: Contentful.EntryFields.Symbol;
   title: Contentful.EntryFields.Symbol;
   projectCards: Contentful.Entry<TypeProjectCardFields>[];
-  descriptionInitialPart: Contentful.EntryFields.Symbol;
-  descriptionUnderlinedWord: Contentful.EntryFields.Symbol;
-  descriptionLastPart: Contentful.EntryFields.Symbol;
+  description: Contentful.EntryFields.Symbol;
 }
 
 export type TypeSection__projects = Contentful.Entry<TypeSection__projectsFields>;
