@@ -6,41 +6,98 @@
   <p class="lead text-center mb-10">
     {{ data.subtitle }}
   </p>
-  <form class="contact-form needs-validation" method="post" action="" novalidate>
+  <form [formGroup]="contactForm" method="post" (ngSubmit)="onSubmit()">
     <div class="row gx-8 justify-content-center">
-      <ng-container *ngFor="let entry of data?.regularEntries">
-        <div>
-          <div class="form-floating mb-4 mx-auto">
-            <input [id]="entry.fields.name" type="text" [placeholder]="entry.fields.placeholder" class="form-control" required>
-            <label [for]="entry.fields.name">
-              {{ entry.fields.label }}
-            </label>
-            <div class="valid-feedback"> 
-              {{ entry.fields.validFeedback }}
+      <div>
+        <div class="form-floating mb-4 mx-auto">
+          <input id="form-first-name" type="text" formControlName="firstName" class="form-control" [placeholder]="data.firstNameEntry.fields.placeholder" required>
+          <label for="form-first-name">
+            {{ data.firstNameEntry.fields.label }}
+          </label>
+          <div class="valid" *ngIf="contactForm.get('firstName')?.valid"> 
+            {{ data.firstNameEntry.fields.validFeedback }}
+          </div>
+          <div class="invalid" *ngIf="contactForm.get('firstName')?.invalid && (contactForm.get('firstName')?.dirty || contactForm.get('firstName')?.touched)"> 
+            <div *ngIf="contactForm.get('firstName')?.errors?.['required']">
+              {{ data.firstNameEntry.fields.invalidRequiredFeedback }} 
             </div>
-            <div class="invalid-feedback"> 
-              {{ entry.fields.invalidFeedback }} 
+            <div *ngIf="contactForm.get('firstName')?.errors?.['pattern']">
+              {{ data.firstNameEntry.fields.invalidPatternFeedback }} 
+            </div>
+            <div *ngIf="contactForm.get('firstName')?.errors?.['maxlength']">
+              {{ data.firstNameEntry.fields.invalidSizeFeedback }} 
             </div>
           </div>
         </div>
-      </ng-container>
+      </div>
+      <div>
+        <div class="form-floating mb-4 mx-auto">
+          <input id="form-last-name" type="text" formControlName="lastName" class="form-control" [placeholder]="data.lastNameEntry.fields.placeholder" required>
+          <label for="form-last-name">
+            {{ data.lastNameEntry.fields.label }}
+          </label>
+          <div class="valid" *ngIf="contactForm.get('lastName')?.valid"> 
+            {{ data.lastNameEntry.fields.validFeedback }}
+          </div>
+          <div class="invalid" *ngIf="contactForm.get('lastName')?.invalid && (contactForm.get('lastName')?.dirty || contactForm.get('lastName')?.touched)"> 
+            <div *ngIf="contactForm.get('lastName')?.errors?.['required']">
+              {{ data.lastNameEntry.fields.invalidRequiredFeedback }} 
+            </div>
+            <div *ngIf="contactForm.get('lastName')?.errors?.['pattern']">
+              {{ data.lastNameEntry.fields.invalidPatternFeedback }} 
+            </div>
+            <div *ngIf="contactForm.get('lastName')?.errors?.['maxlength']">
+              {{ data.lastNameEntry.fields.invalidSizeFeedback }} 
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="form-floating mb-4 mx-auto">
+          <input id="form-email" type="text" formControlName="email" class="form-control" [placeholder]="data.mailEntry.fields.placeholder" required>
+          <label for="form-email">
+            {{ data.mailEntry.fields.label }}
+          </label>
+          <div class="valid" *ngIf="contactForm.get('email')?.valid"> 
+            {{ data.mailEntry.fields.validFeedback }}
+          </div>
+          <div class="invalid" *ngIf="contactForm.get('email')?.invalid && (contactForm.get('email')?.dirty || contactForm.get('email')?.touched)"> 
+            <div *ngIf="contactForm.get('email')?.errors?.['required']">
+              {{ data.mailEntry.fields.invalidRequiredFeedback }} 
+            </div>
+            <div *ngIf="contactForm.get('email')?.errors?.['pattern']">
+              {{ data.mailEntry.fields.invalidPatternFeedback }} 
+            </div>
+            <div *ngIf="contactForm.get('email')?.errors?.['maxlength']">
+              {{ data.mailEntry.fields.invalidSizeFeedback }} 
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="col-12">
         <div class="form-floating mb-4">
-          <textarea id="form-message" class="form-control" [placeholder]="data.messageEntry.fields.placeholder" required></textarea>
+          <textarea id="form-message" class="form-control" formControlName="message" [placeholder]="data.messageEntry.fields.placeholder" required></textarea>
           <label for="form-message">
             {{ data.messageEntry.fields.label }}
           </label>
-          <div class="valid-feedback"> 
+          
+          <div class="valid" *ngIf="contactForm.get('message')?.valid"> 
             {{ data.messageEntry.fields.validFeedback }}
           </div>
-          <div class="invalid-feedback"> 
-            {{ data.messageEntry.fields.invalidFeedback }} 
+
+          <div class="invalid" *ngIf="contactForm.get('message')?.invalid && (contactForm.get('message')?.dirty || contactForm.get('message')?.touched)"> 
+            <div *ngIf="contactForm.get('message')?.errors?.['required']">
+              {{ data.messageEntry.fields.invalidRequiredFeedback }} 
+            </div>
+            <div *ngIf="contactForm.get('message')?.errors?.['maxlength']">
+              {{ data.messageEntry.fields.invalidSizeFeedback }} 
+            </div>
           </div>
         </div>
       </div>
       <!-- /column -->
       <div class="col-12 text-center">
-        <input type="submit" class="btn btn-primary rounded-pill btn-send mb-3" [value]="data.submitButton">
+        <input type="submit" class="btn btn-primary rounded-pill btn-send mb-3" [disabled]="contactForm.invalid" [value]="data.submitButton">
         <p class="text-muted">
           {{ data.requiredExplanation }}
         </p>
