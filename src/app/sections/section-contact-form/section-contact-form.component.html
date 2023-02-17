@@ -22,7 +22,7 @@
           <div class="valid-feedback" *ngIf="contactForm.get('firstName')?.valid">
             {{ data.firstNameEntry.fields.validFeedback }}
           </div>
-          <div class="invalid-feedback" *ngIf="contactForm.get('firstName')?.invalid && (contactForm.get('firstName')?.dirty || contactForm.get('firstName')?.touched)">
+          <div class="invalid-feedback" *ngIf="isFormControlInvalid('firstName')">
             <div *ngIf="contactForm.get('firstName')?.errors?.['required']">
               {{ data.firstNameEntry.fields.invalidRequiredFeedback }}
             </div>
@@ -49,7 +49,7 @@
           <div class="valid-feedback" *ngIf="contactForm.get('lastName')?.valid">
             {{ data.lastNameEntry.fields.validFeedback }}
           </div>
-          <div class="invalid-feedback" *ngIf="contactForm.get('lastName')?.invalid && (contactForm.get('lastName')?.dirty || contactForm.get('lastName')?.touched)">
+          <div class="invalid-feedback" *ngIf="isFormControlInvalid('lastName')">
             <div *ngIf="contactForm.get('lastName')?.errors?.['required']">
               {{ data.lastNameEntry.fields.invalidRequiredFeedback }}
             </div>
@@ -76,7 +76,7 @@
           <div class="valid-feedback" *ngIf="contactForm.get('email')?.valid">
             {{ data.mailEntry.fields.validFeedback }}
           </div>
-          <div class="invalid-feedback" *ngIf="contactForm.get('email')?.invalid && (contactForm.get('email')?.dirty || contactForm.get('email')?.touched)">
+          <div class="invalid-feedback" *ngIf="isFormControlInvalid('email')">
             <div *ngIf="contactForm.get('email')?.errors?.['required']">
               {{ data.mailEntry.fields.invalidRequiredFeedback }}
             </div>
@@ -104,7 +104,7 @@
           <div class="valid-feedback" *ngIf="contactForm.get('message')?.valid">
             {{ data.messageEntry.fields.validFeedback }}
           </div>
-          <div class="invalid-feedback" *ngIf="contactForm.get('message')?.invalid && (contactForm.get('message')?.dirty || contactForm.get('message')?.touched)">
+          <div class="invalid-feedback" *ngIf="isFormControlInvalid('message')">
             <div *ngIf="contactForm.get('message')?.errors?.['required']">
               {{ data.messageEntry.fields.invalidRequiredFeedback }}
             </div>
