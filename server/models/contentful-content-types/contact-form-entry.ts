@@ -5,8 +5,9 @@ export interface TypeContact__form__entryFields {
   label: Contentful.EntryFields.Symbol;
   placeholder: Contentful.EntryFields.Symbol;
   validFeedback: Contentful.EntryFields.Symbol;
-  invalidFeedback: Contentful.EntryFields.Symbol;
+  invalidRequiredFeedback: Contentful.EntryFields.Symbol;
+  invalidSizeFeedback?: Contentful.EntryFields.Symbol;
+  invalidPatternFeedback?: Contentful.EntryFields.Symbol;
 }
 
-export type TypeContact__form__entry =
-  Contentful.Entry<TypeContact__form__entryFields>;
+export type TypeContact__form__entry = Contentful.Entry<TypeContact__form__entryFields>;
