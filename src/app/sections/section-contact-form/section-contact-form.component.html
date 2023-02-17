@@ -7,97 +7,113 @@
     {{ data.subtitle }}
   </p>
   <form [formGroup]="contactForm" method="post" (ngSubmit)="onSubmit()">
-    <div class="row gx-8 justify-content-center">
+    <div class="px-3 gx-8 justify-content-center">
       <div>
         <div class="form-floating mb-4 mx-auto">
-          <input id="form-first-name" type="text" formControlName="firstName" class="form-control" [placeholder]="data.firstNameEntry.fields.placeholder" required>
+          <input id="form-first-name" type="text" class="form-control" formControlName="firstName" required
+            [placeholder]="data.firstNameEntry.fields.placeholder"
+            [ngClass]="{
+              'is-invalid': isFormControlInvalid('firstName'),
+              'is-valid': contactForm.get('firstName')?.valid
+            }">
           <label for="form-first-name">
             {{ data.firstNameEntry.fields.label }}
           </label>
-          <div class="valid" *ngIf="contactForm.get('firstName')?.valid"> 
+          <div class="valid-feedback" *ngIf="contactForm.get('firstName')?.valid">
             {{ data.firstNameEntry.fields.validFeedback }}
           </div>
-          <div class="invalid" *ngIf="contactForm.get('firstName')?.invalid && (contactForm.get('firstName')?.dirty || contactForm.get('firstName')?.touched)"> 
+          <div class="invalid-feedback" *ngIf="contactForm.get('firstName')?.invalid && (contactForm.get('firstName')?.dirty || contactForm.get('firstName')?.touched)">
             <div *ngIf="contactForm.get('firstName')?.errors?.['required']">
-              {{ data.firstNameEntry.fields.invalidRequiredFeedback }} 
+              {{ data.firstNameEntry.fields.invalidRequiredFeedback }}
             </div>
             <div *ngIf="contactForm.get('firstName')?.errors?.['pattern']">
-              {{ data.firstNameEntry.fields.invalidPatternFeedback }} 
+              {{ data.firstNameEntry.fields.invalidPatternFeedback }}
             </div>
             <div *ngIf="contactForm.get('firstName')?.errors?.['maxlength']">
-              {{ data.firstNameEntry.fields.invalidSizeFeedback }} 
+              {{ data.firstNameEntry.fields.invalidSizeFeedback }}
             </div>
           </div>
         </div>
       </div>
       <div>
         <div class="form-floating mb-4 mx-auto">
-          <input id="form-last-name" type="text" formControlName="lastName" class="form-control" [placeholder]="data.lastNameEntry.fields.placeholder" required>
+          <input id="form-last-name" type="text" formControlName="lastName" class="form-control" required
+            [placeholder]="data.lastNameEntry.fields.placeholder"
+            [ngClass]="{
+              'is-invalid': isFormControlInvalid('lastName'),
+              'is-valid': contactForm.get('lastName')?.valid
+            }">
           <label for="form-last-name">
             {{ data.lastNameEntry.fields.label }}
           </label>
-          <div class="valid" *ngIf="contactForm.get('lastName')?.valid"> 
+          <div class="valid-feedback" *ngIf="contactForm.get('lastName')?.valid">
             {{ data.lastNameEntry.fields.validFeedback }}
           </div>
-          <div class="invalid" *ngIf="contactForm.get('lastName')?.invalid && (contactForm.get('lastName')?.dirty || contactForm.get('lastName')?.touched)"> 
+          <div class="invalid-feedback" *ngIf="contactForm.get('lastName')?.invalid && (contactForm.get('lastName')?.dirty || contactForm.get('lastName')?.touched)">
             <div *ngIf="contactForm.get('lastName')?.errors?.['required']">
-              {{ data.lastNameEntry.fields.invalidRequiredFeedback }} 
+              {{ data.lastNameEntry.fields.invalidRequiredFeedback }}
             </div>
             <div *ngIf="contactForm.get('lastName')?.errors?.['pattern']">
-              {{ data.lastNameEntry.fields.invalidPatternFeedback }} 
+              {{ data.lastNameEntry.fields.invalidPatternFeedback }}
             </div>
             <div *ngIf="contactForm.get('lastName')?.errors?.['maxlength']">
-              {{ data.lastNameEntry.fields.invalidSizeFeedback }} 
+              {{ data.lastNameEntry.fields.invalidSizeFeedback }}
             </div>
           </div>
         </div>
       </div>
       <div>
         <div class="form-floating mb-4 mx-auto">
-          <input id="form-email" type="text" formControlName="email" class="form-control" [placeholder]="data.mailEntry.fields.placeholder" required>
+          <input id="form-email" type="text" formControlName="email" class="form-control" required
+            [placeholder]="data.mailEntry.fields.placeholder"
+            [ngClass]="{
+              'is-invalid': isFormControlInvalid('email'),
+              'is-valid': contactForm.get('email')?.valid
+            }">
           <label for="form-email">
             {{ data.mailEntry.fields.label }}
           </label>
-          <div class="valid" *ngIf="contactForm.get('email')?.valid"> 
+          <div class="valid-feedback" *ngIf="contactForm.get('email')?.valid">
             {{ data.mailEntry.fields.validFeedback }}
           </div>
-          <div class="invalid" *ngIf="contactForm.get('email')?.invalid && (contactForm.get('email')?.dirty || contactForm.get('email')?.touched)"> 
+          <div class="invalid-feedback" *ngIf="contactForm.get('email')?.invalid && (contactForm.get('email')?.dirty || contactForm.get('email')?.touched)">
             <div *ngIf="contactForm.get('email')?.errors?.['required']">
-              {{ data.mailEntry.fields.invalidRequiredFeedback }} 
+              {{ data.mailEntry.fields.invalidRequiredFeedback }}
             </div>
-            <div *ngIf="contactForm.get('email')?.errors?.['pattern']">
-              {{ data.mailEntry.fields.invalidPatternFeedback }} 
+            <div *ngIf="contactForm.get('email')?.errors?.['email']">
+              {{ data.mailEntry.fields.invalidPatternFeedback }}
             </div>
             <div *ngIf="contactForm.get('email')?.errors?.['maxlength']">
-              {{ data.mailEntry.fields.invalidSizeFeedback }} 
+              {{ data.mailEntry.fields.invalidSizeFeedback }}
             </div>
           </div>
         </div>
       </div>
       <div class="col-12">
         <div class="form-floating mb-4">
-          <textarea id="form-message" class="form-control" formControlName="message" [placeholder]="data.messageEntry.fields.placeholder" required></textarea>
+          <textarea class="h-auto form-control" formControlName="message" rows="10" required
+            [placeholder]="data.messageEntry.fields.placeholder"
+            [ngClass]="{
+              'is-invalid': isFormControlInvalid('message'),
+              'is-valid': contactForm.get('message')?.valid
+            }">
+          </textarea>
           <label for="form-message">
             {{ data.messageEntry.fields.label }}
           </label>
-          
-          <div class="valid" *ngIf="contactForm.get('message')?.valid"> 
+          <div class="valid-feedback" *ngIf="contactForm.get('message')?.valid">
             {{ data.messageEntry.fields.validFeedback }}
           </div>
-
-          <div class="invalid" *ngIf="contactForm.get('message')?.invalid && (contactForm.get('message')?.dirty || contactForm.get('message')?.touched)"> 
+          <div class="invalid-feedback" *ngIf="contactForm.get('message')?.invalid && (contactForm.get('message')?.dirty || contactForm.get('message')?.touched)">
             <div *ngIf="contactForm.get('message')?.errors?.['required']">
-              {{ data.messageEntry.fields.invalidRequiredFeedback }} 
-            </div>
-            <div *ngIf="contactForm.get('message')?.errors?.['maxlength']">
-              {{ data.messageEntry.fields.invalidSizeFeedback }} 
+              {{ data.messageEntry.fields.invalidRequiredFeedback }}
             </div>
           </div>
         </div>
       </div>
       <!-- /column -->
       <div class="col-12 text-center">
-        <input type="submit" class="btn btn-primary rounded-pill btn-send mb-3" [disabled]="contactForm.invalid" [value]="data.submitButton">
+        <input type="submit" class="btn btn-primary rounded-pill btn-send mb-3" [value]="data.submitButton">
         <p class="text-muted">
           {{ data.requiredExplanation }}
         </p>
