@@ -6,7 +6,7 @@
   <p class="lead text-center mb-10">
     {{ data.subtitle }}
   </p>
-  <form [formGroup]="contactForm" method="post" (ngSubmit)="onSubmit()">
+  <form id="contact-form" [formGroup]="contactForm" method="post" (ngSubmit)="onSubmit()">
     <div class="px-3 gx-8 justify-content-center">
       <div>
         <div class="form-floating mb-4 mx-auto">
