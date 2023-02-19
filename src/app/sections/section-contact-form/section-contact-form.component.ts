@@ -13,7 +13,7 @@ import { TypeSection__contact__formFields } from '@server/models/contentful-cont
 export class SectionContactFormComponent implements OnInit {
   @Input() data!: TypeSection__contact__formFields;
 
-  private readonly text = '[a-zA-Z]*';
+  private readonly text = '[a-z A-Z]*';
 
   contactForm!: FormGroup;
 
