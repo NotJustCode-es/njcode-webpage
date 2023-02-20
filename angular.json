@@ -153,6 +153,8 @@
             "tsConfig": "tsconfig.server.json",
             "inlineStyleLanguage": "scss",
             "externalDependencies": [
+              "@nestjs-modules/mailer/dist/adapters/handlebars.adapter",
+              "@nestjs-modules/mailer",
               "@nestjs/common",
               "@nestjs/core",
               "express",
