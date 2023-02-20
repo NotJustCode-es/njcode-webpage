@@ -4,13 +4,13 @@ import {
   Inject,
   Post,
 } from '@nestjs/common';
-import { MailService } from './mail.service';
-import { MailParams } from '../../models/mail-params';
+import { NodemailerApiService } from './nodemailer-api.service';
+import { MailParams } from '../models/mail-params';
 
 @Controller('mail')
-export class MailController {
+export class NodemailerApiController {
   constructor(
-    @Inject(MailService)private readonly mailService: MailService,
+    @Inject(NodemailerApiService)private readonly mailService: NodemailerApiService,
   ) {}
 
   @Post('/send')
