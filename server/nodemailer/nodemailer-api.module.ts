@@ -2,8 +2,8 @@ import { MailerModule } from '@nestjs-modules/mailer';
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
 import { Module } from '@nestjs/common';
 import { join } from 'path';
-import { MailController } from 'server/nodemailer/mail/mail.controller';
-import { MailService } from './mail.service';
+import { NodemailerApiController } from './nodemailer-api.controller';
+import { NodemailerApiService } from './nodemailer-api.service';
 
 @Module({
   imports: [
@@ -30,8 +30,8 @@ import { MailService } from './mail.service';
       },
     }),
   ],
-  providers: [MailService],
-  exports: [MailService], // 👈 export for DI
-  controllers: [MailController],
+  providers: [NodemailerApiService],
+  exports: [NodemailerApiService], // 👈 export for DI
+  controllers: [NodemailerApiController],
 })
-export class MailModule {}
+export class NodemailerApiModule {}

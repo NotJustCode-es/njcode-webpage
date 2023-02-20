@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { AngularUniversalModule } from '@nestjs/ng-universal';
 import { join } from 'path';
-import { MailModule } from './nodemailer/mail/mail.module';
+import { NodemailerApiModule } from './nodemailer/nodemailer-api.module';
 import { AppServerModule } from '../src/main.server';
 import { ContentfulApiModule } from './contentful-api/contentful-api.module';
 import configFactory from './core/config/config-factory';
@@ -25,7 +25,7 @@ const browserAppLocation = 'dist/njcode-webpage/browser';
       isGlobal: true,
     }),
     ContentfulApiModule,
-    MailModule,
+    NodemailerApiModule,
   ],
 })
 export class AppModule { }

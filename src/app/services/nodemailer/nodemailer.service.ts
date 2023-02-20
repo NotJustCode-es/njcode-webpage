@@ -11,12 +11,9 @@ export class NodemailerService {
   constructor(private httpClient: HttpClient) {}
 
   sendMail(name: string, email: string, token: string): Observable<String> {
-    // const params = new HttpParams().set('name', name).set('email', mail).set('token', token);
-
     return this.httpClient.post<String>(
       this.sendMailPath,
       { name, email, token },
     );
-    // req.subscribe();
   }
 }

@@ -1,9 +1,9 @@
 import { MailerService } from '@nestjs-modules/mailer';
 import { Injectable } from '@nestjs/common';
-import { MailParams } from '../../models/mail-params';
+import { MailParams } from '../models/mail-params';
 
 @Injectable()
-export class MailService {
+export class NodemailerApiService {
   constructor(private mailerService: MailerService) {}
 
   async sendEmail(params: MailParams): Promise<string> {
