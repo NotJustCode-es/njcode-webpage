@@ -3,6 +3,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TypeSection__contact__formFields } from '@server/models/contentful-content-types/section-contact-form';
+import { NodemailerService } from '@services/nodemailer/nodemailer.service';
 
 @Component({
   selector: 'app-section-contact-form',
@@ -17,7 +18,7 @@ export class SectionContactFormComponent implements OnInit {
 
   contactForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private mailer: NodemailerService) {}
 
   ngOnInit(): void {
     this.initializeContactForm();
@@ -32,7 +33,9 @@ export class SectionContactFormComponent implements OnInit {
       this.contactForm.markAllAsTouched();
       return;
     }
-    // TODO: call mail endpoint
+    const token = Math.floor(1000 + Math.random() * 9000).toString();
+    // eslint-disable-next-line no-console
+    this.mailer.sendMail(this.contactForm.get('firstName')?.value!, this.contactForm.get('email')?.value!, token).subscribe(data => console.log(data));
     // eslint-disable-next-line no-console
     console.warn(this.contactForm.value);
   }
