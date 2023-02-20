@@ -17,9 +17,7 @@ describe('SectionProyectosComponent', () => {
     component.data = {
       name: 'test',
       title: 'test',
-      descriptionUnderlinedWord: 'test',
-      descriptionLastPart: 'test',
-      descriptionInitialPart: 'test',
+      description: 'test',
       projectCards: [],
     };
     fixture.detectChanges();

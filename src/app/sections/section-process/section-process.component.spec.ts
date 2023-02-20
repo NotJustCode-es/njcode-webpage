@@ -14,6 +14,11 @@ describe('SectionProcessComponent', () => {
 
     fixture = TestBed.createComponent(SectionProcessComponent);
     component = fixture.componentInstance;
+    component.data = {
+      name: 'test',
+      question: 'test',
+      answer: 'test',
+    };
     fixture.detectChanges();
   });
 
