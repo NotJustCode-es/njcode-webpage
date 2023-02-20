@@ -31,4 +31,8 @@ export const SECTIONS: Map<string, Function> = new Map([
     'section-projects',
     (): Promise<unknown> => import('@sections/section-projects/section-projects.module').then(m => m.SectionProjectsModule),
   ],
+  [
+    'section-contact-form',
+    (): Promise<unknown> => import('@sections/section-contact-form/section-contact-form.module').then(m => m.SectionContactFormModule),
+  ],
 ]);

@@ -13,6 +13,11 @@ describe('SectionEmpresasComponent', () => {
 
     fixture = TestBed.createComponent(SectionCompaniesComponent);
     component = fixture.componentInstance;
+    component.data = {
+      name: 'test',
+      title: 'test',
+      companies: [],
+    };
     fixture.detectChanges();
   });
 
