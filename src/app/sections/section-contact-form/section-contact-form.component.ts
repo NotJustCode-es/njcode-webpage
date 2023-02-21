@@ -28,6 +28,11 @@ export class SectionContactFormComponent implements OnInit {
     return this.contactForm.get(formControlName)?.invalid && (this.contactForm.get(formControlName)?.dirty || this.contactForm.get(formControlName)?.touched);
   }
 
+  get fullName(): string {
+    const firstName = this.contactForm.get('firstName')?.value;
+    return firstName.concat(' ', this.contactForm.get('lastName')?.value);
+  }
+
   onSubmit(): void {
     if (this.contactForm.invalid) {
       this.contactForm.markAllAsTouched();
@@ -35,9 +40,9 @@ export class SectionContactFormComponent implements OnInit {
     }
 
     this.mailer.sendMail(
-      this.contactForm.get('firstName')?.value!,
-      this.contactForm.get('email')?.value!,
-      this.contactForm.get('message')?.value!,
+      this.fullName,
+      this.contactForm.get('email')?.value,
+      this.contactForm.get('message')?.value,
     )
     // eslint-disable-next-line no-console
       .subscribe(data => console.log(data));
