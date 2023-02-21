@@ -153,15 +153,15 @@
             "tsConfig": "tsconfig.server.json",
             "inlineStyleLanguage": "scss",
             "externalDependencies": [
-              "@nestjs-modules/mailer/dist/adapters/handlebars.adapter",
-              "@nestjs-modules/mailer",
               "@nestjs/common",
               "@nestjs/core",
-              "express",
               "@nestjs/microservices",
               "@nestjs/microservices/microservices-module",
               "@nestjs/websockets",
               "@nestjs/websockets/socket-module",
+              "@nestjs-modules/mailer/dist/adapters/handlebars.adapter",
+              "@nestjs-modules/mailer",
+              "express",
               "cache-manager",
               "contentful"
             ]
