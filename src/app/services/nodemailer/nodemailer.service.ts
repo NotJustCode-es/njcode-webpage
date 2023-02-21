@@ -10,10 +10,10 @@ export class NodemailerService {
 
   constructor(private httpClient: HttpClient) {}
 
-  sendMail(name: string, email: string, token: string): Observable<String> {
+  sendMail(name: string, email: string, message: string): Observable<String> {
     return this.httpClient.post<String>(
       this.sendMailPath,
-      { name, email, token },
+      { name, email, message },
     );
   }
 }
