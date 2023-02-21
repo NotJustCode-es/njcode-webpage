@@ -8,11 +8,12 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test --watch=true --code-coverage",
     "lint": "eslint -c .eslintrc.json --ext .ts .",
-    "dev:ssr": "ng run njcode-webpage:serve-ssr",
+    "dev:ssr": "npm run copy:templates && ng run njcode-webpage:serve-ssr",
     "serve:ssr": "node dist/njcode-webpage/server/main.js",
-    "build:ssr": "ng build --configuration production && ng run njcode-webpage:server:production",
-    "prerender": "ng run njcode-webpage:prerender"
-  },
+    "build:ssr": "ng build --configuration production && ng run njcode-webpage:server:production && npm run copy:templates",
+    "prerender": "ng run njcode-webpage:prerender",
+    "copy:templates": "cp -R server/templates dist/njcode-webpage/server/templates"
+   },
   "private": true,
   "dependencies": {
     "@angular/animations": "~14.2.12",
