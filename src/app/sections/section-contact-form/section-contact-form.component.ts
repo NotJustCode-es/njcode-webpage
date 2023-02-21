@@ -33,11 +33,14 @@ export class SectionContactFormComponent implements OnInit {
       this.contactForm.markAllAsTouched();
       return;
     }
-    const token = Math.floor(1000 + Math.random() * 9000).toString();
+
+    this.mailer.sendMail(
+      this.contactForm.get('firstName')?.value!,
+      this.contactForm.get('email')?.value!,
+      this.contactForm.get('message')?.value!,
+    )
     // eslint-disable-next-line no-console
-    this.mailer.sendMail(this.contactForm.get('firstName')?.value!, this.contactForm.get('email')?.value!, token).subscribe(data => console.log(data));
-    // eslint-disable-next-line no-console
-    console.warn(this.contactForm.value);
+      .subscribe(data => console.log(data));
   }
 
   private initializeContactForm(): void {

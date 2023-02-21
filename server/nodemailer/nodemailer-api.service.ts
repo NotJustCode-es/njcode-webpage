@@ -1,29 +1,31 @@
 import { MailerService } from '@nestjs-modules/mailer';
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { MailParams } from '../models/mail-params';
 
 @Injectable()
 export class NodemailerApiService {
-  constructor(private mailerService: MailerService) {}
+  constructor(@Inject(MailerService) private mailerService: MailerService) {}
 
   async sendEmail(params: MailParams): Promise<string> {
-    const url = `example.com/auth/confirm?token=${params.token}`;
     const { name } = params;
+    const { email } = params;
+    const { message } = params;
     // eslint-disable-next-line no-console
     console.log('name on service call: ', params.name);
     // eslint-disable-next-line no-console
     console.log('email on service call: ', params.email);
     // eslint-disable-next-line no-console
-    console.log('token on service call: ', params.token);
+    console.log('message on service call: ', params.message);
 
     await this.mailerService.sendMail({
-      to: params.email,
+      to: email,
       // from: '"Support Team" <support@example.com>', // override default from
       subject: 'Welcome to Nice App! Confirm your Email',
-      template: './confirmation', // `.hbs` extension is appended automatically
+      template: './contact', // `.hbs` extension is appended automatically
       context: { // ✏️ filling curly brackets with content
         name,
-        url,
+        email,
+        message,
       },
     });
     return 'funciona';
