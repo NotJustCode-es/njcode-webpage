@@ -13,7 +13,7 @@
     "build:ssr": "ng build --configuration production && ng run njcode-webpage:server:production && npm run copy:templates",
     "prerender": "ng run njcode-webpage:prerender",
     "copy:templates": "cp -R server/templates dist/njcode-webpage/server/templates"
-   },
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~14.2.12",
@@ -36,6 +36,7 @@
     "@nestjs/ng-universal": "~6.1.0",
     "@nestjs/platform-express": "~8.4.7",
     "@nestjs/testing": "~8.4.7",
+    "@nestlab/google-recaptcha": "^3.2.0",
     "@ng-bootstrap/ng-bootstrap": "~13.1.1",
     "@ngneat/transloco": "~4.2.1",
     "@nguniversal/express-engine": "~14.2.3",
