@@ -18,9 +18,7 @@ export class NodemailerApiService {
     console.log('message on service call: ', params.message);
 
     await this.mailerService.sendMail({
-      to: email,
-      // from: '"Support Team" <support@example.com>', // override default from
-      subject: 'Welcome to Nice App! Confirm your Email',
+      to: process.env['MAIL_TO'],
       template: './contact', // `.hbs` extension is appended automatically
       context: { // ✏️ filling curly brackets with content
         name,
