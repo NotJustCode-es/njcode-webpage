@@ -13,6 +13,8 @@ export class NodemailerApiService {
   async sendEmail(params: MailParams, recaptchaToken: string): Promise<string> {
     const result = await this.recaptchaValidator.validate({
       response: recaptchaToken,
+      score: 0.8,
+      action: 'sendMail',
     });
 
     if (!result.success) {
