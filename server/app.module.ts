@@ -2,7 +2,8 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AngularUniversalModule } from '@nestjs/ng-universal';
 import { join } from 'path';
-import { GoogleRecaptchaModule, GoogleRecaptchaNetwork } from '@nestlab/google-recaptcha';
+import { GoogleRecaptchaModule } from '@nestlab/google-recaptcha';
+import { IncomingMessage } from 'http';
 import { NodemailerApiModule } from './nodemailer/nodemailer-api.module';
 import { AppServerModule } from '../src/main.server';
 import { ContentfulApiModule } from './contentful-api/contentful-api.module';
@@ -21,9 +22,11 @@ const browserAppLocation = 'dist/njcode-webpage/browser';
       useFactory: (config: ConfigService) => ({
         secretKey: config.get('GOOGLE_RECAPTCHA_SECRET_KEY'),
         // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-        response: req => req.headers.recaptcha,
+        response: (req: IncomingMessage) => (req.headers['recaptcha'] || '').toString(),
         // skipIf: process.env?.['NODE_ENV'] !== 'production',
-        network: GoogleRecaptchaNetwork.Recaptcha,
+        actions: ['SendMail'],
+        score: 0.8,
+
       }),
       inject: [ConfigService],
     }),
