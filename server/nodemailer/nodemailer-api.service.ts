@@ -10,17 +10,11 @@ export class NodemailerApiService {
     const { name } = params;
     const { email } = params;
     const { message } = params;
-    // eslint-disable-next-line no-console
-    console.log('name on service call: ', params.name);
-    // eslint-disable-next-line no-console
-    console.log('email on service call: ', params.email);
-    // eslint-disable-next-line no-console
-    console.log('message on service call: ', params.message);
 
     await this.mailerService.sendMail({
       to: process.env['MAIL_TO'],
-      template: './contact', // `.hbs` extension is appended automatically
-      context: { // ✏️ filling curly brackets with content
+      template: './contact',
+      context: {
         name,
         email,
         message,
