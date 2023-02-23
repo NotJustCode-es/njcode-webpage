@@ -11,8 +11,6 @@ import { NodemailerApiService } from './nodemailer-api.service';
     MailerModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (config: ConfigService) => ({
-        // transport: config.get("MAIL_TRANSPORT"),
-        // or
         transport: {
           host: config.get('MAIL_HOST'),
           ignoreTLS: true,
@@ -38,7 +36,7 @@ import { NodemailerApiService } from './nodemailer-api.service';
     }),
   ],
   providers: [NodemailerApiService],
-  exports: [NodemailerApiService], // 👈 export for DI
+  exports: [NodemailerApiService],
   controllers: [NodemailerApiController],
 })
 export class NodemailerApiModule {}

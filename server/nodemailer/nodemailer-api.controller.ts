@@ -16,10 +16,8 @@ export class NodemailerApiController {
   @Post('/send')
   async sendMail(
     @Body() params: MailParams,
-  ): Promise<string> {
-    // eslint-disable-next-line no-console
-    console.log('Params on controller call: ', params);
 
+  ): Promise<string> {
     return this.mailService.sendEmail(params);
   }
 }
