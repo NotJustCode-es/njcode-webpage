@@ -15,7 +15,8 @@ import { NodemailerApiService } from './nodemailer-api.service';
         // or
         transport: {
           host: config.get('MAIL_HOST'),
-          secure: false,
+          ignoreTLS: true,
+          secure: true,
           auth: {
             user: config.get('MAIL_USER'),
             pass: config.get('MAIL_PASSWORD'),
@@ -23,6 +24,7 @@ import { NodemailerApiService } from './nodemailer-api.service';
         },
         defaults: {
           from: `"No Reply" <${config.get('MAIL_FROM')}>`,
+          subject: config.get('MAIL_SUBJECT'),
         },
         template: {
           dir: join(__dirname, 'templates'),
