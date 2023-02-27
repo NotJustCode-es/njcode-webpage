@@ -6,7 +6,7 @@ import { MailParams } from '../models/mail-params';
 export class NodemailerApiService {
   constructor(@Inject(MailerService) private mailerService: MailerService) {}
 
-  async sendEmail(params: MailParams): Promise<string> {
+  async sendEmail(params: MailParams): Promise<void> {
     const { name } = params;
     const { email } = params;
     const { message } = params;
@@ -20,6 +20,5 @@ export class NodemailerApiService {
         message,
       },
     });
-    return 'funciona';
   }
 }

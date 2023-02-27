@@ -43,9 +43,7 @@ export class SectionContactFormComponent implements OnInit {
       this.fullName,
       this.contactForm.get('email')?.value,
       this.contactForm.get('message')?.value,
-    )
-    // eslint-disable-next-line no-console
-      .subscribe(data => console.log(data));
+    ).subscribe();
   }
 
   private initializeContactForm(): void {
