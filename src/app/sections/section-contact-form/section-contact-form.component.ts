@@ -4,6 +4,7 @@ import {
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TypeSection__contact__formFields } from '@server/models/contentful-content-types/section-contact-form';
 import { NodemailerService } from '@services/nodemailer/nodemailer.service';
+import { ReCaptchaV3Service } from 'ng-recaptcha';
 
 @Component({
   selector: 'app-section-contact-form',
@@ -18,7 +19,7 @@ export class SectionContactFormComponent implements OnInit {
 
   contactForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private mailer: NodemailerService) {}
+  constructor(private formBuilder: FormBuilder, private mailer: NodemailerService, private recaptchaV3Service: ReCaptchaV3Service) {}
 
   ngOnInit(): void {
     this.initializeContactForm();
@@ -36,16 +37,14 @@ export class SectionContactFormComponent implements OnInit {
   onSubmit(): void {
     if (this.contactForm.invalid) {
       this.contactForm.markAllAsTouched();
-      return;
     }
-
-    this.mailer.sendMail(
-      this.fullName,
-      this.contactForm.get('email')?.value,
-      this.contactForm.get('message')?.value,
-    )
-    // eslint-disable-next-line no-console
-      .subscribe(data => console.log(data));
+    // TO DO: Unsubscribe
+    this.recaptchaV3Service.execute('sendMail')
+      .subscribe(token => {
+        this.mailer.sendMail(this.fullName, this.contactForm.get('email')?.value, this.contactForm.get('message')?.value, token)
+        // eslint-disable-next-line no-console
+          .subscribe(response => console.log(response));
+      });
   }
 
   private initializeContactForm(): void {
