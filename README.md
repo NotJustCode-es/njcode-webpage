@@ -32,6 +32,14 @@ PREFIX=
 CONTENTFUL_SPACE_ID=
 CONTENTFUL_ACCESS_TOKEN=
 CONTENTFUL_ENVIRONMENT=
+
+# mail
+MAIL_HOST=
+MAIL_USER=
+MAIL_PASSWORD=
+MAIL_FROM=
+MAIL_TO=
+MAIL_SUBJECT=
 ```
 
 Alternatively, you can copy the ```.env``` file to ```.env.dev``` and fill in the necessary values.
