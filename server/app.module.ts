@@ -4,7 +4,7 @@ import { AngularUniversalModule } from '@nestjs/ng-universal';
 import { join } from 'path';
 import { GoogleRecaptchaModule } from '@nestlab/google-recaptcha';
 import { IncomingMessage } from 'http';
-import { NodemailerApiModule } from './nodemailer/nodemailer-api.module';
+import { ContactApiModule } from './contact-api/contact-api.module';
 import { AppServerModule } from '../src/main.server';
 import { ContentfulApiModule } from './contentful-api/contentful-api.module';
 import configFactory from './core/config/config-factory';
@@ -40,7 +40,7 @@ const browserAppLocation = 'dist/njcode-webpage/browser';
       isGlobal: true,
     }),
     ContentfulApiModule,
-    NodemailerApiModule,
+    ContactApiModule,
   ],
 })
 export class AppModule { }
