@@ -6,13 +6,13 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { NodemailerApiService } from './nodemailer-api.service';
+import { ContactApiService } from './contact-api.service';
 import { MailParams } from '../models/mail-params';
 
 @Controller('contact')
-export class NodemailerApiController {
+export class ContactApiController {
   constructor(
-    @Inject(NodemailerApiService)private readonly mailService: NodemailerApiService,
+    @Inject(ContactApiService)private readonly mailService: ContactApiService,
   ) {}
 
   @Post('/send')

@@ -3,8 +3,8 @@ import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handleba
 import { Module } from '@nestjs/common';
 import { join } from 'path';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { NodemailerApiController } from './nodemailer-api.controller';
-import { NodemailerApiService } from './nodemailer-api.service';
+import { ContactApiController } from './contact-api.controller';
+import { ContactApiService } from './contact-api.service';
 
 @Module({
   imports: [
@@ -35,8 +35,8 @@ import { NodemailerApiService } from './nodemailer-api.service';
       inject: [ConfigService],
     }),
   ],
-  providers: [NodemailerApiService],
-  exports: [NodemailerApiService],
-  controllers: [NodemailerApiController],
+  providers: [ContactApiService],
+  exports: [ContactApiService],
+  controllers: [ContactApiController],
 })
-export class NodemailerApiModule {}
+export class ContactApiModule {}

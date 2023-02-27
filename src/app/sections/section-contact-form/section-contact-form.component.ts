@@ -3,7 +3,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TypeSection__contact__formFields } from '@server/models/contentful-content-types/section-contact-form';
-import { NodemailerService } from '@services/nodemailer/nodemailer.service';
+import { ContactService } from '@services/contact/contact.service';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({
@@ -21,7 +21,7 @@ export class SectionContactFormComponent implements OnInit, OnDestroy {
 
   contactForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private mailer: NodemailerService) {}
+  constructor(private formBuilder: FormBuilder, private contact: ContactService) {}
 
   ngOnInit(): void {
     this.initializeContactForm();
@@ -42,7 +42,7 @@ export class SectionContactFormComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.mailer.sendMail(
+    this.contact.sendMail(
       this.fullName,
       this.contactForm.get('email')?.value,
       this.contactForm.get('message')?.value,

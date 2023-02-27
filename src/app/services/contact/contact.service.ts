@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class NodemailerService {
+export class ContactService {
   private readonly sendMailPath = '/api/contact/send/';
 
   constructor(private httpClient: HttpClient) {}
