@@ -3,7 +3,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { MailParams } from '../models/mail-params';
 
 @Injectable()
-export class NodemailerApiService {
+export class ContactApiService {
   constructor(@Inject(MailerService) private mailerService: MailerService) {}
 
   async sendEmail(params: MailParams): Promise<void> {
