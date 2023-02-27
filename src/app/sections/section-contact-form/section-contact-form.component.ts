@@ -1,8 +1,10 @@
 import {
-  ChangeDetectionStrategy, Component, Input, OnInit,
+  ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TypeSection__contact__formFields } from '@server/models/contentful-content-types/section-contact-form';
+import { ContactService } from '@services/contact/contact.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-section-contact-form',
@@ -10,14 +12,16 @@ import { TypeSection__contact__formFields } from '@server/models/contentful-cont
   styleUrls: ['./section-contact-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SectionContactFormComponent implements OnInit {
+export class SectionContactFormComponent implements OnInit, OnDestroy {
   @Input() data!: TypeSection__contact__formFields;
+
+  destroy$: Subject<boolean> = new Subject<boolean>();
 
   private readonly text = '[a-z A-Z]*';
 
   contactForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private contact: ContactService) {}
 
   ngOnInit(): void {
     this.initializeContactForm();
@@ -27,14 +31,23 @@ export class SectionContactFormComponent implements OnInit {
     return this.contactForm.get(formControlName)?.invalid && (this.contactForm.get(formControlName)?.dirty || this.contactForm.get(formControlName)?.touched);
   }
 
+  get fullName(): string {
+    const firstName = this.contactForm.get('firstName')?.value;
+    return firstName.concat(' ', this.contactForm.get('lastName')?.value);
+  }
+
   onSubmit(): void {
     if (this.contactForm.invalid) {
       this.contactForm.markAllAsTouched();
       return;
     }
-    // TODO: call mail endpoint
-    // eslint-disable-next-line no-console
-    console.warn(this.contactForm.value);
+
+    this.contact.sendMail(
+      this.fullName,
+      this.contactForm.get('email')?.value,
+      this.contactForm.get('message')?.value,
+    ).pipe(takeUntil(this.destroy$))
+      .subscribe();
   }
 
   private initializeContactForm(): void {
@@ -44,5 +57,10 @@ export class SectionContactFormComponent implements OnInit {
       email: ['', [Validators.required, Validators.email, Validators.maxLength(256)]],
       message: ['', [Validators.required]],
     }, { updateOn: 'blur' });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }
