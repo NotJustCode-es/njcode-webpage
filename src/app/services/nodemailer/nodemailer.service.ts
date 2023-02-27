@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class NodemailerService {
-  private readonly sendMailPath = '/api/mail/send/';
+  private readonly sendMailPath = '/api/contact/send/';
 
   constructor(private httpClient: HttpClient) {}
 

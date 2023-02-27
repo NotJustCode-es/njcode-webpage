@@ -9,7 +9,7 @@ import {
 import { NodemailerApiService } from './nodemailer-api.service';
 import { MailParams } from '../models/mail-params';
 
-@Controller('mail')
+@Controller('contact')
 export class NodemailerApiController {
   constructor(
     @Inject(NodemailerApiService)private readonly mailService: NodemailerApiService,
