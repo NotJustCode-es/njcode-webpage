@@ -3,6 +3,8 @@ import {
   Controller,
   Inject,
   Post,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { NodemailerApiService } from './nodemailer-api.service';
 import { MailParams } from '../models/mail-params';
@@ -14,10 +16,10 @@ export class NodemailerApiController {
   ) {}
 
   @Post('/send')
+  @UsePipes(new ValidationPipe({ transform: true }))
   async sendMail(
     @Body() params: MailParams,
-
-  ): Promise<string> {
-    return this.mailService.sendEmail(params);
+  ): Promise<void> {
+    this.mailService.sendEmail(params);
   }
 }
