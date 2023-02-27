@@ -49,8 +49,8 @@
     "compression": "~1.7.4",
     "contentful": "10.0.0-beta-v10.8",
     "express": "~4.17.1",
-    "handlebars": "^4.7.7",
-    "nodemailer": "^6.9.1",
+    "handlebars": "~4.7.7",
+    "nodemailer": "~6.9.1",
     "rxjs": "~7.5.0",
     "tslib": "~2.4.0",
     "zone.js": "~0.11.4"
@@ -72,6 +72,7 @@
     "@types/jasmine": "~3.10.0",
     "@types/node": "~16.11.7",
     "@types/nodemailer": "^6.4.7",
+    "@types/validator": "^13.7.12",
     "@typescript-eslint/eslint-plugin": "~5.27.1",
     "@typescript-eslint/parser": "~5.27.1",
     "eslint": "~8.17.0",
