@@ -4,15 +4,15 @@ import { GoogleRecaptchaException, GoogleRecaptchaValidator } from '@nestlab/goo
 import { MailParams } from '../models/mail-params';
 
 @Injectable()
-export class NodemailerApiService {
+export class ContactApiService {
   constructor(
     @Inject(MailerService) private mailerService: MailerService,
     @Inject(GoogleRecaptchaValidator) private readonly recaptchaValidator: GoogleRecaptchaValidator,
   ) {}
 
-  async sendEmail(params: MailParams, token: string): Promise<string> {
+  async sendEmail(params: MailParams, recaptchaToken: string): Promise<void> {
     const result = await this.recaptchaValidator.validate({
-      response: token,
+      response: recaptchaToken,
       score: 0.8,
       action: 'sendMail',
     });
@@ -23,23 +23,15 @@ export class NodemailerApiService {
     const { name } = params;
     const { email } = params;
     const { message } = params;
-    // eslint-disable-next-line no-console
-    console.log('name on service call: ', params.name);
-    // eslint-disable-next-line no-console
-    console.log('email on service call: ', params.email);
-    // eslint-disable-next-line no-console
-    console.log('message on service call: ', params.message);
 
     await this.mailerService.sendMail({
-      to: 'marctt2014@gmail.com',
-      // from: '"Support Team" <support@example.com>', // override default from
-      template: './contact', // `.hbs` extension is appended automatically
-      context: { // ✏️ filling curly brackets with content
+      to: process.env['MAIL_TO'],
+      template: './contact',
+      context: {
         name,
         email,
         message,
       },
     });
-    return 'funciona';
   }
 }

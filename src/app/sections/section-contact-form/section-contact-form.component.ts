@@ -1,9 +1,10 @@
 import {
-  ChangeDetectionStrategy, Component, Input, OnInit,
+  ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TypeSection__contact__formFields } from '@server/models/contentful-content-types/section-contact-form';
-import { NodemailerService } from '@services/nodemailer/nodemailer.service';
+import { ContactService } from '@services/contact/contact.service';
+import { Subject, takeUntil } from 'rxjs';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
 
 @Component({
@@ -12,14 +13,16 @@ import { ReCaptchaV3Service } from 'ng-recaptcha';
   styleUrls: ['./section-contact-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SectionContactFormComponent implements OnInit {
+export class SectionContactFormComponent implements OnInit, OnDestroy {
   @Input() data!: TypeSection__contact__formFields;
+
+  destroy$: Subject<boolean> = new Subject<boolean>();
 
   private readonly text = '[a-z A-Z]*';
 
   contactForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private mailer: NodemailerService, private recaptchaV3Service: ReCaptchaV3Service) {}
+  constructor(private formBuilder: FormBuilder, private contact: ContactService, private recaptchaV3Service: ReCaptchaV3Service) {}
 
   ngOnInit(): void {
     this.initializeContactForm();
@@ -38,12 +41,15 @@ export class SectionContactFormComponent implements OnInit {
     if (this.contactForm.invalid) {
       this.contactForm.markAllAsTouched();
     }
-    // TO DO: Unsubscribe
     this.recaptchaV3Service.execute('sendMail')
+      .pipe(takeUntil(this.destroy$))
       .subscribe(token => {
-        this.mailer.sendMail(this.fullName, this.contactForm.get('email')?.value, this.contactForm.get('message')?.value, token)
-        // eslint-disable-next-line no-console
-          .subscribe(response => console.log(response));
+           this.contact.sendMail(
+            this.fullName,
+            this.contactForm.get('email')?.value,
+            this.contactForm.get('message')?.value,
+            token,
+          )
       });
   }
 
@@ -54,5 +60,10 @@ export class SectionContactFormComponent implements OnInit {
       email: ['', [Validators.required, Validators.email, Validators.maxLength(256)]],
       message: ['', [Validators.required]],
     }, { updateOn: 'blur' });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }
