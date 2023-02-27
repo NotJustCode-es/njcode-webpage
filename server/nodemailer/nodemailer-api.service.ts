@@ -10,9 +10,9 @@ export class NodemailerApiService {
     @Inject(GoogleRecaptchaValidator) private readonly recaptchaValidator: GoogleRecaptchaValidator,
   ) {}
 
-  async sendEmail(params: MailParams, recaptchaToken: string): Promise<string> {
+  async sendEmail(params: MailParams, token: string): Promise<string> {
     const result = await this.recaptchaValidator.validate({
-      response: recaptchaToken,
+      response: token,
       score: 0.8,
       action: 'sendMail',
     });
@@ -20,7 +20,6 @@ export class NodemailerApiService {
     if (!result.success) {
       throw new GoogleRecaptchaException(result.errors);
     }
-
     const { name } = params;
     const { email } = params;
     const { message } = params;
@@ -32,9 +31,8 @@ export class NodemailerApiService {
     console.log('message on service call: ', params.message);
 
     await this.mailerService.sendMail({
-      to: email,
+      to: 'marctt2014@gmail.com',
       // from: '"Support Team" <support@example.com>', // override default from
-      subject: 'Welcome to Nice App! Confirm your Email',
       template: './contact', // `.hbs` extension is appended automatically
       context: { // ✏️ filling curly brackets with content
         name,

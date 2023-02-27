@@ -5,7 +5,7 @@ import {
   Post,
   Headers,
 } from '@nestjs/common';
-import { Recaptcha } from '@nestlab/google-recaptcha';
+import { Recaptcha, RecaptchaResult, RecaptchaVerificationResult } from '@nestlab/google-recaptcha';
 import { NodemailerApiService } from './nodemailer-api.service';
 import { MailParams } from '../models/mail-params';
 
@@ -20,12 +20,10 @@ export class NodemailerApiController {
   async sendMail(
     @Body() params: MailParams,
       @Headers('recaptcha') token: string,
+      @RecaptchaResult() recaptchaResult: RecaptchaVerificationResult,
   ): Promise<string> {
     // eslint-disable-next-line no-console
-    console.log('Params on controller call: ', params);
-    // eslint-disable-next-line no-console
-    console.log('token on controller call: ', token);
-
+    console.log(` ${recaptchaResult.success} ${recaptchaResult.errors}`);
     return this.mailService.sendEmail(params, token);
   }
 }
