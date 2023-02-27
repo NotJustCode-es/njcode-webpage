@@ -13,7 +13,7 @@
     "build:ssr": "ng build --configuration production && ng run njcode-webpage:server:production && npm run copy:templates",
     "prerender": "ng run njcode-webpage:prerender",
     "copy:templates": "cp -R server/templates dist/njcode-webpage/server/templates"
-   },
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~14.2.12",
@@ -43,8 +43,8 @@
     "autoprefixer": "~10.4.5",
     "bootstrap": "~5.2.2",
     "cache-manager": "~4.1.0",
-    "class-transformer": "~0.5.1",
-    "class-validator": "~0.13.2",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.13.2",
     "compression": "~1.7.4",
     "contentful": "10.0.0-beta-v10.8",
     "express": "~4.17.1",
@@ -71,6 +71,7 @@
     "@types/jasmine": "~3.10.0",
     "@types/node": "~16.11.7",
     "@types/nodemailer": "^6.4.7",
+    "@types/validator": "^13.7.12",
     "@typescript-eslint/eslint-plugin": "~5.27.1",
     "@typescript-eslint/parser": "~5.27.1",
     "eslint": "~8.17.0",
