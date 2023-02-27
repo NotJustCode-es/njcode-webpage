@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { AngularUniversalModule } from '@nestjs/ng-universal';
 import { join } from 'path';
+import { ContactApiModule } from './contact-api/contact-api.module';
 import { AppServerModule } from '../src/main.server';
 import { ContentfulApiModule } from './contentful-api/contentful-api.module';
 import configFactory from './core/config/config-factory';
@@ -24,6 +25,7 @@ const browserAppLocation = 'dist/njcode-webpage/browser';
       isGlobal: true,
     }),
     ContentfulApiModule,
+    ContactApiModule,
   ],
 })
 export class AppModule { }
