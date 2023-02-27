@@ -24,7 +24,7 @@ const browserAppLocation = 'dist/njcode-webpage/browser';
         // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
         response: (req: IncomingMessage) => (req.headers['recaptcha'] || '').toString(),
         // skipIf: process.env?.['NODE_ENV'] !== 'production',
-        actions: ['SendMail'],
+        actions: ['sendMail'],
         score: 0.8,
 
       }),

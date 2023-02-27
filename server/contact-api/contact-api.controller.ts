@@ -7,7 +7,7 @@ import {
   Headers,
   ValidationPipe,
 } from '@nestjs/common';
-import { Recaptcha } from '@nestlab/google-recaptcha';
+import { Recaptcha, RecaptchaResult, RecaptchaVerificationResult } from '@nestlab/google-recaptcha';
 import { ContactApiService } from './contact-api.service';
 import { MailParams } from '../models/mail-params';
 
@@ -23,7 +23,10 @@ export class ContactApiController {
   async sendMail(
     @Body() params: MailParams,
       @Headers('recaptcha') token: string,
+      @RecaptchaResult() recaptchaResult: RecaptchaVerificationResult,
   ): Promise<void> {
+     // eslint-disable-next-line no-console
+     console.log(` ${recaptchaResult.success} ${recaptchaResult.errors}`);
     this.mailService.sendEmail(params, token);
   }
 }
