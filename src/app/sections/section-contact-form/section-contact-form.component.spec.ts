@@ -4,25 +4,22 @@ import { ReactiveFormsModule, FormsModule, Validators } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RecaptchaV3Module, RECAPTCHA_V3_SITE_KEY } from 'ng-recaptcha';
 import { ContactService } from '@services/contact/contact.service';
-import { ConfigService } from '@nestjs/config';
 import { SectionContactFormComponent } from './section-contact-form.component';
 
 describe('SectionContactFormComponent', () => {
   let component: SectionContactFormComponent;
   let fixture: ComponentFixture<SectionContactFormComponent>;
   let service: ContactService;
-  let configService: ConfigService;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       providers: [Validators,
-        { provide: RECAPTCHA_V3_SITE_KEY, useValue: configService.get('GOOGLE_RECAPTCHA_SITE_KEY') }],
+        { provide: RECAPTCHA_V3_SITE_KEY, useValue: '6LcMZ6gkAAAAAPHKo_cruQWbIixX4sQS1b2BFo3a' }],
       imports: [RecaptchaV3Module, HttpClientTestingModule, ReactiveFormsModule, FormsModule],
       declarations: [SectionContactFormComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(SectionContactFormComponent);
     component = fixture.componentInstance;
-    configService = TestBed.inject(ConfigService);
     service = TestBed.inject(ContactService);
     const resp: TypeSection__contact__formFields = {
       name: 'test',
