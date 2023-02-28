@@ -1,21 +1,29 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TypeSection__contact__formFields } from '@server/models/contentful-content-types/section-contact-form';
 import { ReactiveFormsModule, FormsModule, Validators } from '@angular/forms';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RecaptchaV3Module, RECAPTCHA_V3_SITE_KEY } from 'ng-recaptcha';
+import { ContactService } from '@services/contact/contact.service';
+import { ConfigService } from '@nestjs/config';
 import { SectionContactFormComponent } from './section-contact-form.component';
 
 describe('SectionContactFormComponent', () => {
   let component: SectionContactFormComponent;
   let fixture: ComponentFixture<SectionContactFormComponent>;
-
+  let service: ContactService;
+  let configService: ConfigService;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers: [Validators],
-      imports: [ReactiveFormsModule, FormsModule],
+      providers: [Validators,
+        { provide: RECAPTCHA_V3_SITE_KEY, useValue: configService.get('GOOGLE_RECAPTCHA_SITE_KEY') }],
+      imports: [RecaptchaV3Module, HttpClientTestingModule, ReactiveFormsModule, FormsModule],
       declarations: [SectionContactFormComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(SectionContactFormComponent);
     component = fixture.componentInstance;
+    configService = TestBed.inject(ConfigService);
+    service = TestBed.inject(ContactService);
     const resp: TypeSection__contact__formFields = {
       name: 'test',
       title: 'test',
@@ -294,6 +302,40 @@ describe('SectionContactFormComponent', () => {
   describe('message entry', () => {
     it('should be required', () => {
       expect(component.contactForm.get('message')?.hasValidator(Validators.required)).toBe(true);
+    });
+  });
+
+  it('get full name', () => {
+    component.contactForm.get('firstName')?.setValue('marc');
+    component.contactForm.get('lastName')?.setValue('torres torres');
+    expect(component.fullName).toEqual('marc torres torres');
+  });
+
+  describe('onSubmit()', () => {
+    it('should mark as touched on invalid data', () => {
+      const invalidValues = {
+        firstName: 'marc',
+        lastName: '123',
+        email: 'marctt@gmail.com',
+        message: 'hola que tal',
+      };
+      component.contactForm.setValue(invalidValues);
+      component.onSubmit();
+      expect(component.contactForm.touched).toBe(true);
+    });
+    // Err
+    it('should send mail on valid data', () => {
+      const spySubscribable = spyOn(service, 'sendMail');
+      const validValues = {
+        firstName: 'marc',
+        lastName: 'torres',
+        email: 'marctt@gmail.com',
+        message: 'hola que tal',
+      };
+      component.contactForm.setValue(validValues);
+      component.onSubmit();
+      expect(component.contactForm.valid).toBe(true);
+      expect(spySubscribable).toHaveBeenCalled();
     });
   });
 });
