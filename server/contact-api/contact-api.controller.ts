@@ -13,7 +13,7 @@ import { MailParams } from '../models/mail-params';
 @Controller('contact')
 export class ContactApiController {
   constructor(
-    @Inject(ContactApiService)private readonly mailService: ContactApiService,
+    @Inject(ContactApiService)private readonly contactService: ContactApiService,
   ) {}
 
   @Recaptcha()
@@ -24,7 +24,7 @@ export class ContactApiController {
       @RecaptchaResult() recaptchaResult: RecaptchaVerificationResult,
   ): Promise<void> {
     if (recaptchaResult.success) {
-      this.mailService.sendEmail(params);
+      this.contactService.sendEmail(params);
     }
   }
 }
