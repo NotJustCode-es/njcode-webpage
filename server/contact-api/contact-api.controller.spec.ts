@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ContactApiController } from './contact-api.controller';
 
-describe('MailController', () => {
+describe('ContactController', () => {
   let controller: ContactApiController;
 
   beforeEach(async () => {

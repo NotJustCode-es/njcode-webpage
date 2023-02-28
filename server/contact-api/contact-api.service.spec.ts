@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ContactApiService } from './contact-api.service';
 
-describe('MailService', () => {
+describe('ContactService', () => {
   let service: ContactApiService;
 
   beforeEach(async () => {
