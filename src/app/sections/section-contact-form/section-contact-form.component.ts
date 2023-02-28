@@ -1,10 +1,12 @@
 import {
-  ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit,
+  ChangeDetectionStrategy, Component, Input, OnInit,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TypeSection__contact__formFields } from '@server/models/contentful-content-types/section-contact-form';
 import { ContactService } from '@services/contact/contact.service';
-import { Subject, takeUntil } from 'rxjs';
+import {
+  Subject, switchMap,
+} from 'rxjs';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
 
 @Component({
@@ -13,7 +15,7 @@ import { ReCaptchaV3Service } from 'ng-recaptcha';
   styleUrls: ['./section-contact-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SectionContactFormComponent implements OnInit, OnDestroy {
+export class SectionContactFormComponent implements OnInit {
   @Input() data!: TypeSection__contact__formFields;
 
   destroy$: Subject<boolean> = new Subject<boolean>();
@@ -42,15 +44,12 @@ export class SectionContactFormComponent implements OnInit, OnDestroy {
       this.contactForm.markAllAsTouched();
     }
     this.recaptchaV3Service.execute('sendMail')
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(token => {
-           this.contact.sendMail(
-            this.fullName,
-            this.contactForm.get('email')?.value,
-            this.contactForm.get('message')?.value,
-            token,
-          )
-      });
+      .pipe(switchMap(token => this.contact.sendMail(
+        this.fullName,
+        this.contactForm.get('email')?.value,
+        this.contactForm.get('message')?.value,
+        token,
+      ))).subscribe();
   }
 
   private initializeContactForm(): void {
@@ -60,10 +59,5 @@ export class SectionContactFormComponent implements OnInit, OnDestroy {
       email: ['', [Validators.required, Validators.email, Validators.maxLength(256)]],
       message: ['', [Validators.required]],
     }, { updateOn: 'blur' });
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next(true);
-    this.destroy$.unsubscribe();
   }
 }
