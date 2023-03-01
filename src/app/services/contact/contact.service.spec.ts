@@ -2,7 +2,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { TestBed } from '@angular/core/testing';
 import { ContactService } from './contact.service';
 
-describe('NodemailerService', () => {
+describe('ContactService', () => {
   let service: ContactService;
   let controller: HttpTestingController;
 

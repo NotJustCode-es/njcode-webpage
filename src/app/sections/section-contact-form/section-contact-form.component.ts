@@ -4,10 +4,10 @@ import {
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TypeSection__contact__formFields } from '@server/models/contentful-content-types/section-contact-form';
 import { ContactService } from '@services/contact/contact.service';
+import { ReCaptchaV3Service } from 'ng-recaptcha';
 import {
   Subject, switchMap,
 } from 'rxjs';
-import { ReCaptchaV3Service } from 'ng-recaptcha';
 
 @Component({
   selector: 'app-section-contact-form',
@@ -24,7 +24,11 @@ export class SectionContactFormComponent implements OnInit {
 
   contactForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private contact: ContactService, private recaptchaV3Service: ReCaptchaV3Service) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private contactService: ContactService,
+    private recaptchaV3Service: ReCaptchaV3Service,
+  ) {}
 
   ngOnInit(): void {
     this.initializeContactForm();
@@ -44,12 +48,15 @@ export class SectionContactFormComponent implements OnInit {
       this.contactForm.markAllAsTouched();
     }
     this.recaptchaV3Service.execute('sendMail')
-      .pipe(switchMap(token => this.contact.sendMail(
-        this.fullName,
-        this.contactForm.get('email')?.value,
-        this.contactForm.get('message')?.value,
-        token,
-      ))).subscribe();
+      .pipe(
+        switchMap(token => this.contactService.sendMail(
+          this.fullName,
+          this.contactForm.get('email')?.value,
+          this.contactForm.get('message')?.value,
+          token,
+        )),
+      )
+      .subscribe();
   }
 
   private initializeContactForm(): void {

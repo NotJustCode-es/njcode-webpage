@@ -1,7 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
+import { environment } from '@environments/environment';
+import { RecaptchaV3Module, RECAPTCHA_V3_SITE_KEY } from 'ng-recaptcha';
 import { SectionContactFormComponent } from './section-contact-form.component';
 
 @NgModule({
@@ -11,7 +12,7 @@ import { SectionContactFormComponent } from './section-contact-form.component';
   providers: [
     {
       provide: RECAPTCHA_V3_SITE_KEY,
-      useValue: '6LcMZ6gkAAAAAPHKo_cruQWbIixX4sQS1b2BFo3a',
+      useValue: environment.recaptcha.siteKey,
     },
   ],
   imports: [
