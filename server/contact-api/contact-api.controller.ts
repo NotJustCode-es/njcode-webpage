@@ -6,7 +6,7 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { Recaptcha, RecaptchaResult, RecaptchaVerificationResult } from '@nestlab/google-recaptcha';
+import { Recaptcha } from '@nestlab/google-recaptcha';
 import { ContactApiService } from './contact-api.service';
 import { MailParams } from '../models/mail-params';
 
@@ -21,10 +21,7 @@ export class ContactApiController {
   @UsePipes(new ValidationPipe({ transform: true }))
   async sendMail(
     @Body() params: MailParams,
-      @RecaptchaResult() recaptchaResult: RecaptchaVerificationResult,
   ): Promise<void> {
-    if (recaptchaResult.success) {
-      this.contactService.sendEmail(params);
-    }
+    this.contactService.sendEmail(params);
   }
 }
