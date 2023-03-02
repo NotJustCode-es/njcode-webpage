@@ -1,25 +1,16 @@
-import { Inject, Injectable } from '@angular/core';
-
-import {
-  SitemapStream, EnumChangefreq, SitemapItem, streamToPromise,
-} from 'sitemap';
+import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
-import { ContentfulApiService } from '@server/contentful-api/contentful-api.service';
-// import { ContentfulPageQueryParams } from '../models/contentful-page-query-params';
+import { TypePageFields } from '@server/models/contentful-content-types/page';
+import { EntryCollectionWithLinkResolutionAndWithUnresolvableLinks } from 'contentful';
+import {
+  EnumChangefreq, SitemapItem, SitemapStream, streamToPromise,
+} from 'sitemap';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class SitemapService {
-  // private params!: ContentfulPageQueryParams;
-
+@Injectable()
+export class RootService {
   private xml!: Promise<Buffer>;
 
-  constructor(
-    @Inject(ContentfulApiService) private contentfulApiService: ContentfulApiService,
-  ) { }
-
-  async getSitemap(): Promise<Buffer> {
+  async getSitemap(entries: EntryCollectionWithLinkResolutionAndWithUnresolvableLinks<TypePageFields>): Promise<Buffer> {
     // this.params = { slug: 'asd', locale: 'awd', limit: 1000 };
 
     try {
@@ -28,12 +19,12 @@ export class SitemapService {
       });
       // const pipeline = sitemapStream.pipe(createGzip());
 
-      this.contentfulApiService.getAllPages(1000).forEach(entry => {
+      entries.items.forEach(entry => {
         sitemapStream.write({
           changefreq: EnumChangefreq.MONTHLY,
-          lastmod: entry.items[0].sys.updatedAt,
+          lastmod: entry.sys.updatedAt,
           priority: 0.7,
-          url: entry.items[0].fields.slug,
+          url: entry.fields.slug,
         } as SitemapItem);
       });
 

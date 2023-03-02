@@ -4,7 +4,7 @@ import { AngularUniversalModule } from '@nestjs/ng-universal';
 import { join } from 'path';
 import { AppServerModule } from '../src/main.server';
 import { ContentfulApiModule } from './contentful-api/contentful-api.module';
-import { RootModule } from './sitemap/root.module';
+import { RootModule } from './root/root.module';
 import configFactory from './core/config/config-factory';
 
 const browserAppLocation = 'dist/njcode-webpage/browser';

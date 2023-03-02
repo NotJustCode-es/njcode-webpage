@@ -15,7 +15,9 @@ export class ContentfulApiService {
     return this.configService.get<ContentfulConfiguration>('contentful', { infer: true });
   }
 
-  constructor(@Inject(ConfigService) private readonly configService: ConfigService) {
+  constructor(
+    @Inject(ConfigService) private readonly configService: ConfigService,
+  ) {
     this.contentfulClient = createClient({
       space: this.contentfulConfiguration.spaceId,
       accessToken: this.contentfulConfiguration.accessToken,
