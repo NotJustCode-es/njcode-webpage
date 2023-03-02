@@ -11,6 +11,7 @@ export const environment = {
   analytics: {
     googleAnalyticsId: 'G-6DENS4ZPR6',
   },
+  hostUrl: 'http://localhost:4200',
 };
 
 /*
