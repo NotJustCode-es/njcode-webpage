@@ -31,4 +31,11 @@ export class ContentfulApiService {
       'fields.slug': pageParams.slug,
     }));
   }
+
+  getAllPages(limit: number): Observable<EntryCollectionWithLinkResolutionAndWithUnresolvableLinks<TypePageFields>> {
+    return from(this.contentfulClient.getEntries<TypePageFields>({
+      content_type: ContentfulContentTypes.Page,
+      limit,
+    }));
+  }
 }
