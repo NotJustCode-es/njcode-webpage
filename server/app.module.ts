@@ -21,8 +21,7 @@ const browserAppLocation = 'dist/njcode-webpage/browser';
       imports: [ConfigModule],
       useFactory: (config: ConfigService) => ({
         secretKey: config.get('GOOGLE_RECAPTCHA_SECRET_KEY'),
-        // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-        response: (req: IncomingMessage) => (req.headers['recaptcha'] || '').toString(),
+        response: (req: IncomingMessage):string => (req.headers['recaptcha'] || '').toString(),
         // skipIf: process.env?.['NODE_ENV'] !== 'production',
         actions: ['sendMail'],
         score: 0.8,
