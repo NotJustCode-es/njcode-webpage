@@ -8,6 +8,7 @@ import { TypePageFields } from '@server/models/contentful-content-types/page';
 import { MetadataService } from '@services/metadata/metadata.service';
 import { TestComponent } from '@shared/testing/components/test.component';
 import { getTranslocoTestingModule } from '@shared/testing/transloco-testing.module';
+import { createTestEntry } from '@shared/testing/utils/contentful.utils';
 import { DynamicPageComponent } from './dynamic-page.component';
 
 describe('DynamicPageComponent', () => {
@@ -91,40 +92,9 @@ describe('DynamicPageComponent', () => {
     it('should map sections if there are sections to map', () => {
       const response: TypePageFields = {
         slug: '/',
-        sections: [{
-          sys: {
-            id: '1',
-            type: 'Entry',
-            createdAt: '2021-03-01T12:00:00.000Z',
-            updatedAt: '2021-03-01T12:00:00.000Z',
-            revision: 0,
-            space: {
-              sys: {
-                id: '1',
-                linkType: 'Space',
-                type: 'Link',
-              },
-            },
-            environment: {
-              sys: {
-                id: 'master',
-                linkType: 'Environment',
-                type: 'Link',
-              },
-            },
-            contentType: {
-              sys: {
-                id: 'test-section',
-                type: 'Link',
-                linkType: 'ContentType',
-              },
-            },
-          },
-          metadata: {
-            tags: [],
-          },
-          fields: {},
-        }],
+        sections: [
+          createTestEntry({}),
+        ],
       };
       const expectedMappedSections = [{
         id: 'test-section',

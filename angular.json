@@ -161,6 +161,7 @@
               "@nestjs/websockets/socket-module",
               "@nestjs-modules/mailer/dist/adapters/handlebars.adapter",
               "@nestjs-modules/mailer",
+              "@nestlab/google-recaptcha",
               "express",
               "cache-manager",
               "contentful"
