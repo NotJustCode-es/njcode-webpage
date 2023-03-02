@@ -1,12 +1,12 @@
 import {
-  ChangeDetectionStrategy, Component, Input, OnInit,
+  ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TypeSection__contact__formFields } from '@server/models/contentful-content-types/section-contact-form';
 import { ContactService } from '@services/contact/contact.service';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
 import {
-  Subject, switchMap,
+  Subject, switchMap, takeUntil,
 } from 'rxjs';
 
 @Component({
@@ -15,7 +15,7 @@ import {
   styleUrls: ['./section-contact-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SectionContactFormComponent implements OnInit {
+export class SectionContactFormComponent implements OnInit, OnDestroy {
   @Input() data!: TypeSection__contact__formFields;
 
   destroy$: Subject<boolean> = new Subject<boolean>();
@@ -49,6 +49,7 @@ export class SectionContactFormComponent implements OnInit {
     }
     this.recaptchaV3Service.execute('sendMail')
       .pipe(
+        takeUntil(this.destroy$),
         switchMap(token => this.contactService.sendMail(
           this.fullName,
           this.contactForm.get('email')?.value,
@@ -66,5 +67,10 @@ export class SectionContactFormComponent implements OnInit {
       email: ['', [Validators.required, Validators.email, Validators.maxLength(256)]],
       message: ['', [Validators.required]],
     }, { updateOn: 'blur' });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }
