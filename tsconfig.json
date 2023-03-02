@@ -46,8 +46,8 @@
       "@shared/*": [
         "src/app/shared/*"
       ],
-      "@server/models/*": [
-        "server/models/*"
+      "@server/*": [
+        "server/*"
       ],
     }
   },
