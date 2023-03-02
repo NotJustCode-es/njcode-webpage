@@ -4,7 +4,10 @@ import {
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TypeSection__contact__formFields } from '@server/models/contentful-content-types/section-contact-form';
 import { ContactService } from '@services/contact/contact.service';
-import { Subject, takeUntil } from 'rxjs';
+import { ReCaptchaV3Service } from 'ng-recaptcha';
+import {
+  Subject, switchMap, takeUntil,
+} from 'rxjs';
 
 @Component({
   selector: 'app-section-contact-form',
@@ -21,7 +24,11 @@ export class SectionContactFormComponent implements OnInit, OnDestroy {
 
   contactForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private contact: ContactService) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private contactService: ContactService,
+    private recaptchaV3Service: ReCaptchaV3Service,
+  ) {}
 
   ngOnInit(): void {
     this.initializeContactForm();
@@ -39,14 +46,17 @@ export class SectionContactFormComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     if (this.contactForm.invalid) {
       this.contactForm.markAllAsTouched();
-      return;
     }
-
-    this.contact.sendMail(
-      this.fullName,
-      this.contactForm.get('email')?.value,
-      this.contactForm.get('message')?.value,
-    ).pipe(takeUntil(this.destroy$))
+    this.recaptchaV3Service.execute('sendMail')
+      .pipe(
+        takeUntil(this.destroy$),
+        switchMap(token => this.contactService.sendMail(
+          this.fullName,
+          this.contactForm.get('email')?.value,
+          this.contactForm.get('message')?.value,
+          token,
+        )),
+      )
       .subscribe();
   }
 

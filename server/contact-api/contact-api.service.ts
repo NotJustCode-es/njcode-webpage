@@ -4,7 +4,9 @@ import { MailParams } from '../models/mail-params';
 
 @Injectable()
 export class ContactApiService {
-  constructor(@Inject(MailerService) private mailerService: MailerService) {}
+  constructor(
+    @Inject(MailerService) private mailerService: MailerService,
+  ) {}
 
   async sendEmail(params: MailParams): Promise<void> {
     const { name } = params;

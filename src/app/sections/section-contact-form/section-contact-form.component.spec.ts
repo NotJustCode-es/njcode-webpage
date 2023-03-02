@@ -1,197 +1,70 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule, Validators } from '@angular/forms';
+import { SectionContactFormComponent } from '@sections/section-contact-form/section-contact-form.component';
 import { TypeSection__contact__formFields } from '@server/models/contentful-content-types/section-contact-form';
-import { ReactiveFormsModule, FormsModule, Validators } from '@angular/forms';
-import { SectionContactFormComponent } from './section-contact-form.component';
+import { ContactService } from '@services/contact/contact.service';
+import { ReCaptchaV3ServiceStub } from '@shared/testing/stubs/recaptcha-v3-service.stub';
+import { createTestEntry } from '@shared/testing/utils/contentful.utils';
+import { RecaptchaModule, ReCaptchaV3Service } from 'ng-recaptcha';
+import { of } from 'rxjs';
+
+const testFields = {
+  name: 'test',
+  label: 'test',
+  placeholder: 'test',
+  validFeedback: 'test',
+  invalidRequiredFeedback: 'test',
+  invalidSizeFeedback: 'test',
+  invalidPatternFeedback: 'test',
+};
+
+const contentfulResponse: TypeSection__contact__formFields = {
+  name: 'test',
+  title: 'test',
+  subtitle: 'test',
+  requiredExplanation: 'test',
+  submitButton: 'test',
+  firstNameEntry: createTestEntry(testFields),
+  lastNameEntry: createTestEntry(testFields),
+  mailEntry: createTestEntry(testFields),
+  messageEntry: createTestEntry(testFields),
+};
+
+const formTestValues = {
+  firstName: 'firstname',
+  lastName: 'lastname',
+  email: 'test@test.com',
+  message: 'test message',
+};
 
 describe('SectionContactFormComponent', () => {
   let component: SectionContactFormComponent;
   let fixture: ComponentFixture<SectionContactFormComponent>;
+  let service: ContactService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers: [Validators],
-      imports: [ReactiveFormsModule, FormsModule],
-      declarations: [SectionContactFormComponent],
+      imports: [
+        HttpClientTestingModule,
+        ReactiveFormsModule,
+        RecaptchaModule,
+      ],
+      providers: [
+        {
+          provide: ReCaptchaV3Service,
+          useClass: ReCaptchaV3ServiceStub,
+        },
+      ],
+      declarations: [
+        SectionContactFormComponent,
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(SectionContactFormComponent);
     component = fixture.componentInstance;
-    const resp: TypeSection__contact__formFields = {
-      name: 'test',
-      title: 'test',
-      subtitle: 'test',
-      requiredExplanation: 'test',
-      submitButton: 'test',
-      firstNameEntry: {
-        sys: {
-          id: '1',
-          type: 'Entry',
-          createdAt: '2021-03-01T12:00:00.000Z',
-          updatedAt: '2021-03-01T12:00:00.000Z',
-          revision: 0,
-          space: {
-            sys: {
-              id: '1',
-              linkType: 'Space',
-              type: 'Link',
-            },
-          },
-          environment: {
-            sys: {
-              id: 'master',
-              linkType: 'Environment',
-              type: 'Link',
-            },
-          },
-          contentType: {
-            sys: {
-              id: 'test-section',
-              type: 'Link',
-              linkType: 'ContentType',
-            },
-          },
-        },
-        metadata: {
-          tags: [],
-        },
-        fields: {
-          name: 'test',
-          label: 'test',
-          placeholder: 'test',
-          validFeedback: 'test',
-          invalidRequiredFeedback: 'test',
-          invalidSizeFeedback: 'test',
-          invalidPatternFeedback: 'test',
-        },
-      },
-      lastNameEntry: {
-        sys: {
-          id: '1',
-          type: 'Entry',
-          createdAt: '2021-03-01T12:00:00.000Z',
-          updatedAt: '2021-03-01T12:00:00.000Z',
-          revision: 0,
-          space: {
-            sys: {
-              id: '1',
-              linkType: 'Space',
-              type: 'Link',
-            },
-          },
-          environment: {
-            sys: {
-              id: 'master',
-              linkType: 'Environment',
-              type: 'Link',
-            },
-          },
-          contentType: {
-            sys: {
-              id: 'test-section',
-              type: 'Link',
-              linkType: 'ContentType',
-            },
-          },
-        },
-        metadata: {
-          tags: [],
-        },
-        fields: {
-          name: 'test',
-          label: 'test',
-          placeholder: 'test',
-          validFeedback: 'test',
-          invalidRequiredFeedback: 'test',
-          invalidSizeFeedback: 'test',
-          invalidPatternFeedback: 'test',
-        },
-      },
-      mailEntry: {
-        sys: {
-          id: '1',
-          type: 'Entry',
-          createdAt: '2021-03-01T12:00:00.000Z',
-          updatedAt: '2021-03-01T12:00:00.000Z',
-          revision: 0,
-          space: {
-            sys: {
-              id: '1',
-              linkType: 'Space',
-              type: 'Link',
-            },
-          },
-          environment: {
-            sys: {
-              id: 'master',
-              linkType: 'Environment',
-              type: 'Link',
-            },
-          },
-          contentType: {
-            sys: {
-              id: 'test-section',
-              type: 'Link',
-              linkType: 'ContentType',
-            },
-          },
-        },
-        metadata: {
-          tags: [],
-        },
-        fields: {
-          name: 'test',
-          label: 'test',
-          placeholder: 'test',
-          validFeedback: 'test',
-          invalidRequiredFeedback: 'test',
-          invalidSizeFeedback: 'test',
-          invalidPatternFeedback: 'test',
-        },
-      },
-      messageEntry: {
-        sys: {
-          id: '1',
-          type: 'Entry',
-          createdAt: '2021-03-01T12:00:00.000Z',
-          updatedAt: '2021-03-01T12:00:00.000Z',
-          revision: 0,
-          space: {
-            sys: {
-              id: '1',
-              linkType: 'Space',
-              type: 'Link',
-            },
-          },
-          environment: {
-            sys: {
-              id: 'master',
-              linkType: 'Environment',
-              type: 'Link',
-            },
-          },
-          contentType: {
-            sys: {
-              id: 'test-section',
-              type: 'Link',
-              linkType: 'ContentType',
-            },
-          },
-        },
-        metadata: {
-          tags: [],
-        },
-        fields: {
-          name: 'test',
-          label: 'test',
-          placeholder: 'test',
-          validFeedback: 'test',
-          invalidRequiredFeedback: 'test',
-          invalidSizeFeedback: 'test',
-          invalidPatternFeedback: 'test',
-        },
-      },
-    };
-    component.data = resp;
+    service = TestBed.inject(ContactService);
+    component.data = contentfulResponse;
     fixture.detectChanges();
   });
 
@@ -207,12 +80,7 @@ describe('SectionContactFormComponent', () => {
   });
 
   it('testing valid form', () => {
-    const validValues = {
-      firstName: 'marc',
-      lastName: 'torres torres',
-      email: 'marctt@gmail.com',
-      message: 'hola que tal',
-    };
+    const validValues = formTestValues;
     component.contactForm.setValue(validValues);
     expect(component.contactForm.valid).toBe(true);
   });
@@ -235,10 +103,8 @@ describe('SectionContactFormComponent', () => {
 
     it('should not accept numbers', () => {
       const invalidValues = {
+        ...formTestValues,
         firstName: '123',
-        lastName: 'torres torres',
-        email: 'marctt@gmail.com',
-        message: 'hola que tal',
       };
       component.contactForm.setValue(invalidValues);
       expect(component.contactForm.get('firstName')?.hasError('pattern')).toBe(true);
@@ -246,10 +112,8 @@ describe('SectionContactFormComponent', () => {
 
     it('should not accept non-alfabetical values', () => {
       const invalidValues = {
+        ...formTestValues,
         firstName: '·¢#',
-        lastName: 'torres torres',
-        email: 'marctt@gmail.com',
-        message: 'hola que tal',
       };
       component.contactForm.setValue(invalidValues);
       expect(component.contactForm.get('firstName')?.hasError('pattern')).toBe(true);
@@ -262,10 +126,8 @@ describe('SectionContactFormComponent', () => {
 
     it('should not accept numbers', () => {
       const invalidValues = {
-        firstName: 'marc',
+        ...formTestValues,
         lastName: '123',
-        email: 'marctt@gmail.com',
-        message: 'hola que tal',
       };
       component.contactForm.setValue(invalidValues);
       expect(component.contactForm.get('lastName')?.hasError('pattern')).toBe(true);
@@ -273,10 +135,8 @@ describe('SectionContactFormComponent', () => {
 
     it('should not accept non-alfabetical values', () => {
       const invalidValues = {
-        firstName: 'marc',
+        ...formTestValues,
         lastName: '·¢#',
-        email: 'marctt@gmail.com',
-        message: 'hola que tal',
       };
       component.contactForm.setValue(invalidValues);
       expect(component.contactForm.get('lastName')?.hasError('pattern')).toBe(true);
@@ -294,6 +154,33 @@ describe('SectionContactFormComponent', () => {
   describe('message entry', () => {
     it('should be required', () => {
       expect(component.contactForm.get('message')?.hasValidator(Validators.required)).toBe(true);
+    });
+  });
+
+  it('get full name', () => {
+    component.contactForm.get('firstName')?.setValue(formTestValues.firstName);
+    component.contactForm.get('lastName')?.setValue(formTestValues.lastName);
+    expect(component.fullName).toEqual(`${formTestValues.firstName} ${formTestValues.lastName}`);
+  });
+
+  describe('onSubmit()', () => {
+    it('should mark as touched on invalid data', () => {
+      const invalidValues = {
+        ...formTestValues,
+        lastName: '123',
+      };
+      component.contactForm.setValue(invalidValues);
+      component.onSubmit();
+      expect(component.contactForm.touched).toBe(true);
+    });
+
+    it('should send mail on valid data', () => {
+      const spySubscribable = spyOn(service, 'sendMail').and.returnValue(of({}));
+      const validValues = formTestValues;
+      component.contactForm.setValue(validValues);
+      component.onSubmit();
+      expect(component.contactForm.valid).toBe(true);
+      expect(spySubscribable).toHaveBeenCalled();
     });
   });
 });
