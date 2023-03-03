@@ -5,13 +5,16 @@
 export const environment = {
   production: false,
   i18n: {
-    defaultLang: 'en',
+    defaultLang: 'es',
     availableLangs: ['en', 'es'],
   },
   analytics: {
     googleAnalyticsId: 'G-6DENS4ZPR6',
   },
   hostUrl: 'http://localhost:4200',
+  recaptcha: {
+    siteKey: '6LcMZ6gkAAAAAPHKo_cruQWbIixX4sQS1b2BFo3a',
+  },
 };
 
 /*

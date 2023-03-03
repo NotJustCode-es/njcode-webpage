@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { SectionNavbarComponent } from './section-navbar.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { SectionNavbarComponent } from '@sections/section-navbar/section-navbar.component';
+import { getTranslocoTestingModule } from '@shared/testing/transloco-testing.module';
 
 describe('SectionNavbarComponent', () => {
   let component: SectionNavbarComponent;
@@ -9,6 +11,10 @@ describe('SectionNavbarComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [
         SectionNavbarComponent,
+      ],
+      imports: [
+        getTranslocoTestingModule(),
+        RouterTestingModule,
       ],
     })
       .compileComponents();
@@ -23,5 +29,12 @@ describe('SectionNavbarComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('#setActiveLang', () => {
+    it('should set active language', () => {
+      component.setActiveLang('es');
+      expect(component.activeLang).toEqual('es');
+    });
   });
 });

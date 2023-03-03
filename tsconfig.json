@@ -37,6 +37,9 @@
       "@interceptors/*": [
         "src/app/interceptors/*"
       ],
+      "@pages/*": [
+        "src/app/pages/*"
+      ],
       "@sections/*": [
         "src/app/sections/*"
       ],

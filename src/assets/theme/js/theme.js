@@ -1,11 +1,5 @@
 'use strict';
-var theme = {
-  /**
-   * Theme's components/functions list
-   * Comment out or delete the unnecessary component.
-   * Some components have dependencies (plugins).
-   * Do not forget to remove dependency from src/js/vendor/ and recompile.
-   */
+window.theme = {
   init: function () {
     theme.stickyHeader();
     theme.subMenu();
@@ -14,7 +8,6 @@ var theme = {
     theme.onepageHeaderOffset();
     theme.spyScroll();
     theme.anchorSmoothScroll();
-    theme.svgInject();
     theme.backgroundImage();
     theme.backgroundImageMobile();
     theme.imageHoverOverlay();
@@ -44,7 +37,13 @@ var theme = {
   */
   stickyHeader: () => {
     var navbar = document.querySelector(".navbar");
-    if (navbar == null) return;
+    if (navbar === null) {
+      return;
+    }
+    var navbarClone = document.querySelector(".navbar-clone");
+    if (navbarClone !== null) {
+      navbarClone.remove();
+    }
     var options = {
       offset: 350,
       offsetSide: 'top',
@@ -58,9 +57,13 @@ var theme = {
         if (navbarClonedClass.contains('transparent') && navbarClonedClass.contains('navbar-dark')) {
           this.clonedElem.className = this.clonedElem.className.replace("navbar-dark","navbar-light");
         }
+        const languageSelect = this.clonedElem.querySelector('.language-select');
+        if(languageSelect !== null) {
+          languageSelect.remove();
+        }
       }
     };
-    var banner = new Headhesive('.navbar', options);
+    new Headhesive('.navbar', options);
   },
   /**
    * Sub Menus
@@ -97,8 +100,6 @@ var theme = {
    * Enables offcanvas-nav, closes offcanvas on anchor clicks, focuses on input in search offcanvas
    */
   offCanvas: () => {
-    var navbar = document.querySelector(".navbar");
-    if (navbar == null) return;
     const navOffCanvasBtn = document.querySelectorAll(".offcanvas-nav-btn");
     const navOffCanvas = document.querySelector('.navbar:not(.navbar-clone) .offcanvas-nav');
     const bsOffCanvas = new bootstrap.Offcanvas(navOffCanvas, {scroll: true});
@@ -243,23 +244,6 @@ var theme = {
         behavior: "smooth"
       });
     }
-  },
-  /**
-   * SVGInject
-   * Replaces an img element with an inline SVG so you can apply colors to your SVGs
-   * Requires assets/js/vendor/svg-inject.min.js
-   */
-  svgInject: () => {
-    SVGInject.setOptions({
-      onFail: function(img, svg) {
-        img.classList.remove('svg-inject');
-      }
-    });
-    document.addEventListener('DOMContentLoaded', function() {
-      SVGInject(document.querySelectorAll('img.svg-inject'), {
-        useCache: true
-      });
-    });
   },
   /**
    * Background Image
@@ -903,4 +887,3 @@ var theme = {
     });
   },
 }
-theme.init();
