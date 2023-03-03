@@ -26,18 +26,21 @@ export class ContentfulApiService {
     });
   }
 
-  getPage(pageParams: ContentfulPageQueryParams): Observable<EntryCollectionWithLinkResolutionAndWithUnresolvableLinks<TypePageFields>> {
+  private getFromContentful(type: ContentfulContentTypes, options?: { pageParams?: ContentfulPageQueryParams, limit?: number }):
+  Observable<EntryCollectionWithLinkResolutionAndWithUnresolvableLinks<TypePageFields>> {
     return from(this.contentfulClient.getEntries<TypePageFields>({
-      content_type: ContentfulContentTypes.Page,
-      locale: pageParams.locale,
-      'fields.slug': pageParams.slug,
+      content_type: type,
+      locale: options?.pageParams?.locale,
+      'fields.slug': options?.pageParams?.slug,
+      limit: options?.limit,
     }));
   }
 
+  getPage(pageParams: ContentfulPageQueryParams): Observable<EntryCollectionWithLinkResolutionAndWithUnresolvableLinks<TypePageFields>> {
+    return this.getFromContentful(ContentfulContentTypes.Page, { pageParams });
+  }
+
   getAllPages(limit: number): Observable<EntryCollectionWithLinkResolutionAndWithUnresolvableLinks<TypePageFields>> {
-    return from(this.contentfulClient.getEntries<TypePageFields>({
-      content_type: ContentfulContentTypes.Page,
-      limit,
-    }));
+    return this.getFromContentful(ContentfulContentTypes.Page, { limit });
   }
 }
