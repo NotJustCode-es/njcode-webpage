@@ -1,10 +1,11 @@
 import {
-  Controller, Get, Header, Inject, UseInterceptors,
+  Controller, Get, Header, Inject, UseInterceptors, Req,
 } from '@nestjs/common';
 import { ContentfulApiService } from '@server/contentful-api/contentful-api.service';
 import {
   from, map, Observable, switchMap,
 } from 'rxjs';
+import { Request } from 'express';
 import { ContentfulEntriesInterceptor } from '../interceptor/contentful-entries.interceptor';
 import { RootService } from './root.service';
 
@@ -20,10 +21,11 @@ export class RootController {
 
   @Header('Content-Type', 'application/xml')
   @Get('/sitemap.xml')
-  getEntries(): Observable<string> {
+  getEntries(@Req() request: Request): Observable<string> {
+    const hostUrl = `${request.protocol}://${request.get('Host')}`;
     return this.contentfulApiService.getAllPages(this.contentfulLimitPages)
       .pipe(
-        switchMap(entries => from(this.rootService.getSitemap(entries))),
+        switchMap(entries => from(this.rootService.getSitemap(entries, hostUrl))),
         map(xml => xml.toString()),
       );
   }
