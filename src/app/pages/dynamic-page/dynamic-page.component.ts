@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DynamicSection } from '@core/models/dynamic-section';
-import { TitleService } from '@core/services/title.service';
 import { RoutesEnum } from '@core/models/routes.enum';
-import { ContentfulService } from '@core/services/contentful.service';
-import { I18nService } from '@core/services/i18n.service';
+import { ContentfulService } from '@core/services/contentful/contentful.service';
+import { I18nService } from '@core/services/i18n/i18n.service';
 import { TypePageFields } from '@server/models/contentful-content-types/page';
+import { MetadataService } from '@services/metadata/metadata.service';
+import { PluginsService } from '@services/plugins/plugins.service';
 import {
   catchError,
   EMPTY,
@@ -30,19 +31,21 @@ export class DynamicPageComponent implements OnInit {
     private router: Router,
     private i18nService: I18nService,
     private contentfulService: ContentfulService,
-    private titleService: TitleService,
+    private metadataService: MetadataService,
+    private pluginsService: PluginsService,
   ) { }
 
   ngOnInit(): void {
     this.getSections();
   }
 
-  private getSections(): void {
+  getSections(): void {
     this.sections$ = this.contentfulService.getPage(
       this.i18nService.urlWithoutLanguage,
       this.i18nService.activeLanguage,
     ).pipe(
-      tap(page => this.titleService.setTitle(page.title)),
+      tap(() => this.pluginsService.loadPlugins()),
+      tap(page => this.metadataService.setMetadata(page.metadata?.fields)),
       map(page => this.mapSectionsAndDataFromPage(page)),
       catchError(() => {
         this.router.navigate([RoutesEnum.NotFound]);
@@ -51,7 +54,7 @@ export class DynamicPageComponent implements OnInit {
     );
   }
 
-  private mapSectionsAndDataFromPage(page: TypePageFields): DynamicSection[] {
+  mapSectionsAndDataFromPage(page: TypePageFields): DynamicSection[] {
     const sections = page.sections || [];
     return sections.map(section => {
       const { sys, fields } = section;

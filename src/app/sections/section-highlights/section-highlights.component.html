@@ -1,0 +1,26 @@
+<section class="wrapper bg-light">
+  <div class="container pb-15 pb-md-17">
+    <div class="row gx-md-5 gy-5 mt-n19 mb-14 mb-md-17">
+      <ng-container *ngFor="let highlight of data?.highlights">
+        <div class="col-md-6 col-xl-3">
+          <div class="card shadow-lg">
+            <div class="card-body">
+              <img [src]="getIconPath(highlight.fields.icon)" class="icon-svg icon-svg-sm mb-3" [alt]="highlight.fields.title"/>
+              <h4>
+                {{ highlight.fields.title }}
+              </h4>
+              <p class="mb-2">
+                {{ highlight.fields.description }}
+              </p>
+            </div>
+            <!--/.card-body -->
+          </div>
+          <!--/.card -->
+        </div>
+        <!--/column -->
+      </ng-container>
+    </div>
+    <!--/.row -->
+  </div>
+  <!-- /.container -->
+</section>

@@ -1,4 +1,12 @@
 {
+  "javascript.preferences.importModuleSpecifier": "non-relative",
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "eslint.enable": true,
+  "eslint.format.enable": true,
+  "eslint.validate": [
+    "typescript",
+    "html"
+  ],
   "workbench.colorCustomizations": {
     "activityBar.background": "#0C342B",
     "titleBar.activeBackground": "#10483C",
