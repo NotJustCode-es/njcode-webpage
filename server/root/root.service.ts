@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { environment } from '@environments/environment';
 import { TypePageFields } from '@server/models/contentful-content-types/page';
 import { EntryCollectionWithLinkResolutionAndWithUnresolvableLinks } from 'contentful';
 import {
@@ -8,9 +7,9 @@ import {
 
 @Injectable()
 export class RootService {
-  async getSitemap(entries: EntryCollectionWithLinkResolutionAndWithUnresolvableLinks<TypePageFields>): Promise<Buffer> {
+  async getSitemap(entries: EntryCollectionWithLinkResolutionAndWithUnresolvableLinks<TypePageFields>, hostUrl: string): Promise<Buffer> {
     const sitemapStream = new SitemapStream({
-      hostname: environment.hostUrl,
+      hostname: hostUrl,
     });
 
     entries.items.forEach(entry => {
