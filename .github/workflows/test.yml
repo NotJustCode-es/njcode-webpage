@@ -26,4 +26,4 @@ jobs:
       run: npm run build:ssr
 
     - name: Test Angular App
-      run: npm test:ci
+      run: npm run test:ci

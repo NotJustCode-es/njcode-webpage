@@ -38,7 +38,7 @@ jobs:
       run: npm run build:ssr
 
     - name: Test Angular App
-      run: npm test:ci
+      run: npm run test:ci
 
     - name: Make .env file
       uses: SpicyPizza/create-envfile@v1.3
