@@ -3,10 +3,11 @@
   "version": "0.0.1",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node dist/njcode-webpage/server/main.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test --watch=true --code-coverage",
+    "test:ci": "ng test --no-watch --no-progress --code-coverage --browsers=ChromeHeadless",
     "lint": "eslint -c .eslintrc.json --ext .ts .",
     "dev:ssr": "npm run copy:templates && ng run njcode-webpage:serve-ssr",
     "serve:ssr": "node dist/njcode-webpage/server/main.js",
