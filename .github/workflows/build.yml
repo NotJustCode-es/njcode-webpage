@@ -60,7 +60,7 @@ jobs:
         fail_on_empty: true
 
     - name: Generate deployment package
-      run: zip -r package.zip . -x ".git/*" -x ".github/*" -x ".vscode/*"
+      run: zip -r ${{ env.APPLICATION_NAME }}.zip . -x ".git/*" -x ".github/*" -x ".vscode/*"
 
     - name: Upload zip
       uses: actions/upload-artifact@v3
