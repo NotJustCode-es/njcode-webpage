@@ -1,12 +1,8 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-
 name: Build njcode-webpage and deploy on AWS EB
 
-on: [ push ]
-# on:
-#  push:
-#    branches: [ "main" ]
+on:
+ push:
+   branches: [ main ]
 
 env:
   AWS_REGION: eu-west-3
@@ -67,7 +63,6 @@ jobs:
       with:
         name: artifact
         path: ./${{ env.APPLICATION_NAME }}.zip
-
 
   deploy-to-aws:
     name: Deploy to AWS
