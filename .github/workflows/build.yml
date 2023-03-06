@@ -8,6 +8,7 @@ env:
   AWS_REGION: eu-west-3
   AWS_ENVIRONMENT_NAME: njcode-webpage
   APPLICATION_NAME: njcode-webpage
+  ARTIFACT_NAME: njcode-webpage
   PORT: 4000
   PREFIX: /api
   CONTENTFUL_ENVIRONMENT: master
@@ -61,7 +62,7 @@ jobs:
     - name: Upload zip
       uses: actions/upload-artifact@v3
       with:
-        name: artifact
+        name: ${{ env.ARTIFACT_NAME }}
         path: ./${{ env.APPLICATION_NAME }}.zip
 
   deploy-to-aws:
@@ -72,7 +73,7 @@ jobs:
     - name: Download zip
       uses: actions/download-artifact@v3
       with:
-        name: artifact
+        name: ${{ env.ARTIFACT_NAME }}
 
     - name: Deploy to EB
       uses: einaregilsson/beanstalk-deploy@v21
@@ -87,6 +88,7 @@ jobs:
         deployment_package: ${{ env.APPLICATION_NAME }}.zip
 
     - name: Delete artifact
+      if: always()
       uses: geekyeggo/delete-artifact@v2
       with:
-        name: artifact
+        name: ${{ env.ARTIFACT_NAME }}
