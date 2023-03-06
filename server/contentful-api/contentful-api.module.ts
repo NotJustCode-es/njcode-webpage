@@ -9,5 +9,8 @@ import { ContentfulApiService } from './contentful-api.service';
   controllers: [
     ContentfulApiController,
   ],
+  exports: [
+    ContentfulApiService,
+  ],
 })
 export class ContentfulApiModule {}
