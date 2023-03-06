@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { TypeSection__clientsFields } from '@server/models/contentful-content-types/section-clients';
-import { AssetService } from '@services/assets/asset.service';
+import { AssetsService } from '@services/assets/assets.service';
 
 @Component({
   selector: 'app-section-clients',
@@ -12,10 +12,10 @@ export class SectionClientsComponent {
   @Input() data!: TypeSection__clientsFields;
 
   constructor(
-    private assetService: AssetService,
+    private assetsService: AssetsService,
   ) { }
 
   getIconPath(icon: string): string {
-    return this.assetService.getIconSolidPath(icon);
+    return this.assetsService.getIconSolidPath(icon);
   }
 }

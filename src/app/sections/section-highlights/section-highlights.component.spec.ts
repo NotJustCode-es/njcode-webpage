@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SectionHighlightsComponent } from '@sections/section-highlights/section-highlights.component';
-import { AssetService } from '@services/assets/asset.service';
+import { AssetsService } from '@services/assets/assets.service';
 
 describe('SectionHighlightsComponent', () => {
   let component: SectionHighlightsComponent;
-  let service: AssetService;
+  let service: AssetsService;
   let fixture: ComponentFixture<SectionHighlightsComponent>;
 
   beforeEach(async () => {
@@ -15,7 +15,7 @@ describe('SectionHighlightsComponent', () => {
 
     fixture = TestBed.createComponent(SectionHighlightsComponent);
     component = fixture.componentInstance;
-    service = TestBed.inject(AssetService);
+    service = TestBed.inject(AssetsService);
     fixture.detectChanges();
   });
 
