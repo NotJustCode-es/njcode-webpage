@@ -6,7 +6,7 @@ import {
 @Injectable({
   providedIn: 'root',
 })
-export class ScriptService {
+export class ScriptsService {
   private renderer: Renderer2;
 
   constructor(

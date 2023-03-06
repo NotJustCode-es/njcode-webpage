@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { TypeSection__processFields } from '@server/models/contentful-content-types/section-process';
-import { AssetService } from '@services/assets/asset.service';
+import { AssetsService } from '@services/assets/assets.service';
 
 @Component({
   selector: 'app-section-process',
@@ -12,7 +12,7 @@ export class SectionProcessComponent {
   @Input() data!: TypeSection__processFields;
 
   constructor(
-    private assetService: AssetService,
+    private assetService: AssetsService,
   ) { }
 
   getIconPath(icon: string): string {

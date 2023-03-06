@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AssetService } from '@services/assets/asset.service';
+import { AssetsService } from '@services/assets/assets.service';
 
 import { SectionProcessComponent } from './section-process.component';
 
 describe('SectionProcessComponent', () => {
   let component: SectionProcessComponent;
   let fixture: ComponentFixture<SectionProcessComponent>;
-  let service: AssetService;
+  let service: AssetsService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -16,7 +16,7 @@ describe('SectionProcessComponent', () => {
 
     fixture = TestBed.createComponent(SectionProcessComponent);
     component = fixture.componentInstance;
-    service = TestBed.inject(AssetService);
+    service = TestBed.inject(AssetsService);
     component.data = {
       name: 'test',
       question: 'test',

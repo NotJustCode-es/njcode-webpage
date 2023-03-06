@@ -1,10 +1,9 @@
 import { DOCUMENT } from '@angular/common';
 import { TestBed } from '@angular/core/testing';
+import { ScriptsService } from '@services/scripts/scripts.service';
 
-import { ScriptService } from './script.service';
-
-describe('ScriptService', () => {
-  let service: ScriptService;
+describe('ScriptsService', () => {
+  let service: ScriptsService;
   let document: Document;
 
   function findScriptElementByAttribute(value: string, attribute = 'src'): HTMLScriptElement | undefined {
@@ -17,7 +16,7 @@ describe('ScriptService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ScriptService);
+    service = TestBed.inject(ScriptsService);
     document = TestBed.inject(DOCUMENT);
   });
 

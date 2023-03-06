@@ -1,6 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { ScriptService } from '@services/script/script.service';
+import { ScriptsService } from '@services/scripts/scripts.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +10,7 @@ export class PluginsService {
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: string,
-    private scriptService: ScriptService,
+    private scriptService: ScriptsService,
   ) { }
 
   loadPlugins(): void {
