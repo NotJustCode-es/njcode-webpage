@@ -1,0 +1,94 @@
+name: Build njcode-webpage and deploy on AWS EB
+
+on:
+ push:
+   branches: [ main ]
+
+env:
+  AWS_REGION: eu-west-3
+  AWS_ENVIRONMENT_NAME: njcode-webpage
+  APPLICATION_NAME: njcode-webpage
+  ARTIFACT_NAME: njcode-webpage
+  PORT: 4000
+  PREFIX: /api
+  CONTENTFUL_ENVIRONMENT: master
+
+jobs:
+  build:
+    name: Build and test app
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 16 ]
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build project
+      run: npm run build:ssr
+
+    - name: Test Angular App
+      run: npm run test:ci
+
+    - name: Make .env file
+      uses: SpicyPizza/create-envfile@v1.3
+      with:
+        envkey_PORT: ${{ env.PORT }}
+        envkey_PREFIX: ${{ env.PREFIX }}
+        envkey_CONTENTFUL_ENVIRONMENT: ${{ env.CONTENTFUL_ENVIRONMENT }}
+        envkey_CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
+        envkey_CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
+        envkey_MAIL_HOST: ${{ secrets.MAIL_HOST }}
+        envkey_MAIL_USER: ${{ secrets.MAIL_USER }}
+        envkey_MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+        envkey_MAIL_FROM: ${{ secrets.MAIL_FROM }}
+        envkey_MAIL_TO: ${{ secrets.MAIL_TO }}
+        envkey_MAIL_SUBJECT: ${{ secrets.MAIL_SUBJECT }}
+        envkey_GOOGLE_RECAPTCHA_SECRET_KEY: ${{ secrets.GOOGLE_RECAPTCHA_SECRET_KEY }}
+        directory: ./
+        file_name: .env
+        fail_on_empty: true
+
+    - name: Generate deployment zip
+      run: zip -r ${{ env.APPLICATION_NAME }}.zip . -x ".git/*" -x ".github/*" -x ".vscode/*"
+
+    - name: Upload zip
+      uses: actions/upload-artifact@v3
+      with:
+        name: ${{ env.ARTIFACT_NAME }}
+        path: ./${{ env.APPLICATION_NAME }}.zip
+
+  deploy-to-aws:
+    name: Deploy to AWS
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - name: Download zip
+      uses: actions/download-artifact@v3
+      with:
+        name: ${{ env.ARTIFACT_NAME }}
+
+    - name: Deploy to EB
+      uses: einaregilsson/beanstalk-deploy@v21
+      with:
+        aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        application_name: ${{ env.APPLICATION_NAME }}
+        environment_name: ${{ env.AWS_ENVIRONMENT_NAME }}
+        version_label: ${{ github.SHA }}
+        use_existing_version_if_available: true
+        region: ${{ env.AWS_REGION }}
+        deployment_package: ${{ env.APPLICATION_NAME }}.zip
+
+    - name: Delete artifact
+      if: always()
+      uses: geekyeggo/delete-artifact@v2
+      with:
+        name: ${{ env.ARTIFACT_NAME }}
