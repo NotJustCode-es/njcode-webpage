@@ -46,6 +46,7 @@ export class SectionContactFormComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     if (this.contactForm.invalid) {
       this.contactForm.markAllAsTouched();
+      return;
     }
     this.recaptchaV3Service.execute('sendMail')
       .pipe(

@@ -15,7 +15,9 @@ export class ContentfulApiService {
     return this.configService.get<ContentfulConfiguration>('contentful', { infer: true });
   }
 
-  constructor(@Inject(ConfigService) private readonly configService: ConfigService) {
+  constructor(
+    @Inject(ConfigService) private readonly configService: ConfigService,
+  ) {
     this.contentfulClient = createClient({
       space: this.contentfulConfiguration.spaceId,
       accessToken: this.contentfulConfiguration.accessToken,
@@ -24,12 +26,22 @@ export class ContentfulApiService {
     });
   }
 
-  getPage(pageParams: ContentfulPageQueryParams): Observable<EntryCollectionWithLinkResolutionAndWithUnresolvableLinks<TypePageFields>> {
+  private getFromContentful(type: ContentfulContentTypes, options?: { pageParams?: ContentfulPageQueryParams, limit?: number }):
+  Observable<EntryCollectionWithLinkResolutionAndWithUnresolvableLinks<TypePageFields>> {
     return from(this.contentfulClient.getEntries<TypePageFields>({
-      content_type: ContentfulContentTypes.Page,
-      locale: pageParams.locale,
+      content_type: type,
+      locale: options?.pageParams?.locale,
       include: 10,
-      'fields.slug': pageParams.slug,
+      'fields.slug': options?.pageParams?.slug,
+      limit: options?.limit,
     }));
+  }
+
+  getPage(pageParams: ContentfulPageQueryParams): Observable<EntryCollectionWithLinkResolutionAndWithUnresolvableLinks<TypePageFields>> {
+    return this.getFromContentful(ContentfulContentTypes.Page, { pageParams });
+  }
+
+  getAllPages(limit: number): Observable<EntryCollectionWithLinkResolutionAndWithUnresolvableLinks<TypePageFields>> {
+    return this.getFromContentful(ContentfulContentTypes.Page, { limit });
   }
 }
