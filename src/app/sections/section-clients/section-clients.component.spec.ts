@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SectionClientsComponent } from '@sections/section-clients/section-clients.component';
-import { AssetService } from '@services/assets/asset.service';
+import { AssetsService } from '@services/assets/assets.service';
 
 describe('SectionClientsComponent', () => {
   let component: SectionClientsComponent;
-  let service: AssetService;
+  let service: AssetsService;
   let fixture: ComponentFixture<SectionClientsComponent>;
 
   beforeEach(async () => {
@@ -15,7 +15,7 @@ describe('SectionClientsComponent', () => {
 
     fixture = TestBed.createComponent(SectionClientsComponent);
     component = fixture.componentInstance;
-    service = TestBed.inject(AssetService);
+    service = TestBed.inject(AssetsService);
     component.data = {
       icon: 'test',
       name: 'test',
