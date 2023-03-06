@@ -32,45 +32,15 @@
               "src/robots.txt"
             ],
             "styles": [
-              "src/assets/theme/css/vendor/animate.css",
-              "src/assets/theme/css/vendor/glightbox.css",
-              "src/assets/theme/css/vendor/plyr.css",
-              "src/assets/theme/css/vendor/prism.css",
-              "src/assets/theme/css/vendor/scrollcue.css",
-              "src/assets/theme/css/vendor/swiper-bundle.min.css",
-              "src/styles/styles.scss"
+              "src/styles.scss"
             ],
             "scripts": [
               "node_modules/@popperjs/core/dist/umd/popper.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "src/assets/theme/js/vendor/clipboard.min.js",
-              "src/assets/theme/js/vendor/counterup.min.js",
-              "src/assets/theme/js/vendor/glightbox.js",
-              "src/assets/theme/js/vendor/headhesive.min.js",
-              "src/assets/theme/js/vendor/imagesloaded.pkgd.min.js",
-              "src/assets/theme/js/vendor/isotope.pkgd.min.js",
-              "src/assets/theme/js/vendor/itooltip.min.js",
-              "src/assets/theme/js/vendor/noframework.waypoints.min.js",
-              "src/assets/theme/js/vendor/picturefill.min.js",
-              "src/assets/theme/js/vendor/plyr.min.js",
-              "src/assets/theme/js/vendor/prism.js",
-              "src/assets/theme/js/vendor/progressbar.min.js",
-              "src/assets/theme/js/vendor/rellax.min.js",
-              "src/assets/theme/js/vendor/replaceme.min.js",
-              "src/assets/theme/js/vendor/scrollCue.min.js",
-              "src/assets/theme/js/vendor/smoothscroll.js",
-              "src/assets/theme/js/vendor/swiper-bundle.min.js",
-              "src/assets/theme/js/vendor/typer.js",
-              "src/assets/theme/js/theme.js"
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ],
             "allowedCommonJsDependencies": [
               "flat"
-            ],
-            "stylePreprocessorOptions": {
-              "includePaths": [
-                "src/styles"
-              ]
-            }
+            ]
           },
           "configurations": {
             "production": {
@@ -140,7 +110,7 @@
               "src/robots.txt"
             ],
             "styles": [
-              "src/styles/styles.scss"
+              "src/styles.scss"
             ],
             "scripts": []
           }

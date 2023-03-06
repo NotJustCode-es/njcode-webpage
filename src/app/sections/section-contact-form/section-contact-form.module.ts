@@ -12,7 +12,7 @@ import { SectionContactFormComponent } from './section-contact-form.component';
   providers: [
     {
       provide: RECAPTCHA_V3_SITE_KEY,
-      useValue: environment.recaptcha.siteKey,
+      useValue: environment.googleRecaptchaSiteKey,
     },
   ],
   imports: [
