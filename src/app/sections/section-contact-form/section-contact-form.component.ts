@@ -4,9 +4,11 @@ import {
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TypeSection__contact__formFields } from '@server/models/contentful-content-types/section-contact-form';
 import { ContactService } from '@services/contact/contact.service';
+import { NotificationsService } from '@services/notifications/notifications.service';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
 import {
-  Subject, switchMap, takeUntil,
+  catchError,
+  Subject, switchMap, takeUntil, tap, throwError,
 } from 'rxjs';
 
 @Component({
@@ -22,12 +24,31 @@ export class SectionContactFormComponent implements OnInit, OnDestroy {
 
   private readonly text = '[a-z A-Z]*';
 
+  private msBeforeClearing = 5000;
+
+  successMessage$ = this.notificationsService.successMessage$.pipe(
+    tap(() => {
+      setTimeout(() => {
+        this.notificationsService.clearErrorMessage();
+      }, this.msBeforeClearing);
+    }),
+  );
+
+  errorMessage$ = this.notificationsService.errorMessage$.pipe(
+    tap(() => {
+      setTimeout(() => {
+        this.notificationsService.clearSuccessMessage();
+      }, this.msBeforeClearing);
+    }),
+  );
+
   contactForm!: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
     private contactService: ContactService,
     private recaptchaV3Service: ReCaptchaV3Service,
+    private notificationsService: NotificationsService,
   ) {}
 
   ngOnInit(): void {
@@ -48,6 +69,7 @@ export class SectionContactFormComponent implements OnInit, OnDestroy {
       this.contactForm.markAllAsTouched();
       return;
     }
+
     this.recaptchaV3Service.execute('sendMail')
       .pipe(
         takeUntil(this.destroy$),
@@ -57,8 +79,19 @@ export class SectionContactFormComponent implements OnInit, OnDestroy {
           this.contactForm.get('message')?.value,
           token,
         )),
+        catchError(err => {
+          this.notificationsService.setErrorMessage(this.data.errorSend);
+          return throwError(() => new Error(err));
+        }),
       )
-      .subscribe();
+      .subscribe(
+        () => this.successSend(),
+      );
+  }
+
+  private successSend():void {
+    this.contactForm.reset();
+    this.notificationsService.setSuccessMessage(this.data.successfullySend);
   }
 
   private initializeContactForm(): void {

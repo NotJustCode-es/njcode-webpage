@@ -4,6 +4,7 @@ import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { SectionContactFormComponent } from '@sections/section-contact-form/section-contact-form.component';
 import { TypeSection__contact__formFields } from '@server/models/contentful-content-types/section-contact-form';
 import { ContactService } from '@services/contact/contact.service';
+import { NotificationsService } from '@services/notifications/notifications.service';
 import { ReCaptchaV3ServiceStub } from '@shared/testing/stubs/recaptcha-v3-service.stub';
 import { createTestEntry } from '@shared/testing/utils/contentful.utils';
 import { RecaptchaModule, ReCaptchaV3Service } from 'ng-recaptcha';
@@ -29,6 +30,8 @@ const contentfulResponse: TypeSection__contact__formFields = {
   lastNameEntry: createTestEntry(testFields),
   mailEntry: createTestEntry(testFields),
   messageEntry: createTestEntry(testFields),
+  successfullySend: 'test',
+  errorSend: 'test',
 };
 
 const formTestValues = {
@@ -41,7 +44,9 @@ const formTestValues = {
 describe('SectionContactFormComponent', () => {
   let component: SectionContactFormComponent;
   let fixture: ComponentFixture<SectionContactFormComponent>;
-  let service: ContactService;
+  let fakeContactService: ContactService;
+  let notificationsService: NotificationsService;
+  let fakeRecaptcha: ReCaptchaV3Service;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -55,6 +60,7 @@ describe('SectionContactFormComponent', () => {
           provide: ReCaptchaV3Service,
           useClass: ReCaptchaV3ServiceStub,
         },
+
       ],
       declarations: [
         SectionContactFormComponent,
@@ -63,7 +69,9 @@ describe('SectionContactFormComponent', () => {
 
     fixture = TestBed.createComponent(SectionContactFormComponent);
     component = fixture.componentInstance;
-    service = TestBed.inject(ContactService);
+    notificationsService = TestBed.inject(NotificationsService);
+    fakeRecaptcha = TestBed.inject(ReCaptchaV3Service);
+    fakeContactService = TestBed.inject(ContactService);
     component.data = contentfulResponse;
     fixture.detectChanges();
   });
@@ -83,6 +91,33 @@ describe('SectionContactFormComponent', () => {
     const validValues = formTestValues;
     component.contactForm.setValue(validValues);
     expect(component.contactForm.valid).toBe(true);
+  });
+
+  it('testing notification service is called on success', () => {
+    const okResponse = new Response(JSON.stringify('test'), {
+      status: 201,
+      statusText: 'OK',
+    });
+    fakeContactService.sendMail = jasmine.createSpy().and.returnValue(of(okResponse));
+    fakeRecaptcha.execute = jasmine.createSpy().and.returnValue(of('test Token'));
+
+    const spySubscribable = spyOn(notificationsService, 'setSuccessMessage');
+    const validValues = formTestValues;
+    component.contactForm.setValue(validValues);
+    component.onSubmit();
+    expect(spySubscribable).toHaveBeenCalled();
+  });
+
+  it('testing notification service is called on error', () => {
+    spyOn(fakeContactService, 'sendMail').and.returnValue(of(new Error('ERROR_RESPONSE')));
+    // fakeContactService.sendMail = jasmine.createSpy().and.returnValue(new Error('Fake error'));
+    fakeRecaptcha.execute = jasmine.createSpy().and.returnValue(of('test Token'));
+
+    const spySubscribable = spyOn(notificationsService, 'setErrorMessage');
+    const validValues = formTestValues;
+    component.contactForm.setValue(validValues);
+    component.onSubmit();
+    expect(spySubscribable).toHaveBeenCalled();
   });
 
   it('testing invalid form', () => {
@@ -175,12 +210,11 @@ describe('SectionContactFormComponent', () => {
     });
 
     it('should send mail on valid data', () => {
-      const spySubscribable = spyOn(service, 'sendMail').and.returnValue(of({}));
+      fakeContactService.sendMail = jasmine.createSpy().and.returnValue(of({}));
       const validValues = formTestValues;
       component.contactForm.setValue(validValues);
       component.onSubmit();
-      expect(component.contactForm.valid).toBe(true);
-      expect(spySubscribable).toHaveBeenCalled();
+      expect(fakeContactService.sendMail).toHaveBeenCalled();
     });
   });
 });
