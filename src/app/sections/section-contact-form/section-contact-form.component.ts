@@ -7,8 +7,7 @@ import { ContactService } from '@services/contact/contact.service';
 import { NotificationsService } from '@services/notifications/notifications.service';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
 import {
-  catchError,
-  Subject, switchMap, takeUntil, tap, throwError,
+  Subject, switchMap, takeUntil, tap,
 } from 'rxjs';
 
 @Component({
@@ -79,17 +78,14 @@ export class SectionContactFormComponent implements OnInit, OnDestroy {
           this.contactForm.get('message')?.value,
           token,
         )),
-        catchError(err => {
-          this.notificationsService.setErrorMessage(this.data.errorSend);
-          return throwError(() => new Error(err));
-        }),
       )
-      .subscribe(
-        () => this.successSend(),
-      );
+      .subscribe({
+        next: () => this.successSend(),
+        error: () => this.notificationsService.setErrorMessage(this.data.errorSend),
+      });
   }
 
-  private successSend():void {
+  private successSend(): void {
     this.contactForm.reset();
     this.notificationsService.setSuccessMessage(this.data.successfullySend);
   }

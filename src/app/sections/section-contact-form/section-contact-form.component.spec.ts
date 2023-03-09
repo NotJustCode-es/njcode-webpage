@@ -120,7 +120,7 @@ describe('SectionContactFormComponent', () => {
     const validValues = formTestValues;
     component.contactForm.setValue(validValues);
     component.onSubmit();
-    controller.expectOne(() => true).flush(koResponse);
+    controller.expectOne(() => true).flush(koResponse, { status: 404, statusText: 'KO' });
     expect(spySubscribable).toHaveBeenCalled();
   });
 
