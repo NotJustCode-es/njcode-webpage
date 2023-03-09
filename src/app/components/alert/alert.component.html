@@ -1,3 +1,5 @@
-<ngb-alert #selfClosingAlert [type]="(alert$ | async)!" *ngIf="message$ | async as message"
-> {{message}}
-</ngb-alert>
+<div *ngIf="alert$ | async as alert">
+  <ngb-alert type={{alert.type}} *ngIf="alert.message">
+    {{alert.message}}
+  </ngb-alert>
+</div>

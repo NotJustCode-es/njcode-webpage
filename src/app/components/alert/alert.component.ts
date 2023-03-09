@@ -13,15 +13,13 @@ import { tap } from 'rxjs';
 export class AlertComponent {
   private msBeforeClearing = 5000;
 
-  message$ = this.alertService.message$.pipe(
+  alert$ = this.alertService.alert$.pipe(
     tap(() => {
       setTimeout(() => {
         this.alertService.clearMessage();
       }, this.msBeforeClearing);
     }),
   );
-
-  alert$ = this.alertService.alert$;
 
   constructor(
     private alertService: AlertService,

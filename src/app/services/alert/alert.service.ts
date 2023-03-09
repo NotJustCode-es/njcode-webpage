@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { AlertObject } from '@core/models/alertObject';
 import { AlertsEnum } from '@core/models/alerts.enum';
 import { Subject } from 'rxjs';
 
@@ -6,23 +7,15 @@ import { Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class AlertService {
-  private message = new Subject<string>();
-
-  message$ = this.message.asObservable();
-
-  private alert = new Subject<AlertsEnum>();
+  private alert = new Subject<AlertObject>();
 
   alert$ = this.alert.asObservable();
 
-  setMessage(message: string): void {
-    this.message.next(message);
+  setMessage(message: string, type: AlertsEnum = AlertsEnum.Success): void {
+    this.alert.next({ message, type });
   }
 
   clearMessage(): void {
     this.setMessage('');
-  }
-
-  setType(type: AlertsEnum): void {
-    this.alert.next(type);
   }
 }
