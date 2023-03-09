@@ -1,4 +1,4 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { SectionContactFormComponent } from '@sections/section-contact-form/section-contact-form.component';
@@ -47,6 +47,7 @@ describe('SectionContactFormComponent', () => {
   let fakeContactService: ContactService;
   let notificationsService: NotificationsService;
   let fakeRecaptcha: ReCaptchaV3Service;
+  let controller: HttpTestingController;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -72,6 +73,7 @@ describe('SectionContactFormComponent', () => {
     notificationsService = TestBed.inject(NotificationsService);
     fakeRecaptcha = TestBed.inject(ReCaptchaV3Service);
     fakeContactService = TestBed.inject(ContactService);
+    controller = TestBed.inject(HttpTestingController);
     component.data = contentfulResponse;
     fixture.detectChanges();
   });
@@ -109,14 +111,16 @@ describe('SectionContactFormComponent', () => {
   });
 
   it('testing notification service is called on error', () => {
-    spyOn(fakeContactService, 'sendMail').and.returnValue(of(new Error('ERROR_RESPONSE')));
-    // fakeContactService.sendMail = jasmine.createSpy().and.returnValue(new Error('Fake error'));
+    const koResponse = new Response(JSON.stringify('test'), {
+      status: 404,
+      statusText: 'KO',
+    });
     fakeRecaptcha.execute = jasmine.createSpy().and.returnValue(of('test Token'));
-
     const spySubscribable = spyOn(notificationsService, 'setErrorMessage');
     const validValues = formTestValues;
     component.contactForm.setValue(validValues);
     component.onSubmit();
+    controller.expectOne(() => true).flush(koResponse);
     expect(spySubscribable).toHaveBeenCalled();
   });
 
