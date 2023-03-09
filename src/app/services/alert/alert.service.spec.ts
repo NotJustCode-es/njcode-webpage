@@ -16,17 +16,17 @@ describe('NotificationsService', () => {
   });
 
   it('should set message', () => {
-    service.message$.subscribe((value => { expect(value).toEqual('success'); }));
+    service.alert$.subscribe((value => { expect(value.message).toEqual('success'); }));
     service.setMessage('success');
   });
 
   it('should set type', () => {
-    service.alert$.subscribe((value => { expect(value).toEqual(AlertsEnum.Success); }));
+    service.alert$.subscribe((value => { expect(value.type).toEqual(AlertsEnum.Success); }));
     service.setMessage(AlertsEnum.Success);
   });
 
   it('should clear message', () => {
-    service.message$.subscribe((value => { expect(value).toEqual(''); }));
+    service.alert$.subscribe((value => { expect(value.message).toEqual(''); }));
     service.clearMessage();
   });
 });
