@@ -4,7 +4,7 @@ import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { SectionContactFormComponent } from '@sections/section-contact-form/section-contact-form.component';
 import { TypeSection__contact__formFields } from '@server/models/contentful-content-types/section-contact-form';
 import { ContactService } from '@services/contact/contact.service';
-import { NotificationsService } from '@services/notifications/notifications.service';
+import { AlertService } from '@services/alert/alert.service';
 import { ReCaptchaV3ServiceStub } from '@shared/testing/stubs/recaptcha-v3-service.stub';
 import { createTestEntry } from '@shared/testing/utils/contentful.utils';
 import { RecaptchaModule, ReCaptchaV3Service } from 'ng-recaptcha';
@@ -45,7 +45,7 @@ describe('SectionContactFormComponent', () => {
   let component: SectionContactFormComponent;
   let fixture: ComponentFixture<SectionContactFormComponent>;
   let fakeContactService: ContactService;
-  let notificationsService: NotificationsService;
+  let alertService: AlertService;
   let fakeRecaptcha: ReCaptchaV3Service;
   let controller: HttpTestingController;
 
@@ -70,7 +70,7 @@ describe('SectionContactFormComponent', () => {
 
     fixture = TestBed.createComponent(SectionContactFormComponent);
     component = fixture.componentInstance;
-    notificationsService = TestBed.inject(NotificationsService);
+    alertService = TestBed.inject(AlertService);
     fakeRecaptcha = TestBed.inject(ReCaptchaV3Service);
     fakeContactService = TestBed.inject(ContactService);
     controller = TestBed.inject(HttpTestingController);
@@ -95,35 +95,6 @@ describe('SectionContactFormComponent', () => {
     expect(component.contactForm.valid).toBe(true);
   });
 
-  it('testing notification service is called on success', () => {
-    const okResponse = new Response(JSON.stringify('test'), {
-      status: 201,
-      statusText: 'OK',
-    });
-    fakeContactService.sendMail = jasmine.createSpy().and.returnValue(of(okResponse));
-    fakeRecaptcha.execute = jasmine.createSpy().and.returnValue(of('test Token'));
-
-    const spySubscribable = spyOn(notificationsService, 'setSuccessMessage');
-    const validValues = formTestValues;
-    component.contactForm.setValue(validValues);
-    component.onSubmit();
-    expect(spySubscribable).toHaveBeenCalled();
-  });
-
-  it('testing notification service is called on error', () => {
-    const koResponse = new Response(JSON.stringify('test'), {
-      status: 404,
-      statusText: 'KO',
-    });
-    fakeRecaptcha.execute = jasmine.createSpy().and.returnValue(of('test Token'));
-    const spySubscribable = spyOn(notificationsService, 'setErrorMessage');
-    const validValues = formTestValues;
-    component.contactForm.setValue(validValues);
-    component.onSubmit();
-    controller.expectOne(() => true).flush(koResponse, { status: 404, statusText: 'KO' });
-    expect(spySubscribable).toHaveBeenCalled();
-  });
-
   it('testing invalid form', () => {
     const invalidValues = {
       firstName: '',
@@ -133,6 +104,66 @@ describe('SectionContactFormComponent', () => {
     };
     component.contactForm.setValue(invalidValues);
     expect(component.contactForm.valid).toBe(false);
+  });
+
+  describe('notification service', () => {
+    it('testing set message is called on success', () => {
+      const okResponse = new Response(JSON.stringify('test'), {
+        status: 201,
+        statusText: 'OK',
+      });
+      fakeContactService.sendMail = jasmine.createSpy().and.returnValue(of(okResponse));
+      fakeRecaptcha.execute = jasmine.createSpy().and.returnValue(of('test Token'));
+
+      const spySubscribable = spyOn(alertService, 'setMessage');
+      const validValues = formTestValues;
+      component.contactForm.setValue(validValues);
+      component.onSubmit();
+      expect(spySubscribable).toHaveBeenCalled();
+    });
+
+    it('testing set message is called on error', () => {
+      const koResponse = new Response(JSON.stringify('test'), {
+        status: 404,
+        statusText: 'KO',
+      });
+      fakeRecaptcha.execute = jasmine.createSpy().and.returnValue(of('test Token'));
+      const spySubscribable = spyOn(alertService, 'setMessage');
+      const validValues = formTestValues;
+      component.contactForm.setValue(validValues);
+      component.onSubmit();
+      controller.expectOne(() => true).flush(koResponse, { status: 404, statusText: 'KO' });
+      expect(spySubscribable).toHaveBeenCalled();
+    });
+
+    it('testing set type is called on success', () => {
+      const okResponse = new Response(JSON.stringify('test'), {
+        status: 201,
+        statusText: 'OK',
+      });
+      fakeContactService.sendMail = jasmine.createSpy().and.returnValue(of(okResponse));
+      fakeRecaptcha.execute = jasmine.createSpy().and.returnValue(of('test Token'));
+
+      const spySubscribable = spyOn(alertService, 'setType');
+      const validValues = formTestValues;
+      component.contactForm.setValue(validValues);
+      component.onSubmit();
+      expect(spySubscribable).toHaveBeenCalled();
+    });
+
+    it('testing set type is called on error', () => {
+      const koResponse = new Response(JSON.stringify('test'), {
+        status: 404,
+        statusText: 'KO',
+      });
+      fakeRecaptcha.execute = jasmine.createSpy().and.returnValue(of('test Token'));
+      const spySubscribable = spyOn(alertService, 'setType');
+      const validValues = formTestValues;
+      component.contactForm.setValue(validValues);
+      component.onSubmit();
+      controller.expectOne(() => true).flush(koResponse, { status: 404, statusText: 'KO' });
+      expect(spySubscribable).toHaveBeenCalled();
+    });
   });
 
   describe('firstName entry', () => {
