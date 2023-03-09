@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { environment } from '@environments/environment';
-import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { RecaptchaV3Module, RECAPTCHA_V3_SITE_KEY } from 'ng-recaptcha';
 import { SectionContactFormComponent } from './section-contact-form.component';
+import { AlertModule } from '../../components/alert/alert.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import { SectionContactFormComponent } from './section-contact-form.component';
     CommonModule,
     ReactiveFormsModule,
     RecaptchaV3Module,
-    NgbAlertModule,
+    AlertModule,
   ],
   exports: [
     SectionContactFormComponent,
