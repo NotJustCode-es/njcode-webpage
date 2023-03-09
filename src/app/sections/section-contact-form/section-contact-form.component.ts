@@ -2,12 +2,13 @@ import {
   ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AlertsEnum } from '@core/models/alerts.enum';
 import { TypeSection__contact__formFields } from '@server/models/contentful-content-types/section-contact-form';
 import { ContactService } from '@services/contact/contact.service';
-import { NotificationsService } from '@services/notifications/notifications.service';
+import { AlertService } from '@services/alert/alert.service';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
 import {
-  Subject, switchMap, takeUntil, tap,
+  Subject, switchMap, takeUntil,
 } from 'rxjs';
 
 @Component({
@@ -23,31 +24,13 @@ export class SectionContactFormComponent implements OnInit, OnDestroy {
 
   private readonly text = '[a-z A-Z]*';
 
-  private msBeforeClearing = 5000;
-
-  successMessage$ = this.notificationsService.successMessage$.pipe(
-    tap(() => {
-      setTimeout(() => {
-        this.notificationsService.clearErrorMessage();
-      }, this.msBeforeClearing);
-    }),
-  );
-
-  errorMessage$ = this.notificationsService.errorMessage$.pipe(
-    tap(() => {
-      setTimeout(() => {
-        this.notificationsService.clearSuccessMessage();
-      }, this.msBeforeClearing);
-    }),
-  );
-
   contactForm!: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
     private contactService: ContactService,
     private recaptchaV3Service: ReCaptchaV3Service,
-    private notificationsService: NotificationsService,
+    private alertService: AlertService,
   ) {}
 
   ngOnInit(): void {
@@ -81,13 +64,19 @@ export class SectionContactFormComponent implements OnInit, OnDestroy {
       )
       .subscribe({
         next: () => this.successSend(),
-        error: () => this.notificationsService.setErrorMessage(this.data.errorSend),
+        error: () => this.errorSend(),
       });
+  }
+
+  private errorSend(): void {
+    this.alertService.setMessage(this.data.errorSend);
+    this.alertService.setType(AlertsEnum.Error);
   }
 
   private successSend(): void {
     this.contactForm.reset();
-    this.notificationsService.setSuccessMessage(this.data.successfullySend);
+    this.alertService.setMessage(this.data.successfullySend);
+    this.alertService.setType(AlertsEnum.Success);
   }
 
   private initializeContactForm(): void {

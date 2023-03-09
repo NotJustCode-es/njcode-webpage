@@ -6,13 +6,7 @@
   <p class="lead text-center mb-10">
     {{ data.subtitle }}
   </p>
-  <ngb-alert #selfClosingAlert type="success" id="success-feedback" *ngIf="successMessage$ | async as successsMessage"
-  > {{successsMessage}}
-  </ngb-alert>
-
-  <ngb-alert #selfClosingAlert type="danger" id="error-feedback" *ngIf="errorMessage$ | async as errorMessage"
-  > {{errorMessage}}
-  </ngb-alert>
+  <app-alert></app-alert>
   <form id="contact-form" [formGroup]="contactForm" method="post" (ngSubmit)="onSubmit()">
     <div class="px-3 gx-8 justify-content-center">
       <div>
