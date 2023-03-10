@@ -63,18 +63,9 @@ export class SectionContactFormComponent implements OnInit, OnDestroy {
         )),
       )
       .subscribe({
-        next: () => this.successSend(),
-        error: () => this.errorSend(),
+        next: () => { this.contactForm.reset(); this.alertService.setMessage(this.data.successfullySend); },
+        error: () => this.alertService.setMessage(this.data.errorSend, AlertTypesEnum.Error),
       });
-  }
-
-  private errorSend(): void {
-    this.alertService.setMessage(this.data.errorSend, AlertTypesEnum.Error);
-  }
-
-  private successSend(): void {
-    this.contactForm.reset();
-    this.alertService.setMessage(this.data.successfullySend);
   }
 
   private initializeContactForm(): void {
