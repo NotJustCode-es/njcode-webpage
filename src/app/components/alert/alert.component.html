@@ -1,5 +1,5 @@
 <div *ngIf="alert$ | async as alert">
-  <ngb-alert type={{alert.type}} *ngIf="alert.message">
-    {{alert.message}}
+  <ngb-alert [type]="alert.type" *ngIf="alert.message">
+    {{ alert.message }}
   </ngb-alert>
 </div>
