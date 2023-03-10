@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AlertObject } from '@core/models/alertObject';
-import { AlertsEnum } from '@core/models/alerts.enum';
+import { AlertTypesEnum } from '@core/models/AlertTypes.Enum';
 import { Subject } from 'rxjs';
 
 @Injectable({
@@ -11,7 +11,7 @@ export class AlertService {
 
   alert$ = this.alert.asObservable();
 
-  setMessage(message: string, type: AlertsEnum = AlertsEnum.Success): void {
+  setMessage(message: string, type: AlertTypesEnum = AlertTypesEnum.Success): void {
     this.alert.next({ message, type });
   }
 

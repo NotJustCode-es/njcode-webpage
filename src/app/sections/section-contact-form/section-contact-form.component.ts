@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AlertsEnum } from '@core/models/alerts.enum';
+import { AlertTypesEnum } from '@core/models/AlertTypes.Enum';
 import { TypeSection__contact__formFields } from '@server/models/contentful-content-types/section-contact-form';
 import { ContactService } from '@services/contact/contact.service';
 import { AlertService } from '@services/alert/alert.service';
@@ -69,7 +69,7 @@ export class SectionContactFormComponent implements OnInit, OnDestroy {
   }
 
   private errorSend(): void {
-    this.alertService.setMessage(this.data.errorSend, AlertsEnum.Error);
+    this.alertService.setMessage(this.data.errorSend, AlertTypesEnum.Error);
   }
 
   private successSend(): void {

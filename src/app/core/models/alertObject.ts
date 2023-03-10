@@ -1,6 +1,6 @@
-import { AlertsEnum } from '@core/models/alerts.enum';
+import { AlertTypesEnum } from '@core/models/AlertTypes.Enum';
 
 export interface AlertObject {
-  type: AlertsEnum;
+  type: AlertTypesEnum;
   message: string;
 }

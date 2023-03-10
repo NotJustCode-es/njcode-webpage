@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { AlertsEnum } from '@core/models/alerts.enum';
-
+import { AlertTypesEnum } from '@core/models/AlertTypes.Enum';
 import { AlertService } from './alert.service';
 
 describe('NotificationsService', () => {
@@ -21,8 +20,8 @@ describe('NotificationsService', () => {
   });
 
   it('should set type', () => {
-    service.alert$.subscribe((value => { expect(value.type).toEqual(AlertsEnum.Success); }));
-    service.setMessage(AlertsEnum.Success);
+    service.alert$.subscribe((value => { expect(value.type).toEqual(AlertTypesEnum.Success); }));
+    service.setMessage(AlertTypesEnum.Success);
   });
 
   it('should clear message', () => {
