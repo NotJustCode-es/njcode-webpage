@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { AlertTypesEnum } from '@core/models/AlertTypes.Enum';
+import { AlertTypesEnum } from '@core/models/alert-types.enum';
 import { AlertService } from './alert.service';
 
 describe('NotificationsService', () => {

@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AlertTypesEnum } from '@core/models/AlertTypes.Enum';
+import { AlertTypesEnum } from '@core/models/alert-types.enum';
 import { TypeSection__contact__formFields } from '@server/models/contentful-content-types/section-contact-form';
 import { ContactService } from '@services/contact/contact.service';
 import { AlertService } from '@services/alert/alert.service';

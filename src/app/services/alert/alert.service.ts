@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Alert } from '@core/models/alert';
-import { AlertTypesEnum } from '@core/models/AlertTypes.Enum';
+import { AlertTypesEnum } from '@core/models/alert-types.enum';
 import { Subject } from 'rxjs';
 
 @Injectable({
