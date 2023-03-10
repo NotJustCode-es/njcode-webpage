@@ -43,6 +43,20 @@ MAIL_SUBJECT=
 
 # Recaptcha
 GOOGLE_RECAPTCHA_SECRET_KEY=
+GOOGLE_RECAPTCHA_SITE_KEY= 
+
+# Enviroment configuration
+PRODUCTION=
+
+# I18N configuration
+DEFAULT_LANG=
+AVAILABLE_LANG=
+
+# Asset configuration
+ASSET_URL=
+
+# Analytics
+GOOGLE_ANALYTCS_ID=
 ```
 
 Alternatively, you can copy the ```.env``` file to ```.env.dev``` and fill in the necessary values.
