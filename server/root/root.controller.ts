@@ -17,15 +17,11 @@ export class RootController {
     @Inject(ContentfulApiService) private readonly contentfulApiService: ContentfulApiService,
   ) {}
 
-  private getRobotsContent(protocol: string, host: string): string {
-    return `User-agent: * \nDisallow: \nSitemap: ${protocol}://${host}/sitemap.xml`;
-  }
-
   @Header('Content-Type', 'text/plain')
   @Get('/robots.txt')
-  getRobot(@Res() response: Response, @Req() request: Request):void {
+  getRobots(@Res() response: Response, @Req() request: Request):void {
     response.send(
-      this.getRobotsContent(request.protocol, request.get('Host')!),
+      this.rootService.getRobotsContent(request.protocol, request.get('Host')!),
     );
   }
 
