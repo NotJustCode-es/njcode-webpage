@@ -2,8 +2,10 @@ import {
   ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AlertTypesEnum } from '@core/models/alert-types.enum';
 import { TypeSection__contact__formFields } from '@server/models/contentful-content-types/section-contact-form';
 import { ContactService } from '@services/contact/contact.service';
+import { AlertService } from '@services/alert/alert.service';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
 import {
   Subject, switchMap, takeUntil,
@@ -28,6 +30,7 @@ export class SectionContactFormComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private contactService: ContactService,
     private recaptchaV3Service: ReCaptchaV3Service,
+    private alertService: AlertService,
   ) {}
 
   ngOnInit(): void {
@@ -48,6 +51,7 @@ export class SectionContactFormComponent implements OnInit, OnDestroy {
       this.contactForm.markAllAsTouched();
       return;
     }
+
     this.recaptchaV3Service.execute('sendMail')
       .pipe(
         takeUntil(this.destroy$),
@@ -58,7 +62,10 @@ export class SectionContactFormComponent implements OnInit, OnDestroy {
           token,
         )),
       )
-      .subscribe();
+      .subscribe({
+        next: () => { this.contactForm.reset(); this.alertService.setMessage(this.data.successfullySend); },
+        error: () => this.alertService.setMessage(this.data.errorSend, AlertTypesEnum.Error),
+      });
   }
 
   private initializeContactForm(): void {

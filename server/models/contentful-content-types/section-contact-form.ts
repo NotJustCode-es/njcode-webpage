@@ -11,6 +11,8 @@ export interface TypeSection__contact__formFields {
   messageEntry: Contentful.Entry<TypeContact__form__entryFields>;
   requiredExplanation: Contentful.EntryFields.Symbol;
   submitButton: Contentful.EntryFields.Symbol;
+  successfullySend: Contentful.EntryFields.Symbol;
+  errorSend: Contentful.EntryFields.Symbol;
 }
 
 export type TypeSection__contact__form = Contentful.Entry<TypeSection__contact__formFields>;

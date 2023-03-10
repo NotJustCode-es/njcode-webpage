@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { environment } from '@environments/environment';
 import { RecaptchaV3Module, RECAPTCHA_V3_SITE_KEY } from 'ng-recaptcha';
 import { SectionContactFormComponent } from './section-contact-form.component';
+import { AlertModule } from '../../components/alert/alert.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { SectionContactFormComponent } from './section-contact-form.component';
     CommonModule,
     ReactiveFormsModule,
     RecaptchaV3Module,
+    AlertModule,
   ],
   exports: [
     SectionContactFormComponent,
