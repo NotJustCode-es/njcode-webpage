@@ -7,6 +7,10 @@ import {
 
 @Injectable()
 export class RootService {
+  getRobotsContent(protocol: string, host: string): string {
+    return `User-agent: * \nDisallow: \nSitemap: ${protocol}://${host}/sitemap.xml`;
+  }
+
   async getSitemap(entries: EntryCollectionWithLinkResolutionAndWithUnresolvableLinks<TypePageFields>, hostUrl: string): Promise<Buffer> {
     const sitemapStream = new SitemapStream({
       hostname: hostUrl,
