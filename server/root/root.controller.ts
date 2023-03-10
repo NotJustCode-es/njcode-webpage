@@ -1,16 +1,14 @@
 import {
-  Controller, Get, Header, Inject, UseInterceptors, Req, Res,
+  Controller, Get, Header, Inject, Req, Res,
 } from '@nestjs/common';
 import { ContentfulApiService } from '@server/contentful-api/contentful-api.service';
 import {
   from, map, Observable, switchMap,
 } from 'rxjs';
 import { Request, Response } from 'express';
-import { ContentfulEntriesInterceptor } from '../interceptor/contentful-entries.interceptor';
 import { RootService } from './root.service';
 
 @Controller()
-@UseInterceptors(ContentfulEntriesInterceptor)
 export class RootController {
   private readonly contentfulLimitPages = 1000;
 
@@ -23,7 +21,7 @@ export class RootController {
   @Get('/robots.txt')
   getRobot(@Res() response: Response, @Req() request: Request):void {
     response.send(
-      `User-agent: * <br/> Disallow: <br /> Sitemap: ${request.protocol}://${request.get('Host')}/api/sitemap.xml`,
+      `User-agent: * <br/> Disallow: <br /> Sitemap: ${request.protocol}://${request.get('Host')}/sitemap.xml`,
     );
   }
 
