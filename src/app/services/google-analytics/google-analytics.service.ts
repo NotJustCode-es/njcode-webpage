@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
-import { environment } from '@environments/environment';
+import { ConfigurationService } from '@core/services/configuration/configuration.service';
 import { ScriptsService } from '@services/scripts/scripts.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GoogleAnalyticsService {
-  constructor(private scriptService: ScriptsService) { }
+  constructor(
+    private scriptService: ScriptsService,
+    private configurationService: ConfigurationService,
+  ) {}
 
   get googleAnalyticsId(): string | undefined {
-    return environment.googleAnalyticsId;
+    return this.configurationService.data.google_analytics_id;
   }
 
   static factory(googleAnalyticsService: GoogleAnalyticsService): () => Promise<void> {

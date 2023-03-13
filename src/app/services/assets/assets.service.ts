@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
-import { environment } from '@environments/environment';
+import { ConfigurationService } from '@core/services/configuration/configuration.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AssetsService {
-  readonly imgPath = `${environment.assetsUrl}/assets/img`;
+  readonly imgPath = `${this.configurationService.data.asset_url}/assets/img`;
 
-  readonly iconsSolidPath = `${environment.assetsUrl}/assets/img/icons/solid`;
+  readonly iconsSolidPath = `${this.configurationService.data.asset_url}/assets/img/icons/solid`;
+
+  constructor(private configurationService: ConfigurationService) {}
 
   getImgPath(img: string): string {
     return `${this.imgPath}/${img}`;
