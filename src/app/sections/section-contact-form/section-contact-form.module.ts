@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { environment } from '@environments/environment';
+import { ConfigurationService } from '@core/services/configuration/configuration.service';
 import { RecaptchaV3Module, RECAPTCHA_V3_SITE_KEY } from 'ng-recaptcha';
 import { SectionContactFormComponent } from './section-contact-form.component';
 
@@ -12,7 +12,9 @@ import { SectionContactFormComponent } from './section-contact-form.component';
   providers: [
     {
       provide: RECAPTCHA_V3_SITE_KEY,
-      useValue: environment.googleRecaptchaSiteKey,
+      useFactory: (configurationService: ConfigurationService): string => (
+        configurationService.data.google_recaptcha_site_key),
+      deps: [ConfigurationService],
     },
   ],
   imports: [
