@@ -36,7 +36,7 @@ export class RootController {
     const frontParams = {
       production: this.configService.get('PRODUCTION'),
       default_lang: this.configService.get('DEFAULT_LANG'),
-      available_lang: this.configService.get('AVAILABLE_LANG'),
+      available_lang: this.configService.get('AVAILABLE_LANG').split(' '),
       asset_url: this.configService.get('ASSET_URL'),
       google_analytics_id: this.configService.get('GOOGLE_ANALYTICS_ID'),
       google_recaptcha_site_key: this.configService.get('GOOGLE_RECAPTCHA_SITE_KEY'),
