@@ -1,13 +1,26 @@
 import { TestBed } from '@angular/core/testing';
+import { ConfigurationService } from '@core/services/configuration/configuration.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { GoogleAnalyticsService } from './google-analytics.service';
 import { ScriptsService } from '../scripts/scripts.service';
 
 describe('GoogleAnalyticsService', () => {
   let service: GoogleAnalyticsService;
   let scriptService: ScriptsService;
+  let configurationServiceStub: ConfigurationService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [
+        HttpClientTestingModule,
+      ],
+      providers: [
+        {
+          provide: ConfigurationService,
+          useClass: configurationServiceStub,
+        },
+      ],
+    });
     service = TestBed.inject(GoogleAnalyticsService);
     scriptService = TestBed.inject(ScriptsService);
   });

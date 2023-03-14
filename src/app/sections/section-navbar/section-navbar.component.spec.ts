@@ -1,11 +1,14 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { ConfigurationService } from '@core/services/configuration/configuration.service';
 import { SectionNavbarComponent } from '@sections/section-navbar/section-navbar.component';
 import { getTranslocoTestingModule } from '@shared/testing/transloco-testing.module';
 
 describe('SectionNavbarComponent', () => {
   let component: SectionNavbarComponent;
   let fixture: ComponentFixture<SectionNavbarComponent>;
+  let configurationServiceStub: ConfigurationService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -15,6 +18,13 @@ describe('SectionNavbarComponent', () => {
       imports: [
         getTranslocoTestingModule(),
         RouterTestingModule,
+        HttpClientTestingModule,
+      ],
+      providers: [
+        {
+          provide: ConfigurationService,
+          useClass: configurationServiceStub,
+        },
       ],
     })
       .compileComponents();

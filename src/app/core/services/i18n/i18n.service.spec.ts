@@ -1,4 +1,5 @@
 import { DOCUMENT } from '@angular/common';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -28,6 +29,7 @@ describe('I18nService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
+        HttpClientTestingModule,
         RouterTestingModule.withRoutes(i18nRoutes([{
           path: RoutesEnum.Dynamic,
           component: TestComponent,

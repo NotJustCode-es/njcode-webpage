@@ -1,3 +1,4 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SectionHighlightsComponent } from '@sections/section-highlights/section-highlights.component';
 import { AssetsService } from '@services/assets/assets.service';
@@ -10,6 +11,7 @@ describe('SectionHighlightsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [SectionHighlightsComponent],
+      imports: [HttpClientTestingModule],
     })
       .compileComponents();
 

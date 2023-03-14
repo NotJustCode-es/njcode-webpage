@@ -1,3 +1,4 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SectionClientsComponent } from '@sections/section-clients/section-clients.component';
 import { AssetsService } from '@services/assets/assets.service';
@@ -10,6 +11,7 @@ describe('SectionClientsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [SectionClientsComponent],
+      imports: [HttpClientTestingModule],
     })
       .compileComponents();
 
