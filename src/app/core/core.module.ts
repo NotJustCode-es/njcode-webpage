@@ -11,11 +11,12 @@ import {
   TranslocoConfig,
   translocoConfig, TranslocoModule, TRANSLOCO_CONFIG, TRANSLOCO_LOADER,
 } from '@ngneat/transloco';
+import { firstValueFrom } from 'rxjs';
 
 export function setupConfigurationServiceFactory(
   service: ConfigurationService,
 ): Function {
-  return () => service.load();
+  return () => firstValueFrom(service.load());
 }
 
 @NgModule({

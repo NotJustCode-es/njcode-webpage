@@ -1,11 +1,24 @@
 import { Injectable } from '@angular/core';
 import { FrontConfigurationParams } from '@server/models/front-configuration-params';
 import { HttpClient } from '@angular/common/http';
+import {
+  BehaviorSubject, filter, Observable, tap,
+} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ConfigurationService {
+  private configurationSubject = new BehaviorSubject<FrontConfigurationParams | null>(null);
+
+  readonly config$ = this.configurationSubject.asObservable().pipe(
+    filter(configurationSubject => !!configurationSubject),
+  );
+
+  get getData(): FrontConfigurationParams {
+    return this.configurationSubject.getValue()!;
+  }
+
   data: FrontConfigurationParams = {
     production: false,
     default_lang: '',
@@ -17,16 +30,10 @@ export class ConfigurationService {
 
   constructor(private http: HttpClient) {}
 
-  load(): Promise<FrontConfigurationParams> {
-    return new Promise<FrontConfigurationParams>(resolve => {
-      this.http.get<FrontConfigurationParams>('/api/configurations/').subscribe(
-        response => {
-          // eslint-disable-next-line no-console
-          console.log('using server-side configuration');
-          this.data = { ...response || {} };
-          resolve(this.data);
-        },
+  load(): Observable<FrontConfigurationParams> {
+    return this.http.get<FrontConfigurationParams>('/api/configurations/')
+      .pipe(
+        tap(configuration => this.configurationSubject.next(configuration)),
       );
-    });
   }
 }
