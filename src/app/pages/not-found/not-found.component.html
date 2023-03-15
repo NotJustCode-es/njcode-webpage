@@ -7,16 +7,17 @@
         </figure>
       </div>
       <div class="col-lg-8 col-xl-7 col-xxl-6 mx-auto text-center">
-        <h1 class="mb-3">
-          Oops! Page Not Found.
-        </h1>
-        <p class="lead mb-7 px-md-12 px-lg-5 px-xl-7">
-          The page you are looking for is not available or has been moved.
-          Try a different page or go to homepage with the button below.
-        </p>
-        <a [routerLink]="homeRoute" class="btn btn-primary rounded-pill">
-          Go to Homepage
-        </a>
+        <ng-container *transloco="let t; lang: currentLanguage">
+          <h1 class="mb-3">
+            {{ t("title") }}
+          </h1>
+          <p class="lead mb-7 px-md-12 px-lg-5 px-xl-7">
+            {{ t("description") }}
+          </p>
+          <a [routerLink]="homeRoute" class="btn btn-primary rounded-pill">
+            {{ t("buttonTitle") }}
+          </a>
+        </ng-container>
       </div>
     </div>
   </div>
