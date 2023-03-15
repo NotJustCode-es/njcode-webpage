@@ -1,4 +1,4 @@
-import { ClientConfiguration } from '@server/models/client-configuration';
+import { ClientConfiguration } from '@server/core/models/client-configuration';
 
 export class ConfiguracionStub {
   data: ClientConfiguration = {

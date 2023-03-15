@@ -1,12 +1,12 @@
 import {
-  Controller, Get, Header, Inject, Req, Res,
+  Controller, Get, Header, Inject, Req,
 } from '@nestjs/common';
 import { ContentfulApiService } from '@server/contentful-api/contentful-api.service';
 import {
   from, map, Observable, switchMap,
 } from 'rxjs';
-import { Request, Response } from 'express';
-import { ConfigService } from '@nestjs/config';
+import { Request } from 'express';
+import { ClientConfiguration } from '@server/core/models/client-configuration';
 import { RootService } from './root.service';
 
 @Controller()
@@ -16,7 +16,6 @@ export class RootController {
   constructor(
     @Inject(RootService) private readonly rootService: RootService,
     @Inject(ContentfulApiService) private readonly contentfulApiService: ContentfulApiService,
-    @Inject(ConfigService) private readonly configService: ConfigService,
   ) {}
 
   @Header('Content-Type', 'application/xml')
@@ -31,8 +30,7 @@ export class RootController {
   }
 
   @Get('/configurations')
-  getEnv(@Res() res: Response): void {
-    const clientConfiguration = this.configService.get('client');
-    res.send(clientConfiguration);
+  getClientConfiguration(): ClientConfiguration {
+    return this.rootService.getClientConfiguration();
   }
 }

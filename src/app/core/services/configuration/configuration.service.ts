@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ClientConfiguration } from '@server/models/client-configuration';
+import { ClientConfiguration } from '@server/core/models/client-configuration';
 import { HttpClient } from '@angular/common/http';
 import {
   BehaviorSubject, filter, Observable, tap,
@@ -24,7 +24,8 @@ export class ConfigurationService {
   load(): Observable<ClientConfiguration> {
     return this.http.get<ClientConfiguration>('/api/configurations/')
       .pipe(
-        tap(clientConfiguration => this.configurationSubject.next(clientConfiguration)),
+        // eslint-disable-next-line no-console
+        tap(clientConfiguration => { this.configurationSubject.next(clientConfiguration); console.log(clientConfiguration); }),
       );
   }
 }
