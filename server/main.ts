@@ -6,7 +6,7 @@ import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
-  app.setGlobalPrefix(process.env['PREFIX'] || '/api')
+  app.setGlobalPrefix(process.env['PREFIX'] || '/api', { exclude: ['sitemap.xml', 'robots.txt'] })
   app.enableCors()
   app.use(compression())
   app.useGlobalPipes(new ValidationPipe( {

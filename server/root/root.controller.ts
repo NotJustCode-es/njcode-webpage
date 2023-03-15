@@ -1,12 +1,12 @@
 import {
-  Controller, Get, Header, Inject, Req,
+  Controller, Get, Header, Inject, Req, Res,
 } from '@nestjs/common';
 import { ContentfulApiService } from '@server/contentful-api/contentful-api.service';
+import { ClientConfiguration } from '@server/core/models/client-configuration';
+import { Request, Response } from 'express';
 import {
   from, map, Observable, switchMap,
 } from 'rxjs';
-import { Request } from 'express';
-import { ClientConfiguration } from '@server/core/models/client-configuration';
 import { RootService } from './root.service';
 
 @Controller()
@@ -27,6 +27,14 @@ export class RootController {
         switchMap(entries => from(this.rootService.getSitemap(entries, hostUrl))),
         map(xml => xml.toString()),
       );
+  }
+
+  @Header('Content-Type', 'text/plain')
+  @Get('/robots.txt')
+  getRobots(@Res() response: Response, @Req() request: Request):void {
+    response.send(
+      this.rootService.getRobotsContent(request.protocol, request.get('Host')!),
+    );
   }
 
   @Get('/configurations')

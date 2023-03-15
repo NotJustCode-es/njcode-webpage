@@ -9,7 +9,9 @@ import {
 
 @Injectable()
 export class RootService {
-  constructor(@Inject(ConfigService) private readonly configService: ConfigService) {}
+  constructor(
+    @Inject(ConfigService) private readonly configService: ConfigService,
+  ) {}
 
   async getSitemap(entries: EntryCollectionWithLinkResolutionAndWithUnresolvableLinks<TypePageFields>, hostUrl: string): Promise<Buffer> {
     const sitemapStream = new SitemapStream({
@@ -27,6 +29,10 @@ export class RootService {
 
     sitemapStream.end();
     return streamToPromise(sitemapStream);
+  }
+
+  getRobotsContent(protocol: string, host: string): string {
+    return `User-agent: * \nDisallow: \nSitemap: ${protocol}://${host}/sitemap.xml`;
   }
 
   getClientConfiguration(): ClientConfiguration {

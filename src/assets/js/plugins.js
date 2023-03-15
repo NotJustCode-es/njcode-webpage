@@ -1,13 +1,19 @@
 'use strict';
-(function loadTheme() {
+function initTheme() {
   const { theme } = window;
   if (!theme) {
     return;
   }
-  window.addEventListener('load', () => {
-    theme.init();
-  });
   setTimeout(() => {
     theme.init();
   });
+}
+
+(function onLoad() {
+  window.addEventListener('load', () => {
+    initTheme();
+  });
+  if (document.readyState === 'complete') {
+    initTheme();
+  }
 })();

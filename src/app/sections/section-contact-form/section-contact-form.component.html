@@ -7,6 +7,7 @@
     {{ data.subtitle }}
   </p>
   <div class="form">
+    <app-alert></app-alert>
     <form id="contact-form" [formGroup]="contactForm" method="post" (ngSubmit)="onSubmit()">
       <div class="px-3 gx-8 justify-content-center">
         <div class="row gx-4">   
@@ -125,5 +126,3 @@
     </form>
   </div>
   <!-- /form -->
-</div>
-<!-- /column -->
