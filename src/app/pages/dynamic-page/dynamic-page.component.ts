@@ -8,8 +8,7 @@ import { TypePageFields } from '@server/models/contentful-content-types/page';
 import { MetadataService } from '@services/metadata/metadata.service';
 import { PluginsService } from '@services/plugins/plugins.service';
 import {
-  catchError,
-  EMPTY,
+  catchError, EMPTY,
   map,
   Observable,
   tap,
@@ -17,10 +16,10 @@ import {
 
 @Component({
   template: `
-    <ng-container *ngIf="sections$ | async as sections">
-      <ng-template *ngFor="let section of sections" [appDynamicLoad]="section">
-      </ng-template>
-    </ng-container>
+<ng-container *ngIf="sections$ | async as sections">
+  <ng-template *ngFor="let section of sections" [appDynamicLoad]="section">
+  </ng-template>
+</ng-container>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -44,9 +43,9 @@ export class DynamicPageComponent implements OnInit {
       this.i18nService.urlWithoutLanguage,
       this.i18nService.activeLanguage,
     ).pipe(
-      tap(() => this.pluginsService.loadPlugins()),
       tap(page => this.metadataService.setMetadata(page.metadata?.fields)),
       map(page => this.mapSectionsAndDataFromPage(page)),
+      tap(() => this.pluginsService.loadPlugins()),
       catchError(() => {
         this.router.navigate([RoutesEnum.NotFound]);
         return EMPTY;
