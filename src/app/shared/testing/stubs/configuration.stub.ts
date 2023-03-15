@@ -1,8 +1,7 @@
-import { FrontConfigurationParams } from '@server/models/front-configuration-params';
+import { ClientConfiguration } from '@server/models/client-configuration';
 
 export class ConfiguracionStub {
-  data: FrontConfigurationParams = {
-    production: false,
+  data: ClientConfiguration = {
     default_lang: 'es',
     available_lang: ['es', 'en'],
     asset_url: 'test',

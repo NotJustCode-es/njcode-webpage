@@ -1,5 +1,4 @@
-export interface FrontConfigurationParams {
-  production: boolean;
+export interface ClientConfiguration {
   default_lang: string;
   available_lang: string[];
   asset_url: string;

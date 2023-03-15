@@ -7,7 +7,7 @@ import {
 } from 'rxjs';
 import { Request, Response } from 'express';
 import { ConfigService } from '@nestjs/config';
-import { FrontConfigurationParams } from '@server/models/front-configuration-params';
+import { ClientConfiguration } from '@server/models/client-configuration';
 import { RootService } from './root.service';
 
 @Controller()
@@ -33,14 +33,13 @@ export class RootController {
 
   @Get('/configurations')
   getEnv(@Res() res: Response): void {
-    const frontParams = {
-      production: this.configService.get('PRODUCTION'),
+    const clientConfiguration = {
       default_lang: this.configService.get('DEFAULT_LANG'),
       available_lang: this.configService.get('AVAILABLE_LANG').split(' '),
       asset_url: this.configService.get('ASSET_URL'),
       google_analytics_id: this.configService.get('GOOGLE_ANALYTICS_ID'),
       google_recaptcha_site_key: this.configService.get('GOOGLE_RECAPTCHA_SITE_KEY'),
-    } as FrontConfigurationParams;
-    res.send(frontParams);
+    } as ClientConfiguration;
+    res.send(clientConfiguration);
   }
 }
