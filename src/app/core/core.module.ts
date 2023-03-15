@@ -8,7 +8,6 @@ import { DynamicRouteReuseStrategy } from '@core/strategies/dynamic-route-reuse.
 import { pageFlickeringStrategy } from '@core/strategies/page-flickering.strategy';
 import { environment } from '@environments/environment';
 import {
-  TranslocoConfig,
   translocoConfig, TranslocoModule, TRANSLOCO_CONFIG, TRANSLOCO_LOADER,
 } from '@ngneat/transloco';
 import { firstValueFrom } from 'rxjs';
@@ -35,13 +34,11 @@ export function setupConfigurationServiceFactory(
     },
     {
       provide: TRANSLOCO_CONFIG,
-      useFactory: (configurationService: ConfigurationService): TranslocoConfig => translocoConfig({
-        availableLangs: configurationService.data.available_lang,
-        defaultLang: configurationService.data.default_lang,
+      useValue: translocoConfig({
+        ...environment.i18n,
         reRenderOnLangChange: true,
         prodMode: environment.production,
       }),
-      deps: [ConfigurationService],
     },
     {
       provide: TRANSLOCO_LOADER,

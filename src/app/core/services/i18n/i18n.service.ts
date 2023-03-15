@@ -39,7 +39,7 @@ export class I18nService {
     @Inject(DOCUMENT) private document: Document,
     private router: Router,
     private translocoService: TranslocoService,
-  ) { }
+  ) {}
 
   static factory(
     i18nService: I18nService,
