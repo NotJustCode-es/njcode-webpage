@@ -14,12 +14,11 @@ export class PluginsService {
   ) { }
 
   loadPlugins(): void {
-    if (!isPlatformBrowser(this.platformId)) {
-      return;
+    if (isPlatformBrowser(this.platformId)) {
+      setTimeout(() => {
+        this.scriptService.removeScript(this.pluginsScriptPath);
+        this.scriptService.createScript(this.pluginsScriptPath);
+      });
     }
-    setTimeout(() => {
-      this.scriptService.removeScript(this.pluginsScriptPath);
-      this.scriptService.createScript(this.pluginsScriptPath);
-    });
   }
 }

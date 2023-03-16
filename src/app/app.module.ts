@@ -1,5 +1,5 @@
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PageLoaderModule } from '@components/page-loader/page-loader.module';
@@ -7,7 +7,6 @@ import { CoreModule } from '@core/core.module';
 import { BrowserStateInterceptor } from '@interceptors/browser-state.interceptor';
 import { LoadingInterceptor } from '@interceptors/loading.interceptor';
 import { TransferHttpCacheModule } from '@nguniversal/common';
-import { GoogleAnalyticsService } from '@services/google-analytics/google-analytics.service';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { AppComponent } from 'src/app/app.component';
 
@@ -36,14 +35,6 @@ import { AppComponent } from 'src/app/app.component';
       provide: HTTP_INTERCEPTORS,
       useClass: LoadingInterceptor,
       multi: true,
-    },
-    {
-      provide: APP_INITIALIZER,
-      useFactory: GoogleAnalyticsService.factory,
-      multi: true,
-      deps: [
-        GoogleAnalyticsService,
-      ],
     },
   ],
   bootstrap: [

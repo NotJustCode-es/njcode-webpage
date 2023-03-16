@@ -1,5 +1,5 @@
 <!-- /.row -->
-<div class="pt-10 col-lg-10 offset-lg-1 col-xl-8 offset-xl-2">
+<div class="pt-10 col-lg-10 offset-lg-1 col-xl-6 offset-xl-3">
   <h2 class="display-4 mb-3 text-center">
     {{ data.title }}
   </h2>
@@ -10,7 +10,7 @@
     <app-alert></app-alert>
     <form id="contact-form" [formGroup]="contactForm" method="post" (ngSubmit)="onSubmit()">
       <div class="px-3 gx-8 justify-content-center">
-        <div class="row gx-4">   
+        <div class="row gx-4">
           <div class="col-md-6">
             <div class="form-floating mb-4 mx-auto">
               <input id="form-first-name" type="text" class="form-control" formControlName="firstName" required

@@ -11,13 +11,13 @@ import { tap } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AlertComponent {
-  private msBeforeClearing = 5000;
+  readonly alertClearDelay = 5000;
 
   alert$ = this.alertService.alert$.pipe(
     tap(() => {
       setTimeout(() => {
         this.alertService.clearMessage();
-      }, this.msBeforeClearing);
+      }, this.alertClearDelay);
     }),
   );
 

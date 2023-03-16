@@ -1,20 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { environment } from '@environments/environment';
-import { RecaptchaV3Module, RECAPTCHA_V3_SITE_KEY } from 'ng-recaptcha';
-import { SectionContactFormComponent } from './section-contact-form.component';
-import { AlertModule } from '../../components/alert/alert.module';
+import { AlertModule } from '@components/alert/alert.module';
+import { SectionContactFormComponent } from '@sections/section-contact-form/section-contact-form.component';
+import { RecaptchaV3Module } from 'ng-recaptcha';
 
 @NgModule({
   declarations: [
     SectionContactFormComponent,
-  ],
-  providers: [
-    {
-      provide: RECAPTCHA_V3_SITE_KEY,
-      useValue: environment.googleRecaptchaSiteKey,
-    },
   ],
   imports: [
     CommonModule,
