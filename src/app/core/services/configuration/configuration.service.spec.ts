@@ -31,12 +31,13 @@ describe('ConfigurationService', () => {
 
   describe('http request', () => {
     it('should have correct config', () => {
+      const response = createTestClientConfiguration();
       service.load().subscribe(value => {
         expect(value).toBeTruthy();
       });
       controller.expectOne(
         { method: 'GET', url: '/api/configurations/' },
-      );
+      ).flush(response);
     });
   });
 
