@@ -1,6 +1,4 @@
-import { Inject, Injectable } from '@angular/core';
-import { ConfigService } from '@nestjs/config';
-import { ClientConfiguration } from '@server/core/models/client-configuration';
+import { Injectable } from '@angular/core';
 import { TypePageFields } from '@server/models/contentful-content-types/page';
 import { EntryCollectionWithLinkResolutionAndWithUnresolvableLinks } from 'contentful';
 import {
@@ -9,10 +7,6 @@ import {
 
 @Injectable()
 export class RootService {
-  constructor(
-    @Inject(ConfigService) private readonly configService: ConfigService,
-  ) {}
-
   async getSitemap(entries: EntryCollectionWithLinkResolutionAndWithUnresolvableLinks<TypePageFields>, hostUrl: string): Promise<Buffer> {
     const sitemapStream = new SitemapStream({
       hostname: hostUrl,
@@ -33,9 +27,5 @@ export class RootService {
 
   getRobotsContent(protocol: string, host: string): string {
     return `User-agent: * \nDisallow: \nSitemap: ${protocol}://${host}/sitemap.xml`;
-  }
-
-  getClientConfiguration(): ClientConfiguration {
-    return this.configService.get<ClientConfiguration>('client', { infer: true });
   }
 }

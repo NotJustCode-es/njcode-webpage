@@ -23,7 +23,7 @@ export class SectionNavbarComponent {
   ) {}
 
   get availableLangs(): string[] {
-    return this.configurationService.data.available_lang;
+    return this.configurationService.configurationData.i18n.availableLangs;
   }
 
   get activeLang(): string {

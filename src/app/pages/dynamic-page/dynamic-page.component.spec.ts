@@ -4,12 +4,14 @@ import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { DynamicLoadModule } from '@core/directives/dynamic-load/dynamic-load.module';
 import { RoutesEnum } from '@core/models/routes.enum';
+import { ConfigurationService } from '@core/services/configuration/configuration.service';
+import { DynamicPageComponent } from '@pages/dynamic-page/dynamic-page.component';
 import { TypePageFields } from '@server/models/contentful-content-types/page';
 import { MetadataService } from '@services/metadata/metadata.service';
 import { TestComponent } from '@shared/testing/components/test.component';
+import { ConfigurationServiceStub } from '@shared/testing/stubs/configuration.stub';
 import { getTranslocoTestingModule } from '@shared/testing/transloco-testing.module';
 import { createTestEntry } from '@shared/testing/utils/contentful.utils';
-import { DynamicPageComponent } from './dynamic-page.component';
 
 describe('DynamicPageComponent', () => {
   let component: DynamicPageComponent;
@@ -17,6 +19,11 @@ describe('DynamicPageComponent', () => {
   let controller: HttpTestingController;
   let router: Router;
   let metadataService: MetadataService;
+  let configurationServiceStub: ConfigurationServiceStub;
+
+  beforeEach(() => {
+    configurationServiceStub = new ConfigurationServiceStub();
+  });
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -31,6 +38,12 @@ describe('DynamicPageComponent', () => {
           component: TestComponent,
         }]),
         DynamicLoadModule,
+      ],
+      providers: [
+        {
+          provide: ConfigurationService,
+          useValue: configurationServiceStub,
+        },
       ],
     })
       .compileComponents();

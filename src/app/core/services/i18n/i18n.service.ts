@@ -2,8 +2,11 @@ import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable } from '@angular/core';
 import { NavigationStart, Router, RoutesRecognized } from '@angular/router';
 import { RoutesEnum } from '@core/models/routes.enum';
-import { environment } from '@environments/environment';
+import { ConfigurationService } from '@core/services/configuration/configuration.service';
 import { TranslocoService } from '@ngneat/transloco';
+import {
+  firstValueFrom, map, Observable, take,
+} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -12,11 +15,11 @@ export class I18nService {
   readonly defaultRootPath = RoutesEnum.Home;
 
   get defaultLanguage(): string {
-    return environment.i18n.defaultLang;
+    return this.configurationService.configurationData.i18n.defaultLang;
   }
 
   get availableLanguages(): string[] {
-    return environment.i18n.availableLangs;
+    return this.configurationService.configurationData.i18n.availableLangs;
   }
 
   get languageByUrlPath(): string {
@@ -39,17 +42,24 @@ export class I18nService {
     @Inject(DOCUMENT) private document: Document,
     private router: Router,
     private translocoService: TranslocoService,
+    private configurationService: ConfigurationService,
   ) {}
 
   static factory(
     i18nService: I18nService,
   ): () => Promise<void> {
-    return () => Promise.resolve(i18nService.init());
+    return () => firstValueFrom(i18nService.init());
   }
 
-  init(): void {
-    this.setLanguageSubscriptions();
-    this.setActiveLanguage();
+  init(): Observable<void> {
+    return this.configurationService.configurationData$
+      .pipe(
+        take(1),
+        map(() => {
+          this.setLanguageSubscriptions();
+          this.setActiveLanguage();
+        }),
+      );
   }
 
   setActiveLanguage(language?: string): void {

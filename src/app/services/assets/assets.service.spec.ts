@@ -1,11 +1,16 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { ConfigurationService } from '@core/services/configuration/configuration.service';
-import { AssetsService } from './assets.service';
+import { AssetsService } from '@services/assets/assets.service';
+import { ConfigurationServiceStub } from '@shared/testing/stubs/configuration.stub';
 
 describe('AssetsService', () => {
   let service: AssetsService;
-  let configurationServiceStub: ConfigurationService;
+  let configurationServiceStub: ConfigurationServiceStub;
+
+  beforeEach(() => {
+    configurationServiceStub = new ConfigurationServiceStub();
+  });
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -15,7 +20,7 @@ describe('AssetsService', () => {
       providers: [
         {
           provide: ConfigurationService,
-          useClass: configurationServiceStub,
+          useValue: configurationServiceStub,
         },
       ],
     });

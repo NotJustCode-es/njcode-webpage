@@ -1,4 +1,4 @@
-import { Configuration } from '../models/configuration';
+import { Configuration } from '@server/core/models/configuration';
 
 export default (): Configuration => ({
   port: parseInt(process.env['PORT'] || '3000', 10),
@@ -9,10 +9,12 @@ export default (): Configuration => ({
     environment: process.env['CONTENTFUL_ENVIRONMENT'] || '',
   },
   client: {
-    default_lang: process.env['DEFAULT_LANG'] || '',
-    available_lang: process.env['AVAILABLE_LANG']?.split(' ') || [''],
-    asset_url: process.env['ASSET_URL'] || '',
-    google_analytics_id: process.env['GOOGLE_ANALYTCS_ID'] || '',
-    google_recaptcha_site_key: process.env['GOOGLE_RECAPTCHA_SITE_KEY'] || '',
+    i18n: {
+      defaultLang: process.env['DEFAULT_LANG'] || 'en',
+      availableLangs: process.env['AVAILABLE_LANGS']?.split(',') || ['en'],
+    },
+    assetsUrl: process.env['ASSETS_URL'] || '',
+    googleAnalyticsId: process.env['GOOGLE_ANALYTICS_ID'] || '',
+    googleRecaptchaSiteKey: process.env['GOOGLE_RECAPTCHA_SITE_KEY'] || '',
   },
 });

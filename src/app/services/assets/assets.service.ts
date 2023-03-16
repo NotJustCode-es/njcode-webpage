@@ -5,9 +5,13 @@ import { ConfigurationService } from '@core/services/configuration/configuration
   providedIn: 'root',
 })
 export class AssetsService {
-  readonly imgPath = `${this.configurationService.data.asset_url}/assets/img`;
+  readonly imgPath = `${this.assetsUrl}/assets/img`;
 
-  readonly iconsSolidPath = `${this.configurationService.data.asset_url}/assets/img/icons/solid`;
+  readonly iconsSolidPath = `${this.assetsUrl}/assets/img/icons/solid`;
+
+  get assetsUrl(): string {
+    return this.configurationService.configurationData.assetsUrl;
+  }
 
   constructor(private configurationService: ConfigurationService) {}
 

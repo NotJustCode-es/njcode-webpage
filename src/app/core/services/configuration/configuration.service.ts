@@ -1,31 +1,41 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ClientConfiguration } from '@server/core/models/client-configuration';
-import { HttpClient } from '@angular/common/http';
 import {
-  BehaviorSubject, filter, Observable, tap,
+  firstValueFrom, Observable, ReplaySubject, tap,
 } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ConfigurationService {
-  private configurationSubject = new BehaviorSubject<ClientConfiguration | null>(null);
+  private configuration!: ClientConfiguration;
 
-  readonly config$ = this.configurationSubject.asObservable().pipe(
-    filter(configurationSubject => !!configurationSubject),
-  );
+  private configurationSubject = new ReplaySubject<ClientConfiguration>(1);
 
-  get data(): ClientConfiguration {
-    return this.configurationSubject.getValue()!;
+  get configurationData(): ClientConfiguration {
+    return this.configuration;
+  }
+
+  get configurationData$(): Observable<ClientConfiguration> {
+    return this.configurationSubject.asObservable();
   }
 
   constructor(private http: HttpClient) {}
 
+  static factory(
+    configurationService: ConfigurationService,
+  ): () => Promise<ClientConfiguration> {
+    return () => firstValueFrom(configurationService.load());
+  }
+
   load(): Observable<ClientConfiguration> {
     return this.http.get<ClientConfiguration>('/api/configurations/')
       .pipe(
-        // eslint-disable-next-line no-console
-        tap(clientConfiguration => { this.configurationSubject.next(clientConfiguration); console.log(clientConfiguration); }),
+        tap(configuration => {
+          this.configuration = Object.freeze({ ...configuration });
+          this.configurationSubject.next(configuration);
+        }),
       );
   }
 }

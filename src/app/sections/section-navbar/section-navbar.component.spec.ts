@@ -3,12 +3,17 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ConfigurationService } from '@core/services/configuration/configuration.service';
 import { SectionNavbarComponent } from '@sections/section-navbar/section-navbar.component';
+import { ConfigurationServiceStub } from '@shared/testing/stubs/configuration.stub';
 import { getTranslocoTestingModule } from '@shared/testing/transloco-testing.module';
 
 describe('SectionNavbarComponent', () => {
   let component: SectionNavbarComponent;
   let fixture: ComponentFixture<SectionNavbarComponent>;
-  let configurationServiceStub: ConfigurationService;
+  let configurationServiceStub: ConfigurationServiceStub;
+
+  beforeEach(() => {
+    configurationServiceStub = new ConfigurationServiceStub();
+  });
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -23,7 +28,7 @@ describe('SectionNavbarComponent', () => {
       providers: [
         {
           provide: ConfigurationService,
-          useClass: configurationServiceStub,
+          useValue: configurationServiceStub,
         },
       ],
     })

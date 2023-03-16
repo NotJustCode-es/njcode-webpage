@@ -1,13 +1,19 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { ConfigurationService } from '@core/services/configuration/configuration.service';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ScriptsService } from '@services/scripts/scripts.service';
+import { ConfigurationServiceStub } from '@shared/testing/stubs/configuration.stub';
+import { Observable } from 'rxjs';
 import { GoogleAnalyticsService } from './google-analytics.service';
-import { ScriptsService } from '../scripts/scripts.service';
 
 describe('GoogleAnalyticsService', () => {
   let service: GoogleAnalyticsService;
   let scriptService: ScriptsService;
-  let configurationServiceStub: ConfigurationService;
+  let configurationServiceStub: ConfigurationServiceStub;
+
+  beforeEach(() => {
+    configurationServiceStub = new ConfigurationServiceStub();
+  });
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -17,7 +23,7 @@ describe('GoogleAnalyticsService', () => {
       providers: [
         {
           provide: ConfigurationService,
-          useClass: configurationServiceStub,
+          useValue: configurationServiceStub,
         },
       ],
     });
@@ -31,7 +37,7 @@ describe('GoogleAnalyticsService', () => {
 
   describe('#factory', () => {
     it('call factory should call init method', () => {
-      spyOn(service, 'init');
+      spyOn(service, 'init').and.returnValue(new Observable<void>());
       GoogleAnalyticsService.factory(service)();
       expect(service.init).toHaveBeenCalled();
     });
@@ -40,14 +46,15 @@ describe('GoogleAnalyticsService', () => {
   describe('#init', () => {
     it('should call #addUniversalAnalyticsScript', () => {
       spyOn(service, 'addUniversalAnalyticsScript');
-      service.init();
-      expect(service.addUniversalAnalyticsScript).toHaveBeenCalled();
+      service.init().subscribe(() => {
+        expect(service.addUniversalAnalyticsScript).toHaveBeenCalled();
+      });
     });
 
     it('if #googleAnalyticsId is undefined should not call #addUniversalAnalyticsScript', () => {
-      spyOnProperty(service, 'googleAnalyticsId').and.returnValue(undefined);
+      configurationServiceStub.configuration.googleAnalyticsId = '';
       spyOn(service, 'addUniversalAnalyticsScript');
-      service.init();
+      service.init().subscribe();
       expect(service.addUniversalAnalyticsScript).not.toHaveBeenCalled();
     });
   });
@@ -55,13 +62,13 @@ describe('GoogleAnalyticsService', () => {
   describe('#addUniversalAnalyticsScript', () => {
     it('should call #createScript', () => {
       spyOn(scriptService, 'createScript');
-      service.addUniversalAnalyticsScript();
+      service.addUniversalAnalyticsScript(configurationServiceStub.configurationData.googleAnalyticsId);
       expect(scriptService.createScript).toHaveBeenCalled();
     });
 
     it('should call #createScriptWithBody', () => {
       spyOn(scriptService, 'createScriptWithBody');
-      service.addUniversalAnalyticsScript();
+      service.addUniversalAnalyticsScript(configurationServiceStub.configuration.googleAnalyticsId);
       expect(scriptService.createScriptWithBody).toHaveBeenCalled();
     });
   });

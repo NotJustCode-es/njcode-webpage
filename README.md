@@ -44,12 +44,12 @@ MAIL_SUBJECT=
 # Recaptcha
 GOOGLE_RECAPTCHA_SECRET_KEY=
 
-#ClientConfiguration
+# Client configuration
 DEFAULT_LANG=
-AVAILABLE_LANG=
+AVAILABLE_LANGS=
 ASSET_URL=
 GOOGLE_RECAPTCHA_SITE_KEY=
-GOOGLE_ANALYTCS_ID=
+GOOGLE_ANALYTICS_ID=
 ```
 
 Alternatively, you can copy the ```.env``` file to ```.env.dev``` and fill in the necessary values.

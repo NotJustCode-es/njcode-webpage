@@ -1,10 +1,11 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule, Validators } from '@angular/forms';
+import { AlertModule } from '@components/alert/alert.module';
 import { SectionContactFormComponent } from '@sections/section-contact-form/section-contact-form.component';
 import { TypeSection__contact__formFields } from '@server/models/contentful-content-types/section-contact-form';
-import { ContactService } from '@services/contact/contact.service';
 import { AlertService } from '@services/alert/alert.service';
+import { ContactService } from '@services/contact/contact.service';
 import { ReCaptchaV3ServiceStub } from '@shared/testing/stubs/recaptcha-v3-service.stub';
 import { createTestEntry } from '@shared/testing/utils/contentful.utils';
 import { RecaptchaModule, ReCaptchaV3Service } from 'ng-recaptcha';
@@ -55,6 +56,7 @@ describe('SectionContactFormComponent', () => {
         HttpClientTestingModule,
         ReactiveFormsModule,
         RecaptchaModule,
+        AlertModule,
       ],
       providers: [
         {

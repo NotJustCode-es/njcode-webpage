@@ -1,7 +1,11 @@
 export interface ClientConfiguration {
-  default_lang: string;
-  available_lang: string[];
-  asset_url: string;
-  google_analytics_id: string;
-  google_recaptcha_site_key: string;
+  i18n: ClientConfigurationI18n;
+  assetsUrl: string;
+  googleAnalyticsId: string;
+  googleRecaptchaSiteKey: string;
+}
+
+export interface ClientConfigurationI18n {
+  defaultLang: string;
+  availableLangs: string[];
 }
