@@ -1,8 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { environment } from '@environments/environment';
 import { getTranslocoTestingModule } from '@shared/testing/transloco-testing.module';
-
 import { NotFoundComponent } from './not-found.component';
 
 describe('NotFoundComponent', () => {
@@ -28,9 +26,5 @@ describe('NotFoundComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('get currectLanguage should return default lang', () => {
-    expect(component.currentLanguage).toEqual(environment.i18n.defaultLang);
   });
 });

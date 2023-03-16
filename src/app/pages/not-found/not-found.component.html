@@ -7,15 +7,15 @@
         </figure>
       </div>
       <div class="col-lg-8 col-xl-7 col-xxl-6 mx-auto text-center">
-        <ng-container *transloco="let t; lang: currentLanguage">
+        <ng-container *transloco="let t">
           <h1 class="mb-3">
-            {{ t("notFound.title") }}
+            {{ t("NOT_FOUND.TITLE") }}
           </h1>
           <p class="lead mb-7 px-md-12 px-lg-5 px-xl-7">
-            {{ t("notFound.description") }}
+            {{ t("NOT_FOUND.DESCRIPTION") }}
           </p>
           <a [routerLink]="homeRoute" class="btn btn-primary rounded-pill">
-            {{ t("notFound.buttonTitle") }}
+            {{ t("NOT_FOUND.BUTTON_TITLE") }}
           </a>
         </ng-container>
       </div>
