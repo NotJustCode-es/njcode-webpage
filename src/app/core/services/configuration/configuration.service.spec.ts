@@ -2,7 +2,8 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { TestBed } from '@angular/core/testing';
 import { ConfigurationService } from '@core/services/configuration/configuration.service';
 import { ClientConfiguration } from '@server/core/models/client-configuration';
-import { Observable } from 'rxjs';
+import { createTestClientConfiguration } from '@shared/testing/utils/configuration.utils';
+import { Observable, switchMap } from 'rxjs';
 
 describe('ConfigurationService', () => {
   let service: ConfigurationService;
@@ -36,6 +37,28 @@ describe('ConfigurationService', () => {
       controller.expectOne(
         { method: 'GET', url: '/api/configurations/' },
       );
+    });
+  });
+
+  describe('getter', () => {
+    it('configurationData should return clientConfiguration', () => {
+      const response = createTestClientConfiguration();
+      service.load().subscribe(clientConfiguration => {
+        expect(service.configurationData).toEqual(clientConfiguration);
+      });
+      controller.expectOne(() => true).flush(response);
+    });
+
+    it('configurationData$ should return clientConfiguration', () => {
+      const response = createTestClientConfiguration();
+      service.load()
+        .pipe(
+          switchMap(() => service.configurationData$),
+        )
+        .subscribe(
+          configurationData => expect(configurationData).toEqual(response),
+        );
+      controller.expectOne(() => true).flush(response);
     });
   });
 });
