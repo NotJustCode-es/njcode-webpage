@@ -1,1 +1,7 @@
-{}
+{
+    "NOT_FOUND": {
+        "TITLE": "Oops! Page Not Found.",
+        "DESCRIPTION": "The page you are looking for is not available or has been moved. Try a different page or go to homepage with the button below.",
+        "BUTTON_TITLE": "Go to Homepage"
+    }
+}
