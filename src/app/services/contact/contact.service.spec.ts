@@ -26,6 +26,6 @@ describe('ContactService', () => {
     });
     controller.expectOne(
       { method: 'POST', url: '/api/contact/send/' },
-    );
+    ).flush({});
   });
 });

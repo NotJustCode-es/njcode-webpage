@@ -1,7 +1,7 @@
 import { Configuration } from '@server/core/models/configuration';
 
 export default (): Configuration => ({
-  port: parseInt(process.env['PORT'] || '3000', 10),
+  port: parseInt(process.env['PORT'] || '4000', 10),
   prefix: process.env['PREFIX'] || '/api',
   contentful: {
     spaceId: process.env['CONTENTFUL_SPACE_ID'] || '',

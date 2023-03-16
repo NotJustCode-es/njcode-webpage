@@ -5,13 +5,21 @@ on:
    branches: [ main ]
 
 env:
+  # AWS
   AWS_REGION: eu-west-3
   AWS_ENVIRONMENT_NAME: njcode-webpage
   APPLICATION_NAME: njcode-webpage
   ARTIFACT_NAME: njcode-webpage
+  # Server configuration
   PORT: 4000
   PREFIX: /api
   CONTENTFUL_ENVIRONMENT: master
+  # Client configuration
+  DEFAULT_LANG: es
+  AVAILABLE_LANGS: en,es
+  ASSETS_URL: https://theme.njcode.es
+  GOOGLE_RECAPTCHA_SITE_KEY: 6LcMZ6gkAAAAAPHKo_cruQWbIixX4sQS1b2BFo3a
+  GOOGLE_ANALYTICS_ID: G-6DENS4ZPR6
 
 jobs:
   build:
@@ -52,11 +60,11 @@ jobs:
         envkey_MAIL_TO: ${{ secrets.MAIL_TO }}
         envkey_MAIL_SUBJECT: ${{ secrets.MAIL_SUBJECT }}
         envkey_GOOGLE_RECAPTCHA_SECRET_KEY: ${{ secrets.GOOGLE_RECAPTCHA_SECRET_KEY }}
-        envkey_DEFAULT_LANG: ${{ secrets.DEFAULT_LANG }}
-        envkey_AVAILABLE_LANGS: ${{ secrets.AVAILABLE_LANGS }}
-        envkey_ASSETS_URL: ${{ secrets.ASSETS_URL }}
-        envkey_GOOGLE_RECAPTCHA_SITE_KEY: ${{ secrets.GOOGLE_RECAPTCHA_SITE_KEY }}
-        envkey_GOOGLE_ANALYTICS_ID: ${{ secrets.GOOGLE_ANALYTICS_ID }}
+        envkey_DEFAULT_LANG: ${{ env.DEFAULT_LANG }}
+        envkey_AVAILABLE_LANGS: ${{ env.AVAILABLE_LANGS }}
+        envkey_ASSETS_URL: ${{ env.ASSETS_URL }}
+        envkey_GOOGLE_RECAPTCHA_SITE_KEY: ${{ env.GOOGLE_RECAPTCHA_SITE_KEY }}
+        envkey_GOOGLE_ANALYTICS_ID: ${{ env.GOOGLE_ANALYTICS_ID }}
         directory: ./
         file_name: .env
         fail_on_empty: true
