@@ -4,6 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ConfigurationService } from '@core/services/configuration/configuration.service';
 import { NotFoundComponent } from '@pages/not-found/not-found.component';
 import { ConfigurationServiceStub } from '@shared/testing/stubs/configuration.stub';
+import { getTranslocoTestingModule } from '@shared/testing/transloco-testing.module';
 
 describe('NotFoundComponent', () => {
   let component: NotFoundComponent;
@@ -17,6 +18,7 @@ describe('NotFoundComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
+        getTranslocoTestingModule(),
         RouterTestingModule,
         HttpClientTestingModule,
       ],
