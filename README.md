@@ -54,6 +54,29 @@ GOOGLE_ANALYTICS_ID=
 
 Alternatively, you can copy the ```.env``` file to ```.env.dev``` and fill in the necessary values.
 
+The following table displays a list of environment variables used inside the application along with their corresponding default values:
+
+|Variable Name                   |Description                                                                             |Default Value|
+|--------------------------------|----------------------------------------------------------------------------------------|-------------|
+|PORT                            |The port number on which the server will listen for incoming requests.                  |4000         |
+|PREFIX                          |The prefix that should be used for all the API routes.                                  |/api         |
+|CONTENTFUL_SPACE_ID             |The unique identifier of the space in Contentful that contains the content to be served.|Empty        |
+|CONTENTFUL_ACCESS_TOKEN         |The access token used to authenticate with Contentful API.                              |Empty        |
+|CONTENTFUL_ENVIRONMENT          |The environment within the Contentful space to be used.                                 |Empty        |
+|MAIL_HOST                       |The hostname of the mail server to be used to send emails.                              |Empty        |
+|MAIL_USER                       |The username to authenticate with the mail server.                                      |Empty        |
+|MAIL_PASSWORD                   |The password to authenticate with the mail server.                                      |Empty        |
+|MAIL_FROM                       |The email address from which the emails will be sent.                                   |Empty        |
+|MAIL_TO                         |The email address to which the emails will be sent.                                     |Empty        |
+|MAIL_SUBJECT                    |The subject line for the emails that will be sent.                                      |Empty        |
+|DEFAULT_LANG                    |The default language for the website.                                                   |en           |
+|AVAILABLE_LANGS                 |A comma-separated list of languages that are available for the website.                 |en           |
+|ASSET_URL                       |The URL prefix to use when constructing URLs for static assets.                         |Empty        |
+|GOOGLE_RECAPTCHA_SECRET_KEY     |The secret key used to authenticate with the Google reCAPTCHA API.                      |Empty        |
+|GOOGLE_RECAPTCHA_SITE_KEY       |The site key used to authenticate with the Google reCAPTCHA API.                        |Empty        |
+|GOOGLE_ANALYTICS_ID             |The ID used to track the website with Google Analytics.                                 |Empty        |
+
+
 With the dependencies installed and the API key set up, you can start the development server by running the following command:
 
 ```
