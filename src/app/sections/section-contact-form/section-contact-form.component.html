@@ -65,28 +65,30 @@
               </div>
             </div>
           </div>
-          <div class="form-floating mb-4 mx-auto">
-            <input id="form-email" type="text" formControlName="email" class="form-control" required
-              [placeholder]="data.mailEntry.fields.placeholder"
-              [ngClass]="{
+          <div class="col-md-12">
+            <div class="form-floating mb-4">
+              <input id="form-email" type="text" formControlName="email" class="form-control" required
+                [placeholder]="data.mailEntry.fields.placeholder"
+                [ngClass]="{
               'is-invalid': isFormControlInvalid('email'),
               'is-valid': contactForm.get('email')?.valid
             }">
-            <label for="form-email">
-              {{ data.mailEntry.fields.label }}
-            </label>
-            <div class="valid-feedback" *ngIf="contactForm.get('email')?.valid">
-              {{ data.mailEntry.fields.validFeedback }}
-            </div>
-            <div class="invalid-feedback" *ngIf="isFormControlInvalid('email')">
-              <div *ngIf="contactForm.get('email')?.errors?.['required']">
-                {{ data.mailEntry.fields.invalidRequiredFeedback }}
+              <label for="form-email">
+                {{ data.mailEntry.fields.label }}
+              </label>
+              <div class="valid-feedback" *ngIf="contactForm.get('email')?.valid">
+                {{ data.mailEntry.fields.validFeedback }}
               </div>
-              <div *ngIf="contactForm.get('email')?.errors?.['email']">
-                {{ data.mailEntry.fields.invalidPatternFeedback }}
-              </div>
-              <div *ngIf="contactForm.get('email')?.errors?.['maxlength']">
-                {{ data.mailEntry.fields.invalidSizeFeedback }}
+              <div class="invalid-feedback" *ngIf="isFormControlInvalid('email')">
+                <div *ngIf="contactForm.get('email')?.errors?.['required']">
+                  {{ data.mailEntry.fields.invalidRequiredFeedback }}
+                </div>
+                <div *ngIf="contactForm.get('email')?.errors?.['email']">
+                  {{ data.mailEntry.fields.invalidPatternFeedback }}
+                </div>
+                <div *ngIf="contactForm.get('email')?.errors?.['maxlength']">
+                  {{ data.mailEntry.fields.invalidSizeFeedback }}
+                </div>
               </div>
             </div>
           </div>
