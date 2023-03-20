@@ -23,10 +23,10 @@ export class RootController {
   @Header('Content-Type', 'application/xml')
   @Get('/sitemap.xml')
   getEntries(@Req() request: Request): Observable<string> {
-    const hostUrl = `${request.protocol}://${request.get('x-forwarded-host')}`;
+    const originUrl = `${request.protocol}://${request.get('x-forwarded-host')}`;
     return this.contentfulApiService.getAllPages(this.contentfulLimitPages)
       .pipe(
-        switchMap(entries => from(this.rootService.getSitemap(entries, hostUrl))),
+        switchMap(entries => from(this.rootService.getSitemap(entries, originUrl))),
         map(xml => xml.toString()),
       );
   }
