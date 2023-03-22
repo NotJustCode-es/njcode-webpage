@@ -1,5 +1,57 @@
-<p>Hey {{ name }},</p>
-<p>Your Email is {{ email }}</p>
-<p>And your message was {{ message }}</p>
-
-<p>If you did not request this email you can safely ignore it.</p>
+<html>
+  <head>
+    <style>
+      body {
+        font-size: 15px;
+        background-image: linear-gradient(145deg, #61D2B4 10%, #2D394F 100%);
+      }
+      .title {
+        text-align: center;
+        padding: 2.5px;
+        font-size: 20px;
+        color: #ffffff;
+      }
+      .message {
+        margin: auto;
+        margin-top: 15px;
+        padding-bottom: 30px;
+        color: #ffffff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="title">
+      <p>
+        Greetings!
+        </br>
+        New message arrived from webpage contact form:
+      </p>
+    </div>
+    <table class="message">
+      <tr>
+        <th>
+          Name
+        </th>
+        <td>
+          {{ name }}
+        </td>
+      </tr>
+      <tr>
+        <th>
+          Email
+        </th>
+        <td>
+          {{ email }}
+        </td>
+      </tr>
+      <tr>
+        <th>
+          Message
+        </th>
+        <td>
+          {{ message }}
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
