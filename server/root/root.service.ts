@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from '@nestjs/common';
 import { TypePageFields } from '@server/models/contentful-content-types/page';
 import { EntryCollectionWithLinkResolutionAndWithUnresolvableLinks } from 'contentful';
 import {
