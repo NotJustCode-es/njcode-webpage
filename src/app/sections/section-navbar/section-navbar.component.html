@@ -24,9 +24,9 @@
               </a>
               <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-            <div class="link-container">
+            <div class="pt-5">
               <ul class="navbar-nav">
-                <li class="nav-item" id="link-list" *ngFor="let item of data.links">
+                <li class="nav-item" *ngFor="let item of data.links">
                   <a class="nav-link" [routerLink]="item.fields.href">
                     {{ item.fields.title }}
                   </a>
@@ -44,7 +44,7 @@
       <!-- /.navbar-collapse -->
       <div class="navbar-other w-100 d-flex ms-auto">
         <ul class="navbar-nav flex-row align-items-center ms-auto">
-          <li class="nav-item dropdown language-select text-uppercase" id="dropdown">
+          <li class="nav-item dropdown language-select text-uppercase pe-5">
             <button class="nav-link dropdown-item dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               {{ activeLang | uppercase }}
             </button>
