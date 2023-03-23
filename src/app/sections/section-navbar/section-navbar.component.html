@@ -17,29 +17,25 @@
       </div>
       <div class="offcanvas offcanvas-nav offcanvas-end">
         <div class="offcanvas-header">
-          <div class="container">
-            <div class="d-flex justify-content-evenly">
-              <a [routerLink]="routesEnum.Home">
-                <img [src]="data.navbarLogo?.fields?.logoLight?.fields?.file?.url" [srcset]="data.navbarLogo?.fields?.logoLightX2?.fields?.file?.url + ' 2x'" [alt]="data.navbarLogo?.fields?.description"/>
+          <a [routerLink]="routesEnum.Home">
+            <img [src]="data.navbarLogo?.fields?.logoLight?.fields?.file?.url" [srcset]="data.navbarLogo?.fields?.logoLightX2?.fields?.file?.url + ' 2x'" [alt]="data.navbarLogo?.fields?.description"/>
+          </a>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav">
+            <li class="nav-item" *ngFor="let item of data.links">
+              <a class="nav-link py-2" [routerLink]="item.fields.href">
+                {{ item.fields.title }}
               </a>
-              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="pt-5">
-              <ul class="navbar-nav">
-                <li class="nav-item" *ngFor="let item of data.links">
-                  <a class="nav-link" [routerLink]="item.fields.href">
-                    {{ item.fields.title }}
-                  </a>
-                </li>
-                <li class="nav-item" *ngIf="data.contactLink">
-                  <a class="nav-link" [routerLink]="data.contactLink.fields.href">
-                    {{ data.contactLink.fields.title }}
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>   
+            </li>
+            <li class="nav-item" *ngIf="data.contactLink">
+              <a class="nav-link py-2" [routerLink]="data.contactLink.fields.href">
+                {{ data.contactLink.fields.title }}
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
       <!-- /.navbar-collapse -->
       <div class="navbar-other w-100 d-flex ms-auto">
@@ -56,7 +52,7 @@
               </li>
             </ul>
           </li>
-          <div class="collapse navbar-collapse"> 
+          <div class="collapse navbar-collapse">
             <li class="nav-item d-none d-md-block" *ngIf="data.contactLink">
               <a [routerLink]="data.contactLink.fields.href" class="btn btn-sm btn-primary rounded-pill">
                 {{ data.contactLink.fields.title }}
