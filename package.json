@@ -13,7 +13,7 @@
     "serve:ssr": "node dist/njcode-webpage/server/main.js",
     "build:ssr": "ng build --configuration production && ng run njcode-webpage:server:production && npm run copy:templates",
     "prerender": "ng run njcode-webpage:prerender",
-    "copy:templates": "cp -R server/templates dist/njcode-webpage/server/templates"
+    "copy:templates": "mkdir -p dist/njcode-webpage/server/templates && cp -R server/templates dist/njcode-webpage/server/templates"
   },
   "private": true,
   "dependencies": {

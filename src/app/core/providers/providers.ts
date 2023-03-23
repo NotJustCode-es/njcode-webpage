@@ -1,28 +1,14 @@
 import { APP_INITIALIZER, PLATFORM_ID } from '@angular/core';
 import { RouteReuseStrategy } from '@angular/router';
 import { ConfigurationService } from '@core/services/configuration/configuration.service';
+import { GoogleAnalyticsService } from '@core/services/google-analytics/google-analytics.service';
 import { I18nService } from '@core/services/i18n/i18n.service';
 import { TranslocoHttpLoaderService } from '@core/services/transloco-http-loader/transloco-http-loader.service';
 import { DynamicRouteReuseStrategy } from '@core/strategies/dynamic-route-reuse.strategy';
 import { pageFlickeringStrategy } from '@core/strategies/page-flickering.strategy';
 import { environment } from '@environments/environment';
-import {
-  TranslocoConfig, translocoConfig, TRANSLOCO_CONFIG, TRANSLOCO_LOADER,
-} from '@ngneat/transloco';
-import { GoogleAnalyticsService } from '@core/services/google-analytics/google-analytics.service';
+import { translocoConfig, TRANSLOCO_CONFIG, TRANSLOCO_LOADER } from '@ngneat/transloco';
 import { RECAPTCHA_V3_SITE_KEY } from 'ng-recaptcha';
-import { firstValueFrom, map, take } from 'rxjs';
-
-export function translocoConfigFactory(configurationService: ConfigurationService): () => Promise<TranslocoConfig> {
-  return () => firstValueFrom(configurationService.configurationData$.pipe(
-    take(1),
-    map(configuration => translocoConfig({
-      ...configuration.i18n,
-      reRenderOnLangChange: true,
-      prodMode: environment.production,
-    })),
-  ));
-}
 
 export function googleRecaptchaFactory(configurationService: ConfigurationService): string {
   return configurationService.configurationData.googleRecaptchaSiteKey;
@@ -30,8 +16,11 @@ export function googleRecaptchaFactory(configurationService: ConfigurationServic
 
 export const translocoConfigProvider = {
   provide: TRANSLOCO_CONFIG,
-  useFactory: translocoConfigFactory,
-  deps: [ConfigurationService],
+  useValue: translocoConfig({
+    ...environment.i18n,
+    reRenderOnLangChange: true,
+    prodMode: environment.production,
+  }),
 };
 
 export const translocoLoaderProvider = {
