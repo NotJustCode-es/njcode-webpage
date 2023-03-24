@@ -58,8 +58,6 @@ jobs:
         envkey_MAIL_TO: ${{ secrets.MAIL_TO }}
         envkey_MAIL_SUBJECT: ${{ secrets.MAIL_SUBJECT }}
         envkey_GOOGLE_RECAPTCHA_SECRET_KEY: ${{ secrets.GOOGLE_RECAPTCHA_SECRET_KEY }}
-        envkey_DEFAULT_LANG: ${{ env.DEFAULT_LANG }}
-        envkey_AVAILABLE_LANGS: ${{ env.AVAILABLE_LANGS }}
         envkey_ASSETS_URL: ${{ env.ASSETS_URL }}
         envkey_GOOGLE_RECAPTCHA_SITE_KEY: ${{ env.GOOGLE_RECAPTCHA_SITE_KEY }}
         envkey_GOOGLE_ANALYTICS_ID: ${{ env.GOOGLE_ANALYTICS_ID }}
