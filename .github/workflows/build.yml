@@ -15,8 +15,6 @@ env:
   PREFIX: /api
   CONTENTFUL_ENVIRONMENT: master
   # Client configuration
-  DEFAULT_LANG: es
-  AVAILABLE_LANGS: en,es
   ASSETS_URL: https://theme.njcode.es
   GOOGLE_RECAPTCHA_SITE_KEY: 6LcMZ6gkAAAAAPHKo_cruQWbIixX4sQS1b2BFo3a
   GOOGLE_ANALYTICS_ID: G-6DENS4ZPR6

@@ -47,7 +47,7 @@ GOOGLE_RECAPTCHA_SECRET_KEY=
 # Client configuration
 DEFAULT_LANG=
 AVAILABLE_LANGS=
-ASSET_URL=
+ASSETS_URL=
 GOOGLE_RECAPTCHA_SITE_KEY=
 GOOGLE_ANALYTICS_ID=
 ```
@@ -69,9 +69,7 @@ The following table displays a list of environment variables used inside the app
 |MAIL_FROM                       |The email address from which the emails will be sent.                                   |Empty        |
 |MAIL_TO                         |The email address to which the emails will be sent.                                     |Empty        |
 |MAIL_SUBJECT                    |The subject line for the emails that will be sent.                                      |Empty        |
-|DEFAULT_LANG                    |The default language for the website.                                                   |en           |
-|AVAILABLE_LANGS                 |A comma-separated list of languages that are available for the website.                 |en           |
-|ASSET_URL                       |The URL prefix to use when constructing URLs for static assets.                         |Empty        |
+|ASSETS_URL                       |The URL prefix to use when constructing URLs for static assets.                         |Empty        |
 |GOOGLE_RECAPTCHA_SECRET_KEY     |The secret key used to authenticate with the Google reCAPTCHA API.                      |Empty        |
 |GOOGLE_RECAPTCHA_SITE_KEY       |The site key used to authenticate with the Google reCAPTCHA API.                        |Empty        |
 |GOOGLE_ANALYTICS_ID             |The ID used to track the website with Google Analytics.                                 |Empty        |

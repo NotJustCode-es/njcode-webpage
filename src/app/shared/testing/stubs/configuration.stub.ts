@@ -3,10 +3,6 @@ import { Observable, of } from 'rxjs';
 
 export class ConfigurationServiceStub {
   configuration: ClientConfiguration = {
-    i18n: {
-      defaultLang: 'en',
-      availableLangs: ['es', 'en'],
-    },
     assetsUrl: 'test',
     googleAnalyticsId: 'test',
     googleRecaptchaSiteKey: 'test',
