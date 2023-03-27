@@ -1,14 +1,19 @@
 {
   "moduleFileExtensions": [
-        "ts",
-        "tsx",
-        "js",
-        "json"
-    ],
-    "transform": {
-        "^.+\\.tsx?$": "ts-jest"
-    },
-    "testRegex": "/server/.*\\.(test|spec).(ts|tsx|js)$",
-    "collectCoverageFrom" : ["server/**/*.{js,jsx,tsx,ts}", "!**/node_modules/**", "!**/vendor/**"],
-    "coverageReporters": ["json", "lcov"]
+    "ts",
+    "tsx",
+    "js",
+    "json"
+  ],
+  "transform": {
+    "^.+\\.ts?$": [
+      "ts-jest",
+      {
+        "tsconfig": "tsconfig.json"
+      }
+    ]
+  },
+  "testRegex": "/server/.*\\.(test|spec).(ts|tsx|js)$",
+  "collectCoverageFrom" : ["server/**/*.{js,jsx,tsx,ts}", "!**/node_modules/**", "!**/vendor/**"],
+  "coverageReporters": ["json", "lcov"]
 }
