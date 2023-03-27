@@ -1,5 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { ConfigService } from '@nestjs/config';
+import { ContentfulApiService } from './contentful-api.service';
 import { ContentfulApiController } from './contentful-api.controller';
+import { contentfulConfig } from '../shared/testing/utils/contentfulConfig.utils';
 
 describe('ContentfulApiController', () => {
   let controller: ContentfulApiController;
@@ -9,6 +12,14 @@ describe('ContentfulApiController', () => {
       controllers: [
         ContentfulApiController,
       ],
+      providers: [ContentfulApiService,
+        {
+          provide: ConfigService,
+          useValue: {
+            get: jest.fn(() => contentfulConfig()),
+          },
+
+        }],
     }).compile();
 
     controller = module.get<ContentfulApiController>(ContentfulApiController);
