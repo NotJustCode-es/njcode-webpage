@@ -1,6 +1,6 @@
 import { ConfigService } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
-import { contentfulConfig } from '../shared/testing/utils/contentfulConfig.utils';
+import { configServiceStub } from '@server/shared/testing/stub/config-service.stub';
 import { ContentfulApiService } from './contentful-api.service';
 
 describe('ContentfulApiService', () => {
@@ -12,10 +12,7 @@ describe('ContentfulApiService', () => {
         ContentfulApiService,
         {
           provide: ConfigService,
-          useValue: {
-            get: jest.fn(() => contentfulConfig()),
-          },
-
+          useClass: configServiceStub,
         },
       ],
     }).compile();

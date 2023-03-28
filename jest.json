@@ -5,6 +5,9 @@
     "js",
     "json"
   ],
+  "moduleNameMapper": {
+    "^@server/(.*)$": "<rootDir>/server/$1"
+  },
   "transform": {
     "^.+\\.ts?$": [
       "ts-jest",
