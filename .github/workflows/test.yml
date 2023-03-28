@@ -27,3 +27,6 @@ jobs:
 
     - name: Test Angular App
       run: npm run test:ci
+
+    - name: Test Nest App
+      run: npm run server:test:ci
