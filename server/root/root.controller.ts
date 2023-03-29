@@ -23,7 +23,7 @@ export class RootController {
   @Header('Content-Type', 'application/xml')
   @Get('/sitemap.xml')
   getEntries(@Req() request: Request): Observable<string> {
-    const originUrl = `${request.protocol}://${request.get('x-forwarded-host')}`;
+    const originUrl = `${request.get('x-forwarded-proto')}://${request.get('x-forwarded-host')}`;
     return this.contentfulApiService.getAllPages(this.contentfulLimitPages)
       .pipe(
         switchMap(entries => from(this.rootService.getSitemap(entries, originUrl))),
@@ -34,7 +34,7 @@ export class RootController {
   @Header('Content-Type', 'text/plain')
   @Get('/robots.txt')
   getRobots(@Req() request: Request): string {
-    return this.rootService.getRobotsContent(request.protocol, request.get('x-forwarded-host')!);
+    return this.rootService.getRobotsContent(request.get('x-forwarded-proto'), request.get('x-forwarded-host'));
   }
 
   @Get('/configurations')
