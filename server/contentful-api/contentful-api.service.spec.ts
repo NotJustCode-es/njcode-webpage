@@ -1,7 +1,7 @@
 import { ConfigService } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
 import { configServiceStub } from '@server/shared/testing/stub/config-service.stub';
-import { ContentfulApiService } from './contentful-api.service';
+import { ContentfulApiService } from '@server/contentful-api/contentful-api.service';
 
 describe('ContentfulApiService', () => {
   let service: ContentfulApiService;

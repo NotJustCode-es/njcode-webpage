@@ -4,11 +4,11 @@ import { AngularUniversalModule } from '@nestjs/ng-universal';
 import { GoogleRecaptchaModule } from '@nestlab/google-recaptcha';
 import { IncomingMessage } from 'http';
 import { join } from 'path';
+import { RootModule } from '@server/root/root.module';
+import { ContactApiModule } from '@server/contact-api/contact-api.module';
+import { ContentfulApiModule } from '@server/contentful-api/contentful-api.module';
+import configFactory from '@server/core/config/config-factory';
 import { AppServerModule } from '../src/main.server';
-import { ContactApiModule } from './contact-api/contact-api.module';
-import { ContentfulApiModule } from './contentful-api/contentful-api.module';
-import configFactory from './core/config/config-factory';
-import { RootModule } from './root/root.module';
 
 const browserAppLocation = 'dist/njcode-webpage/browser';
 

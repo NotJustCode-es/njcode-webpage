@@ -6,8 +6,8 @@ import { ClientConfiguration } from '@server/core/models/client-configuration';
 import { configServiceStub } from '@server/shared/testing/stub/config-service.stub';
 import { contentfulApiStub } from '@server/shared/testing/stub/contentful-api.stub';
 import { Request } from 'express';
-import { RootController } from './root.controller';
-import { RootService } from './root.service';
+import { RootController } from '@server/root/root.controller';
+import { RootService } from '@server/root/root.service';
 
 describe('ContactController', () => {
   let controller: RootController;

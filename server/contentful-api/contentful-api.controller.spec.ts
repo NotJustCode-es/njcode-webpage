@@ -3,8 +3,8 @@ import { ConfigService } from '@nestjs/config';
 import { configServiceStub } from '@server/shared/testing/stub/config-service.stub';
 import { ContentfulPageQueryParams } from '@server/models/contentful-page-query-params';
 import { contentfulApiStub } from '@server/shared/testing/stub/contentful-api.stub';
-import { ContentfulApiService } from './contentful-api.service';
-import { ContentfulApiController } from './contentful-api.controller';
+import { ContentfulApiService } from '@server/contentful-api/contentful-api.service';
+import { ContentfulApiController } from '@server/contentful-api/contentful-api.controller';
 
 describe('ContentfulApiController', () => {
   let controller: ContentfulApiController;

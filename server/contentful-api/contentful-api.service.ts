@@ -2,10 +2,10 @@ import { Inject, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { ContentfulClientApi, createClient, EntryCollectionWithLinkResolutionAndWithUnresolvableLinks } from 'contentful';
 import { from, Observable } from 'rxjs';
-import { ContentfulConfiguration } from '../core/models/contentful-configuration';
-import { ContentfulContentTypes } from '../models/contentful-content-types.enum';
-import { TypePageFields } from '../models/contentful-content-types/page';
-import { ContentfulPageQueryParams } from '../models/contentful-page-query-params';
+import { ContentfulConfiguration } from '@server/core/models/contentful-configuration';
+import { ContentfulContentTypes } from '@server/models/contentful-content-types.enum';
+import { TypePageFields } from '@server/models/contentful-content-types/page';
+import { ContentfulPageQueryParams } from '@server/models/contentful-page-query-params';
 
 @Injectable()
 export class ContentfulApiService {

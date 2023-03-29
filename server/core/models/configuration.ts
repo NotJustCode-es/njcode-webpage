@@ -1,5 +1,5 @@
 import { ClientConfiguration } from '@server/core/models/client-configuration';
-import { ContentfulConfiguration } from './contentful-configuration';
+import { ContentfulConfiguration } from '@server/core/models/contentful-configuration';
 
 export interface Configuration {
   port: number;

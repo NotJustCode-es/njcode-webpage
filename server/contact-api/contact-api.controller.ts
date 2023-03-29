@@ -7,8 +7,8 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { Recaptcha } from '@nestlab/google-recaptcha';
-import { ContactApiService } from './contact-api.service';
-import { MailParams } from '../models/mail-params';
+import { ContactApiService } from '@server/contact-api/contact-api.service';
+import { MailParams } from '@server/models/mail-params';
 
 @Controller('contact')
 export class ContactApiController {

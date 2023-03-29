@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getTestSitemap } from '@server/shared/testing/snapshots/sitemap.snapshot.xml';
 import { createTestEntryCollection } from '@server/shared/testing/utils/contentful-entry-collection.util';
-import { RootService } from './root.service';
+import { RootService } from '@server/root/root.service';
 
 describe('RootService', () => {
   let service: RootService;

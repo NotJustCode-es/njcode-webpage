@@ -1,7 +1,7 @@
 import { MailerService } from '@nestjs-modules/mailer';
 import { Test, TestingModule } from '@nestjs/testing';
 import { contactStub } from '@server/shared/testing/stub/contact.stub';
-import { ContactApiService } from './contact-api.service';
+import { ContactApiService } from '@server/contact-api/contact-api.service';
 
 describe('ContactService', () => {
   let service: ContactApiService;

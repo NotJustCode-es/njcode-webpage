@@ -2,9 +2,9 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { contactStub } from '@server/shared/testing/stub/contact.stub';
 import { MailerService } from '@nestjs-modules/mailer';
 import { MailParams } from '@server/models/mail-params';
-import { getRecaptchaTestingModule } from '../shared/testing/recaptcha-testing.module';
-import { ContactApiService } from './contact-api.service';
-import { ContactApiController } from './contact-api.controller';
+import { getRecaptchaTestingModule } from '@server/shared/testing/recaptcha-testing.module';
+import { ContactApiService } from '@server/contact-api/contact-api.service';
+import { ContactApiController } from '@server/contact-api/contact-api.controller';
 
 describe('ContactController', () => {
   let controller: ContactApiController;
