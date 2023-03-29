@@ -18,5 +18,6 @@
   },
   "testRegex": "/server/.*\\.(test|spec).(ts|tsx|js)$",
   "collectCoverageFrom" : ["server/**/*.{js,jsx,tsx,ts}", "!**/node_modules/**", "!**/vendor/**"],
-  "coverageReporters": ["json", "lcov"]
+  "coverageReporters": ["json", "lcov"],
+  "coverageDirectory": "<rootDir>/coverage/njcode-webpage/server"
 }

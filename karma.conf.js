@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/njcode-webpage'),
+      dir: require('path').join(__dirname, './coverage/njcode-webpage/browser'),
       subdir: '.',
       reporters: [
         { type: 'html' },

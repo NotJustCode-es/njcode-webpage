@@ -1,13 +1,13 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { ConfigService } from '@nestjs/config';
-import { contentfulApiStub } from '@server/shared/testing/stub/contentful-api.stub';
-import { ContentfulApiService } from '@server/contentful-api/contentful-api.service';
-import { configServiceStub } from '@server/shared/testing/stub/config-service.stub';
-import { Request, Response } from 'express';
 import { expect, jest } from '@jest/globals';
+import { ConfigService } from '@nestjs/config';
+import { Test, TestingModule } from '@nestjs/testing';
+import { ContentfulApiService } from '@server/contentful-api/contentful-api.service';
 import { ClientConfiguration } from '@server/core/models/client-configuration';
-import { RootService } from './root.service';
+import { configServiceStub } from '@server/shared/testing/stub/config-service.stub';
+import { contentfulApiStub } from '@server/shared/testing/stub/contentful-api.stub';
+import { Request } from 'express';
 import { RootController } from './root.controller';
+import { RootService } from './root.service';
 
 describe('ContactController', () => {
   let controller: RootController;
@@ -20,10 +20,6 @@ describe('ContactController', () => {
       return 'localhost:4200';
     },
   } as unknown as Request;
-
-  const responseMock = {
-    send: jest.fn(data => data),
-  } as unknown as Response;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -59,7 +55,7 @@ describe('ContactController', () => {
 
   it('should call robots', () => {
     const serviceSpy = jest.spyOn(service, 'getRobotsContent');
-    controller.getRobots(responseMock, requestMock);
+    controller.getRobots(requestMock);
     expect(serviceSpy).toHaveBeenCalledWith(requestMock.protocol, requestMock.get(''));
   });
 
