@@ -1,6 +1,6 @@
 import { MailerService } from '@nestjs-modules/mailer';
 import { Inject, Injectable } from '@nestjs/common';
-import { MailParams } from '../models/mail-params';
+import { MailParams } from '@server/models/mail-params';
 
 @Injectable()
 export class ContactApiService {

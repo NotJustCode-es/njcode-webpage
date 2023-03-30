@@ -1,12 +1,20 @@
+import { MailerService } from '@nestjs-modules/mailer';
 import { Test, TestingModule } from '@nestjs/testing';
-import { ContactApiService } from './contact-api.service';
+import { contactStub } from '@server/shared/testing/stub/contact.stub';
+import { ContactApiService } from '@server/contact-api/contact-api.service';
 
 describe('ContactService', () => {
   let service: ContactApiService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [ContactApiService],
+      providers: [
+        ContactApiService,
+        {
+          provide: MailerService,
+          useClass: contactStub,
+        },
+      ],
     }).compile();
 
     service = module.get<ContactApiService>(ContactApiService);

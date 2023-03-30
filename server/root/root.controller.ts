@@ -8,7 +8,7 @@ import { Request } from 'express';
 import {
   from, map, Observable, switchMap,
 } from 'rxjs';
-import { RootService } from './root.service';
+import { RootService } from '@server/root/root.service';
 
 @Controller()
 export class RootController {

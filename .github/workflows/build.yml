@@ -43,6 +43,9 @@ jobs:
     - name: Test Angular App
       run: npm run test:ci
 
+    - name: Test Nest App
+      run: npm run server:test:ci
+
     - name: Make .env file
       uses: SpicyPizza/create-envfile@v1.3
       with:

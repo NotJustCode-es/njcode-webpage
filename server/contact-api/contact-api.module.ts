@@ -3,8 +3,8 @@ import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handleba
 import { Module } from '@nestjs/common';
 import { join } from 'path';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { ContactApiController } from './contact-api.controller';
-import { ContactApiService } from './contact-api.service';
+import { ContactApiController } from '@server/contact-api/contact-api.controller';
+import { ContactApiService } from '@server/contact-api/contact-api.service';
 
 @Module({
   imports: [

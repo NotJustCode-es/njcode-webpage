@@ -1,5 +1,7 @@
+import { ConfigService } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
-import { ContentfulApiService } from './contentful-api.service';
+import { configServiceStub } from '@server/shared/testing/stub/config-service.stub';
+import { ContentfulApiService } from '@server/contentful-api/contentful-api.service';
 
 describe('ContentfulApiService', () => {
   let service: ContentfulApiService;
@@ -8,6 +10,10 @@ describe('ContentfulApiService', () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         ContentfulApiService,
+        {
+          provide: ConfigService,
+          useClass: configServiceStub,
+        },
       ],
     }).compile();
 

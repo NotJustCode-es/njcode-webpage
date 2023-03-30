@@ -8,13 +8,14 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test --watch=true --code-coverage",
     "test:ci": "ng test --no-watch --no-progress --code-coverage --browsers=ChromeHeadless",
-    "test:server": "jest --config=jest.json",
+    "server:test": "jest --config=jest.json",
+    "server:test:ci": "jest --config=jest.json --coverage=true",
     "lint": "eslint -c .eslintrc.json --ext .ts .",
-    "dev:ssr": "npm run copy:templates && ng run njcode-webpage:serve-ssr",
+    "dev:ssr": "npm run server:copy:templates && ng run njcode-webpage:serve-ssr",
     "serve:ssr": "node dist/njcode-webpage/server/main.js",
-    "build:ssr": "ng build --configuration production && ng run njcode-webpage:server:production && npm run copy:templates",
+    "build:ssr": "ng build --configuration production && ng run njcode-webpage:server:production && npm run server:copy:templates",
     "prerender": "ng run njcode-webpage:prerender",
-    "copy:templates": "mkdir -p dist/njcode-webpage/server/templates && cp -R server/templates dist/njcode-webpage/server/templates"
+    "server:copy:templates": "mkdir -p dist/njcode-webpage/server/templates && cp -R server/templates dist/njcode-webpage/server/templates"
   },
   "private": true,
   "dependencies": {
