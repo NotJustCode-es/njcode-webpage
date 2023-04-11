@@ -27,6 +27,7 @@ Before you can run the project, you will need to set up an account with Contentf
 # Server configuration
 PORT=
 PREFIX=
+HOSTNAME=
 
 # Contentful configuration
 CONTENTFUL_SPACE_ID=
@@ -56,9 +57,10 @@ The following table displays a list of environment variables used inside the app
 
 |Variable Name                   |Description                                                                             |Default Value|
 |--------------------------------|----------------------------------------------------------------------------------------|-------------|
-|PORT                            |The port number on which the server will listen for incoming requests.                  |4000         |
+|PORT                            |The port number on which the server will listen for incoming requests.                                |4000         |
 |PREFIX                          |The prefix that should be used for all the API routes.                                  |/api         |
-|CONTENTFUL_SPACE_ID             |The unique identifier of the space in Contentful that contains the content to be served.|Empty        |
+|HOSTNAME                          |Protocol plus origin of the site.                                    |Empty         |
+|CONTENTFUL_SPACE_ID             |The unique identifier of the space in Contentful that contains the content to be served.                    |Empty        |
 |CONTENTFUL_ACCESS_TOKEN         |The access token used to authenticate with Contentful API.                              |Empty        |
 |CONTENTFUL_ENVIRONMENT          |The environment within the Contentful space to be used.                                 |Empty        |
 |MAIL_HOST                       |The hostname of the mail server to be used to send emails.                              |Empty        |
