@@ -19,8 +19,8 @@ describe('RootService', () => {
   });
 
   test('sitemap should generate proper xml', () => {
-    const originUrl = 'http://localhost:4200';
-    service.getSitemap(createTestEntryCollection(), originUrl)
+    const HOSTNAME = 'http://localhost:4200';
+    service.getSitemap(createTestEntryCollection(), HOSTNAME)
       .then(
         data => {
           expect(data.toString()).toBe(getTestSitemap());
@@ -29,8 +29,7 @@ describe('RootService', () => {
   });
 
   it('should create valid robots', () => {
-    const protocol = 'https';
-    const origin = 'localhost:4200';
-    expect(service.getRobotsContent(protocol, origin)).toEqual(`User-agent: * \nDisallow: \nSitemap: ${protocol}://${origin}/sitemap.xml`);
+    const HOSTNAME = 'http://localhost:4200';
+    expect(service.getRobotsContent(HOSTNAME)).toEqual(`User-agent: * \nDisallow: \nSitemap: ${HOSTNAME}/sitemap.xml`);
   });
 });

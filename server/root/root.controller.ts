@@ -1,10 +1,9 @@
 import {
-  Controller, Get, Header, Inject, Req,
+  Controller, Get, Header, Inject,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { ContentfulApiService } from '@server/contentful-api/contentful-api.service';
 import { ClientConfiguration } from '@server/core/models/client-configuration';
-import { Request } from 'express';
 import {
   from, map, Observable, switchMap,
 } from 'rxjs';
@@ -22,19 +21,18 @@ export class RootController {
 
   @Header('Content-Type', 'application/xml')
   @Get('/sitemap.xml')
-  getEntries(@Req() request: Request): Observable<string> {
-    const originUrl = `${request.get('x-forwarded-proto')}://${request.get('x-forwarded-host')}`;
+  getEntries(): Observable<string> {
     return this.contentfulApiService.getAllPages(this.contentfulLimitPages)
       .pipe(
-        switchMap(entries => from(this.rootService.getSitemap(entries, originUrl))),
+        switchMap(entries => from(this.rootService.getSitemap(entries, this.configService.get<string>('HOSTNAME')))),
         map(xml => xml.toString()),
       );
   }
 
   @Header('Content-Type', 'text/plain')
   @Get('/robots.txt')
-  getRobots(@Req() request: Request): string {
-    return this.rootService.getRobotsContent(request.get('x-forwarded-proto'), request.get('x-forwarded-host'));
+  getRobots(): string {
+    return this.rootService.getRobotsContent(this.configService.get<string>('HOSTNAME'));
   }
 
   @Get('/configurations')
