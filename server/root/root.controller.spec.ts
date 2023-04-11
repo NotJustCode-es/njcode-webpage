@@ -61,8 +61,8 @@ describe('ContactController', () => {
 
   it('should call robots', () => {
     const serviceSpy = jest.spyOn(service, 'getRobotsContent');
-    controller.getRobots(requestMock);
-    expect(serviceSpy).toHaveBeenCalledWith(requestMock.get('x-forwarded-proto'), requestMock.get('x-forwarded-host'));
+    controller.getRobots();
+    expect(serviceSpy).toHaveBeenCalled();
   });
 
   it('should return client configuration', () => {

@@ -29,8 +29,6 @@ describe('RootService', () => {
   });
 
   it('should create valid robots', () => {
-    const protocol = 'https';
-    const origin = 'localhost:4200';
-    expect(service.getRobotsContent(protocol, origin)).toEqual(`User-agent: * \nDisallow: \nSitemap: ${protocol}://${origin}/sitemap.xml`);
+    expect(service.getRobotsContent()).toEqual('User-agent: * \nDisallow:/');
   });
 });
