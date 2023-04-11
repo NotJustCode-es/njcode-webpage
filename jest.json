@@ -6,7 +6,8 @@
     "json"
   ],
   "moduleNameMapper": {
-    "^@server/(.*)$": "<rootDir>/server/$1"
+    "^@server/(.*)$": "<rootDir>/server/$1",
+    "^@environments/(.*)$": "<rootDir>/src/environments/$1"
   },
   "transform": {
     "^.+\\.ts?$": [
