@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { TypePageFields } from '@server/models/contentful-content-types/page';
 import { EntryCollectionWithLinkResolutionAndWithUnresolvableLinks } from 'contentful';
+import { environment } from '@environments/environment';
 import {
   EnumChangefreq, SitemapItem, SitemapStream, streamToPromise,
 } from 'sitemap';
@@ -8,13 +9,12 @@ import {
 @Injectable()
 export class RootService {
   async getSitemap(entries: EntryCollectionWithLinkResolutionAndWithUnresolvableLinks<TypePageFields>, originUrl: string): Promise<Buffer> {
-    const available_langs = process.env['AVAILABLE_LANGS']!.split(',');
     const sitemapStream = new SitemapStream({
       hostname: originUrl,
     });
 
     entries.items.forEach(entry => {
-      available_langs.forEach(lang => {
+      environment.i18n.availableLangs.forEach(lang => {
         sitemapStream.write({
           changefreq: EnumChangefreq.MONTHLY,
           lastmod: entry.sys.updatedAt,
