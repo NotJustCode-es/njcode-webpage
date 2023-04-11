@@ -13,6 +13,7 @@ env:
   # Server configuration
   PORT: 4000
   PREFIX: /api
+  HOSTNAME: https://www.njcode.es/
   CONTENTFUL_ENVIRONMENT: master
   # Client configuration
   ASSETS_URL: https://theme.njcode.es
@@ -51,6 +52,7 @@ jobs:
       with:
         envkey_PORT: ${{ env.PORT }}
         envkey_PREFIX: ${{ env.PREFIX }}
+        envkey_HOSTNAME: ${{ env.HOSTNAME }}
         envkey_CONTENTFUL_ENVIRONMENT: ${{ env.CONTENTFUL_ENVIRONMENT }}
         envkey_CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
         envkey_CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
