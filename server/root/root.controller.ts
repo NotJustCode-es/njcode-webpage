@@ -24,7 +24,7 @@ export class RootController {
   getEntries(): Observable<string> {
     return this.contentfulApiService.getAllPages(this.contentfulLimitPages)
       .pipe(
-        switchMap(entries => from(this.rootService.getSitemap(entries, this.configService.get<string>('HOSTNAME')))),
+        switchMap(entries => from(this.rootService.getSitemap(entries, this.configService.get<string>('hostname')))),
         map(xml => xml.toString()),
       );
   }
@@ -32,7 +32,7 @@ export class RootController {
   @Header('Content-Type', 'text/plain')
   @Get('/robots.txt')
   getRobots(): string {
-    return this.rootService.getRobotsContent(this.configService.get<string>('HOSTNAME'));
+    return this.rootService.getRobotsContent(this.configService.get<string>('hostname'));
   }
 
   @Get('/configurations')

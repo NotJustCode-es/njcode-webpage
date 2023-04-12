@@ -42,13 +42,13 @@ describe('ContactController', () => {
   it('should call sitemap', () => {
     const serviceSpy = jest.spyOn(service, 'getSitemap');
     controller.getEntries().subscribe();
-    expect(serviceSpy).toHaveBeenCalledWith(expect.anything(), configStub.get<string>('HOSTNAME'));
+    expect(serviceSpy).toHaveBeenCalledWith(expect.anything(), configStub.get<string>('hostname'));
   });
 
   it('should call robots', () => {
     const serviceSpy = jest.spyOn(service, 'getRobotsContent');
     controller.getRobots();
-    expect(serviceSpy).toHaveBeenCalledWith(configStub.get<string>('HOSTNAME'));
+    expect(serviceSpy).toHaveBeenCalledWith(configStub.get<string>('hostname'));
   });
 
   it('should return client configuration', () => {

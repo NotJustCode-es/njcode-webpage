@@ -19,8 +19,8 @@ describe('RootService', () => {
   });
 
   test('sitemap should generate proper xml', () => {
-    const HOSTNAME = 'http://localhost:4200';
-    service.getSitemap(createTestEntryCollection(), HOSTNAME)
+    const hostname = 'http://localhost:4200';
+    service.getSitemap(createTestEntryCollection(), hostname)
       .then(
         data => {
           expect(data.toString()).toBe(getTestSitemap());
@@ -29,7 +29,7 @@ describe('RootService', () => {
   });
 
   it('should create valid robots', () => {
-    const HOSTNAME = 'http://localhost:4200';
-    expect(service.getRobotsContent(HOSTNAME)).toEqual(`User-agent: * \nDisallow: \nSitemap: ${HOSTNAME}/sitemap.xml`);
+    const hostname = 'http://localhost:4200';
+    expect(service.getRobotsContent(hostname)).toEqual(`User-agent: * \nDisallow: \nSitemap: ${hostname}/sitemap.xml`);
   });
 });

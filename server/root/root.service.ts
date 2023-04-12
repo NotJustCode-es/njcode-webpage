@@ -7,9 +7,9 @@ import {
 
 @Injectable()
 export class RootService {
-  async getSitemap(entries: EntryCollectionWithLinkResolutionAndWithUnresolvableLinks<TypePageFields>, HOSTNAME?: string): Promise<Buffer> {
+  async getSitemap(entries: EntryCollectionWithLinkResolutionAndWithUnresolvableLinks<TypePageFields>, hostname?: string): Promise<Buffer> {
     const sitemapStream = new SitemapStream({
-      hostname: HOSTNAME,
+      hostname,
     });
 
     entries.items.forEach(entry => {
@@ -25,7 +25,7 @@ export class RootService {
     return streamToPromise(sitemapStream);
   }
 
-  getRobotsContent(HOSTNAME?: string): string {
-    return `User-agent: * \nDisallow: \nSitemap: ${HOSTNAME}/sitemap.xml`;
+  getRobotsContent(hostname?: string): string {
+    return `User-agent: * \nDisallow: \nSitemap: ${hostname}/sitemap.xml`;
   }
 }
