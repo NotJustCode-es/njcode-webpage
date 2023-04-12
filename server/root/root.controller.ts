@@ -32,7 +32,7 @@ export class RootController {
   @Header('Content-Type', 'text/plain')
   @Get('/robots.txt')
   getRobots(): string {
-    return this.rootService.getRobotsContent(this.configService.get<string>('hostname'));
+    return this.rootService.getRobotsContent();
   }
 
   @Get('/configurations')

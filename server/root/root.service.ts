@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { TypePageFields } from '@server/models/contentful-content-types/page';
 import { EntryCollectionWithLinkResolutionAndWithUnresolvableLinks } from 'contentful';
+import { environment } from '@environments/environment';
 import {
   EnumChangefreq, SitemapItem, SitemapStream, streamToPromise,
 } from 'sitemap';
@@ -13,19 +14,21 @@ export class RootService {
     });
 
     entries.items.forEach(entry => {
-      sitemapStream.write({
-        changefreq: EnumChangefreq.MONTHLY,
-        lastmod: entry.sys.updatedAt,
-        priority: 1.0,
-        url: entry.fields.slug,
-      } as SitemapItem);
+      environment.i18n.availableLangs.forEach(lang => {
+        sitemapStream.write({
+          changefreq: EnumChangefreq.MONTHLY,
+          lastmod: entry.sys.updatedAt,
+          priority: 1.0,
+          url: `${lang}${entry.fields.slug}`,
+        } as SitemapItem);
+      });
     });
 
     sitemapStream.end();
     return streamToPromise(sitemapStream);
   }
 
-  getRobotsContent(hostname?: string): string {
-    return `User-agent: * \nDisallow: \nSitemap: ${hostname}/sitemap.xml`;
+  getRobotsContent(): string {
+    return 'User-agent: * \nDisallow:/';
   }
 }

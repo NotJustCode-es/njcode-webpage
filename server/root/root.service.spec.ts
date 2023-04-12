@@ -29,7 +29,6 @@ describe('RootService', () => {
   });
 
   it('should create valid robots', () => {
-    const hostname = 'http://localhost:4200';
-    expect(service.getRobotsContent(hostname)).toEqual(`User-agent: * \nDisallow: \nSitemap: ${hostname}/sitemap.xml`);
+    expect(service.getRobotsContent()).toEqual('User-agent: * \nDisallow:/');
   });
 });

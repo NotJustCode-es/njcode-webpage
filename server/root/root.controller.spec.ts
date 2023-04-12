@@ -48,7 +48,7 @@ describe('ContactController', () => {
   it('should call robots', () => {
     const serviceSpy = jest.spyOn(service, 'getRobotsContent');
     controller.getRobots();
-    expect(serviceSpy).toHaveBeenCalledWith(configStub.get<string>('hostname'));
+    expect(serviceSpy).toHaveBeenCalled();
   });
 
   it('should return client configuration', () => {
