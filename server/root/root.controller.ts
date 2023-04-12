@@ -33,8 +33,8 @@ export class RootController {
 
   @Header('Content-Type', 'text/plain')
   @Get('/robots.txt')
-  getRobots(@Req() request: Request): string {
-    return this.rootService.getRobotsContent(request.get('x-forwarded-proto'), request.get('x-forwarded-host'));
+  getRobots(): string {
+    return this.rootService.getRobotsContent();
   }
 
   @Get('/configurations')
