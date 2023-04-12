@@ -3,6 +3,7 @@ import { Configuration } from '@server/core/models/configuration';
 export default (): Configuration => ({
   port: parseInt(process.env['PORT'] || '4000', 10),
   prefix: process.env['PREFIX'] || '/api',
+  hostname: process.env['HOSTNAME'] || 'http://localhost:4200',
   contentful: {
     spaceId: process.env['CONTENTFUL_SPACE_ID'] || '',
     accessToken: process.env['CONTENTFUL_ACCESS_TOKEN'] || '',

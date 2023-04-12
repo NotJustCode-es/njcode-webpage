@@ -8,9 +8,9 @@ import {
 
 @Injectable()
 export class RootService {
-  async getSitemap(entries: EntryCollectionWithLinkResolutionAndWithUnresolvableLinks<TypePageFields>, originUrl: string): Promise<Buffer> {
+  async getSitemap(entries: EntryCollectionWithLinkResolutionAndWithUnresolvableLinks<TypePageFields>, hostname?: string): Promise<Buffer> {
     const sitemapStream = new SitemapStream({
-      hostname: originUrl,
+      hostname,
     });
 
     entries.items.forEach(entry => {

@@ -19,8 +19,8 @@ describe('RootService', () => {
   });
 
   test('sitemap should generate proper xml', () => {
-    const originUrl = 'http://localhost:4200';
-    service.getSitemap(createTestEntryCollection(), originUrl)
+    const hostname = 'http://localhost:4200';
+    service.getSitemap(createTestEntryCollection(), hostname)
       .then(
         data => {
           expect(data.toString()).toBe(getTestSitemap());

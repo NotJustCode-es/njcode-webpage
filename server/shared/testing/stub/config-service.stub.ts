@@ -4,6 +4,7 @@ export class configServiceStub {
   config: Configuration = {
     port: 4000,
     prefix: '/api',
+    hostname: 'http://localhost:4200',
     contentful: {
       spaceId: 'spaceId',
       accessToken: 'accessToken',

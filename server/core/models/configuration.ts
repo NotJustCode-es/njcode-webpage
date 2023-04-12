@@ -4,6 +4,7 @@ import { ContentfulConfiguration } from '@server/core/models/contentful-configur
 export interface Configuration {
   port: number;
   prefix: string;
+  hostname: string;
   contentful: ContentfulConfiguration;
   client: ClientConfiguration;
 }
