@@ -4,35 +4,43 @@
     <div class="row mb-3">
       <div class="col-md-10 col-xl-9 col-xxl-7 mx-auto text-center">
         <img [src]="getIconPath(data.icon)" class="icon-svg icon-svg-sm mb-3 " [alt]="data.title"/>
-        <h2 class="display-4 mb-3 px-lg-14">{{ data.title }}</h2>
+        <h2 class="display-4 mb-3 px-lg-14">
+          {{ data.title }}
+        </h2>
       </div>
       <!--/column -->
     </div>
     <!--/.row -->
     <div class="position-relative">
-      <div class="shape rounded-circle bg-soft-yellow rellax w-16 h-16" data-rellax-speed="1"
-      ></div>
-      <div class="shape rounded-circle bg-line red rellax w-16 h-16" data-rellax-speed="1"
-      ></div>
+      <div class="shape rounded-circle bg-soft-yellow rellax w-16 h-16" data-rellax-speed="1">
+      </div>
+      <div class="shape rounded-circle bg-line red rellax w-16 h-16" data-rellax-speed="1">
+      </div>
       <div class="swiper-container dots-closer mb-6" data-margin="0" data-dots="true" data-items-xxl="4"
         data-items-lg="3" data-items-md="2" data-items-xs="1">
         <div class="swiper">
           <div class="swiper-wrapper">
-
             <ng-container *ngFor="let card of data?.clientCards">
               <!--/.swiper-slide -->
               <div class="swiper-slide">
                 <div class="item-inner">
                   <div class="card">
                     <div class="card-body">
-                      <img [src]="card.fields.clientPhoto.fields.file?.url" [alt]="card.fields.clientName"/>
-                      <h4 class="mb-1">{{ card.fields.clientName }}</h4>
-                      <div class="meta mb-2">{{ card.fields.position }}</div>
-                      <p class="mb-2">{{ card.fields.description }}</p>
+                      <h4 class="mb-1">
+                        {{ card.fields.clientName }}
+                      </h4>
+                      <div class="meta mb-2">
+                        {{ card.fields.position }}
+                      </div>
+                      <p class="mb-2">
+                        {{ card.fields.description }}
+                      </p>
                       <ng-container *ngFor="let socialMedia of card.fields.socialMedia">
                         <nav class="nav social mb-0">
-                          <a [href]="socialMedia.fields.href"><i
-                              class="uil uil-twitter"></i></a>
+                          <a rel="nofollow" [href]="socialMedia.fields.href" target="_blank">
+                            <i class="uil uil-{{ socialMedia.fields.title }}">
+                            </i>
+                          </a>
                         </nav>
                       </ng-container>
                       <!-- /.social -->
