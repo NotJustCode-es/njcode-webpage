@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row gx-0">
+    <aside class="col-xl-3 sidebar sticky-sidebar mt-md-0 py-16 d-none d-xl-block">
+      <div class="widget">
+        <nav id="sidebar-nav">
+          <ul class="list-unstyled text-reset">
+            <ng-container *ngFor="let legalEntry of data?.legalEntries">
+              <li><a class="nav-link scroll active" href="#{{ legalEntry.fields.title }}">{{ legalEntry.fields.title }}</a></li>
+            </ng-container>
+            
+          </ul>
+        </nav>
+        <!-- /nav -->
+      </div>
+      <!-- /.widget -->
+    </aside>
+    <!-- /column -->
+
+    <div class="col-xl-8">
+      <ng-container *ngFor="let legalEntry of data?.legalEntries">
+        <section id="{{ legalEntry.fields.title }}" class="wrapper pt-16">
+          <div class="card">
+            <div class="card-body p-10">
+              <h2 class="mb-3">{{ legalEntry.fields.title }}</h2>
+              <pre>{{ legalEntry.fields.description }} </pre>
+              <ul class="icon-list bullet-bg bullet-soft-primary mb-0">
+                <ng-container *ngFor="let checkPoint of legalEntry.fields.checkPoints">
+                  <li><span><i class="uil uil-check"></i></span><span>{{ checkPoint }}.</span></li>
+                </ng-container>
+              </ul>
+            </div>
+            <!--/.card-body -->
+          </div>
+          <!--/.card -->
+        </section>
+      </ng-container>
+    </div>
+    <!-- /column -->
+  </div>
+  <!-- /.row -->
+</div>
