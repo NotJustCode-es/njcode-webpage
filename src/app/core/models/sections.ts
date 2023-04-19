@@ -35,4 +35,8 @@ export const SECTIONS: Map<string, Function> = new Map([
     'section-contact-form',
     (): Promise<unknown> => import('@sections/section-contact-form/section-contact-form.module').then(m => m.SectionContactFormModule),
   ],
+  [
+    'section-legal',
+    (): Promise<unknown> => import('@sections/section-legal/section-legal.module').then(m => m.SectionLegalModule),
+  ],
 ]);
