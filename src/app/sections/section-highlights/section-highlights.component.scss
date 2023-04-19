@@ -1,3 +1,9 @@
 :host {
   display: grid;
 }
+
+.col-centered {
+  float: none;
+  margin-right: auto;
+  margin-left: auto;
+}
