@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SectionLegalComponent } from './section-legal.component';
 
 describe('SectionLegalComponent', () => {
@@ -19,5 +18,10 @@ describe('SectionLegalComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('#getHref', () => {
+    const testSectionId = 'testSectionId';
+    expect(component.getHref(testSectionId)).toEqual(`#${testSectionId}`);
   });
 });
