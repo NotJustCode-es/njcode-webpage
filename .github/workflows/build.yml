@@ -1,8 +1,6 @@
 name: Build njcode-webpage and deploy on AWS EB
 
-on:
- push:
-   branches: [ main ]
+on: [ push ]
 
 env:
   # AWS
@@ -89,11 +87,16 @@ jobs:
       with:
         name: ${{ env.ARTIFACT_NAME }}
 
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ env.AWS_REGION }}
+
     - name: Deploy to EB
       uses: einaregilsson/beanstalk-deploy@v21
       with:
-        aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         application_name: ${{ env.APPLICATION_NAME }}
         environment_name: ${{ env.AWS_ENVIRONMENT_NAME }}
         version_label: ${{ github.SHA }}
