@@ -1,6 +1,8 @@
 name: Build njcode-webpage and deploy on AWS EB
 
-on: [ push ]
+on:
+ push:
+   branches: [ main ]
 
 env:
   # AWS
