@@ -2,6 +2,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CookieBannerModule } from '@components/cookie-banner/cookie-banner.module';
 import { PageLoaderModule } from '@components/page-loader/page-loader.module';
 import { CoreModule } from '@core/core.module';
 import { BrowserStateInterceptor } from '@interceptors/browser-state.interceptor';
@@ -24,6 +25,7 @@ import { AppComponent } from 'src/app/app.component';
     AppRoutingModule,
     CoreModule,
     PageLoaderModule,
+    CookieBannerModule,
   ],
   providers: [
     {

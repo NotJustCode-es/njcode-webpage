@@ -39,6 +39,7 @@
               "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ],
             "allowedCommonJsDependencies": [
+              "@contentful/rich-text-html-renderer",
               "flat"
             ]
           },
