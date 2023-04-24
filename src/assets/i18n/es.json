@@ -5,8 +5,8 @@
         "BUTTON_TITLE": "Ir a la página de inicio"
     },
     "COOKIE_MODAL": {
-        "TITLE":"Política de cookies",
-        "DESCRIPTION":"Utilizamos cookies para personalizar el contenido de nuestro sitio para su uso.",
+        "TITLE":"Uso de cookies",
+        "DESCRIPTION":"Este portal web únicamente utiliza cookies propias con finalidad técnica y analítica. Para más información consulte nuestra política de",
         "ACCEPT":"Lo entiendo"
     }
 }

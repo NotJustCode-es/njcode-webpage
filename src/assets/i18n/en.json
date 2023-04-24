@@ -5,8 +5,8 @@
         "BUTTON_TITLE": "Go to Homepage"
     },
     "COOKIE_MODAL": {
-        "TITLE":"Cookie Policy",
-        "DESCRIPTION":"We use cookies to personalize content to make our site easier for you to use.",
+        "TITLE":"Use of cookies",
+        "DESCRIPTION":"This web portal only uses its own cookies for technical and analytical purposes. For more information see our privacy policy of",
         "ACCEPT": "I understand"
     }
 }
