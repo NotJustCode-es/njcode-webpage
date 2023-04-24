@@ -3,5 +3,10 @@
         "TITLE": "Oops! Página no encontrada.",
         "DESCRIPTION": "La página que busca no está disponible o se ha movido. Pruebe con una página diferente o vaya a la página de inicio con el botón de abajo.",
         "BUTTON_TITLE": "Ir a la página de inicio"
+    },
+    "COOKIE_MODAL": {
+        "TITLE":"Política de cookies",
+        "DESCRIPTION":"Utilizamos cookies para personalizar el contenido de nuestro sitio para su uso.",
+        "ACCEPT":"Lo entiendo"
     }
 }

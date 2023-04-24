@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CookieBannerComponent } from '@components/cookie-banner/cookie-banner.component';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @NgModule({
   declarations: [
@@ -8,6 +9,7 @@ import { CookieBannerComponent } from '@components/cookie-banner/cookie-banner.c
   ],
   imports: [
     CommonModule,
+    TranslocoModule,
   ],
   exports: [
     CookieBannerComponent,

@@ -3,5 +3,10 @@
         "TITLE": "Oops! Page Not Found.",
         "DESCRIPTION": "The page you are looking for is not available or has been moved. Try a different page or go to homepage with the button below.",
         "BUTTON_TITLE": "Go to Homepage"
+    },
+    "COOKIE_MODAL": {
+        "TITLE":"Cookie Policy",
+        "DESCRIPTION":"We use cookies to personalize content to make our site easier for you to use.",
+        "ACCEPT": "I understand"
     }
 }
