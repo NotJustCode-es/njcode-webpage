@@ -24,6 +24,8 @@ describe('SectionFooterComponent', () => {
       address: 'test',
       addressTitle: 'test',
       socialmedia: [],
+      legalPages: [],
+      legalPagesTitle: 'test',
     };
     fixture.detectChanges();
   });
