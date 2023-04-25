@@ -6,7 +6,7 @@
           <ul class="list-unstyled text-reset">
             <ng-container *ngFor="let legalEntry of data?.legalEntries">
               <li>
-                <a class="nav-link scroll" [href]="getHref(legalEntry.fields.title)">
+                <a class="nav-link scroll" (click)="scrollTo(legalEntry.fields.title)">
                   {{ legalEntry.fields.title }}
                 </a>
               </li>
@@ -17,7 +17,7 @@
     </aside>
     <div class="col-xl-8">
       <ng-container *ngFor="let legalEntry of data?.legalEntries">
-        <section [id]="legalEntry.fields.title" class="wrapper pt-10">
+        <section [id]="legalEntry.fields.title" class="wrapper py-10">
           <div class="card">
             <div class="card-body p-10">
               <h2 class="mb-3">

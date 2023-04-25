@@ -21,6 +21,7 @@ const routes: Routes = [
       onSameUrlNavigation: 'reload',
       relativeLinkResolution: 'corrected',
       scrollPositionRestoration: 'enabled',
+      anchorScrolling: 'enabled',
     }),
   ],
   exports: [
