@@ -13,7 +13,23 @@
         <!-- /.widget -->
       </div>
       <!-- /column -->
-      <div class="col-lg-3 offset-lg-2">
+      <div class="col-md-2 offset-lg-2">
+        <div class="widget">
+          <h5 class="mb-1">
+            {{ data.legalPagesTitle }}
+          </h5>
+          <ul class="list-unstyled  mb-0">
+            <ng-container *ngFor="let legalPage of data?.legalPages">
+              <li>
+                <a [routerLink]="legalPage.fields.slug">
+                  {{ legalPage.fields.title }}
+                </a>
+              </li>
+            </ng-container>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-2">
         <div class="widget">
           <div class="d-flex flex-row">
             <div>
@@ -29,7 +45,7 @@
               <ng-container *ngFor="let phone of data?.phoneNumbers">
                 <p class="mb-0">
                   {{ phone }}
-                  <br />
+                  <br/>
                 </p>
               </ng-container>
             </div>
@@ -39,11 +55,14 @@
         <!-- /.widget -->
       </div>
       <!-- /column -->
-      <div class="col-lg-3">
+      <div class="col-md-2">
         <div class="widget">
           <div class="d-flex flex-row">
             <div>
-              <div class="icon text-primary fs-28 me-4 mt-n1"> <i class="uil uil-location-pin-alt"></i> </div>
+              <div class="icon text-primary fs-28 me-4 mt-n1"> 
+                <i class="uil uil-location-pin-alt">
+                </i> 
+              </div>
             </div>
             <div class="align-self-start justify-content-start">
               <h5 class="mb-1">
