@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   i18n: {
-    defaultLang: 'es',
+    defaultLang: 'en',
     availableLangs: ['en', 'es'],
   },
 };
