@@ -1,4 +1,4 @@
-<ng-template #cookieBanner let-modal>
+<ng-container *ngIf="checkCookies()">
   <div class="footer-modal">
     <div class="modal-content">
       <div class="modal-body p-6">
@@ -9,7 +9,7 @@
             </h4>
             <p class="mb-0">
               {{ t("COOKIE_MODAL.DESCRIPTION") }}
-              <a [routerLink]="routesEnum.Legal">
+              <a [routerLink]="routesEnum.Terms">
                 cookies
               </a>
             </p>
@@ -28,4 +28,4 @@
     </div>
   </div>
   <!--/.modal-content -->
-</ng-template>
+</ng-container>

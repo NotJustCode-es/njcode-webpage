@@ -1,8 +1,8 @@
+import { isPlatformBrowser } from '@angular/common';
 import {
-  AfterViewInit, ChangeDetectionStrategy, Component, TemplateRef, ViewChild,
+  ChangeDetectionStrategy, Component, Inject, PLATFORM_ID,
 } from '@angular/core';
 import { RoutesEnum } from '@core/models/routes.enum';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { StorageService } from '@services/storage/storage.service';
 
 @Component({
@@ -11,38 +11,21 @@ import { StorageService } from '@services/storage/storage.service';
   styleUrls: ['./cookie-banner.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CookieBannerComponent implements AfterViewInit {
+export class CookieBannerComponent {
   readonly cookiesKey = 'cookies';
 
   routesEnum = RoutesEnum;
 
-  cookieExists = true;
-
-  @ViewChild('cookieBanner', { static: true }) cookieBanner!: TemplateRef<Object>;
-
   constructor(
     private storageService: StorageService,
-    private modalService: NgbModal,
+    @Inject(PLATFORM_ID) private platformId: Object,
   ) {}
-
-  ngAfterViewInit(): void {
-    this.checkCookies();
-  }
 
   closeBanner(): void {
     this.storageService.setValue(this.cookiesKey, true);
-    this.modalService.dismissAll();
   }
 
-  open(): void {
-    this.modalService.open(this.cookieBanner, {
-      backdrop: false,
-    });
-  }
-
-  private checkCookies(): void {
-    if (!this.storageService.getValue<boolean>(this.cookiesKey)) {
-      this.open();
-    }
+  checkCookies(): boolean {
+    return !!((!this.storageService.getValue<boolean>(this.cookiesKey) && isPlatformBrowser(this.platformId)));
   }
 }

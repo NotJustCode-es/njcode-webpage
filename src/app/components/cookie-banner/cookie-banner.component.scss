@@ -1,9 +1,14 @@
 .footer-modal{
   position: fixed;
+  padding-left: 10px;
   bottom: 25px;
   width: 60%;
+  z-index: 10;
+  margin-left: 25%;
 }
 
 .modal-content{
-  background-color: rgb(210, 201, 201);
+  background-color: rgb(247, 245, 245);
+  box-shadow: 0px 0px 29px 0px rgba(103, 98, 98, 0.75);
+  border-radius: 0.4rem;
 }
