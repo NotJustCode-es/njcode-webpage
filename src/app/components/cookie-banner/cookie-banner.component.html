@@ -1,0 +1,31 @@
+<ng-container *ngIf="showCookies">
+  <div class="footer-modal">
+    <div class="modal-content">
+      <div class="modal-body p-6">
+        <div class="row" *transloco="let t">
+          <div class="col-md-12 col-lg-8 mb-4 mb-lg-0 my-auto align-items-center">
+            <h4 class="mb-2">
+              {{ t("COOKIE_MODAL.TITLE") }}
+            </h4>
+            <p class="mb-0">
+              {{ t("COOKIE_MODAL.DESCRIPTION") }}
+              <a [routerLink]="routesEnum.Terms">
+                cookies
+              </a>
+            </p>
+          </div>
+          <!--/column -->
+          <div class="col-md-5 col-lg-4 text-lg-end my-auto">
+            <button class="btn btn-primary rounded-pill" aria-label="Close" (click)="closeBanner()">
+              {{ t("COOKIE_MODAL.ACCEPT") }}
+            </button>
+          </div>
+          <!--/column -->
+        </div>
+        <!--/.row -->
+      </div>
+      <!--/.modal-body -->
+    </div>
+  </div>
+  <!--/.modal-content -->
+</ng-container>
