@@ -19,7 +19,7 @@ export class I18nService {
     return environment.i18n.availableLangs;
   }
 
-  private getBrowserLanguage(): string {
+  getBrowserLanguage(): string {
     if (!isPlatformBrowser(this.platformId)) {
       return this.defaultLanguage;
     }

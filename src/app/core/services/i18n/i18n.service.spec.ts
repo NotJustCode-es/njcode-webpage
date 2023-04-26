@@ -71,6 +71,7 @@ describe('I18nService', () => {
     });
 
     it('#should return the default language if the URL path does not contain a language', () => {
+      spyOn(service, 'getBrowserLanguage').and.returnValue(service.defaultLanguage);
       createTestLocation('/');
       expect(service.languageByUrlPath).toBe(service.defaultLanguage);
     });
