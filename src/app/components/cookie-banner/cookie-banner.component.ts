@@ -25,7 +25,7 @@ export class CookieBannerComponent {
     this.storageService.setValue(this.cookiesKey, true);
   }
 
-  checkCookies(): boolean {
+  get showCookies(): boolean {
     return !!((!this.storageService.getValue<boolean>(this.cookiesKey) && isPlatformBrowser(this.platformId)));
   }
 }
