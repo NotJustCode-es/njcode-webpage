@@ -23,8 +23,8 @@ export class I18nService {
     if (!isPlatformBrowser(this.platformId)) {
       return this.defaultLanguage;
     }
-    const browserLang = getBrowserLang();
-    return (browserLang === 'en' || browserLang === 'es') ? browserLang : this.defaultLanguage;
+    const browserLang = getBrowserLang() ?? '';
+    return (this.availableLanguages.includes(browserLang)) ? browserLang : this.defaultLanguage;
   }
 
   get languageByUrlPath(): string {
@@ -45,9 +45,9 @@ export class I18nService {
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
+    @Inject(PLATFORM_ID) private platformId: Object,
     private router: Router,
     private translocoService: TranslocoService,
-    @Inject(PLATFORM_ID) private platformId: Object,
   ) {}
 
   static factory(
