@@ -1,9 +1,9 @@
-import { DOCUMENT } from '@angular/common';
-import { Inject, Injectable } from '@angular/core';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { NavigationStart, Router, RoutesRecognized } from '@angular/router';
 import { RoutesEnum } from '@core/models/routes.enum';
 import { environment } from '@environments/environment';
-import { TranslocoService } from '@ngneat/transloco';
+import { getBrowserLang, TranslocoService } from '@ngneat/transloco';
 
 @Injectable({
   providedIn: 'root',
@@ -19,9 +19,17 @@ export class I18nService {
     return environment.i18n.availableLangs;
   }
 
+  getBrowserLanguage(): string {
+    if (!isPlatformBrowser(this.platformId)) {
+      return this.defaultLanguage;
+    }
+    const browserLang = getBrowserLang() ?? '';
+    return (this.availableLanguages.includes(browserLang)) ? browserLang : this.defaultLanguage;
+  }
+
   get languageByUrlPath(): string {
     const urlPathLanguage = this.document.location.pathname?.split('/')[1];
-    return this.availableLanguagesIncludes(urlPathLanguage) ? urlPathLanguage : this.defaultLanguage;
+    return this.availableLanguagesIncludes(urlPathLanguage) ? urlPathLanguage : this.getBrowserLanguage();
   }
 
   get urlWithoutLanguage(): string {
@@ -37,6 +45,7 @@ export class I18nService {
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
+    @Inject(PLATFORM_ID) private platformId: Object,
     private router: Router,
     private translocoService: TranslocoService,
   ) {}
