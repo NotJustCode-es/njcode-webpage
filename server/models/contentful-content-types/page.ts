@@ -6,6 +6,7 @@ export interface TypePageFields {
   slug: Contentful.EntryFields.Symbol;
   metadata?: Contentful.Entry<TypeMetadataFields>;
   sections?: Contentful.Entry<Record<string, unknown>>[];
+  title?: Contentful.EntryFields.Symbol;
 }
 
 export type TypePage = Contentful.Entry<TypePageFields>;
