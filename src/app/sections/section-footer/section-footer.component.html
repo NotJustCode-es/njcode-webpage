@@ -13,23 +13,33 @@
         <!-- /.widget -->
       </div>
       <!-- /column -->
-      <div class="col-md-2 offset-lg-2">
+      <div class="col-lg-2 offset-lg-2">
         <div class="widget">
-          <h5 class="mb-1">
-            {{ data.legalPagesTitle }}
-          </h5>
-          <ul class="list-unstyled  mb-0">
-            <ng-container *ngFor="let legalPage of data?.legalPages">
-              <li>
-                <a [routerLink]="legalPage.fields.slug">
-                  {{ legalPage.fields.title }}
-                </a>
-              </li>
-            </ng-container>
-          </ul>
+          <div class="d-flex flex-row">
+            <div>
+              <div class="icon text-primary fs-28 me-4 mt-n1"> 
+                <i class="uil uil-suitcase-alt">
+                </i> 
+              </div>
+            </div>
+            <div>
+              <h5 class="mb-1">
+                {{ data.legalPagesTitle }}
+              </h5>
+              <ul class="list-unstyled  mb-0">
+                <ng-container *ngFor="let legalPage of data?.legalPages">
+                  <li>
+                    <a [routerLink]="legalPage.fields.slug">
+                      {{ legalPage.fields.title }}
+                    </a>
+                  </li>
+                </ng-container>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="col-md-2">
+      <div class="col-lg-2">
         <div class="widget">
           <div class="d-flex flex-row">
             <div>
@@ -55,7 +65,7 @@
         <!-- /.widget -->
       </div>
       <!-- /column -->
-      <div class="col-md-2">
+      <div class="col-lg-2">
         <div class="widget">
           <div class="d-flex flex-row">
             <div>
