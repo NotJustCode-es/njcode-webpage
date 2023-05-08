@@ -6,7 +6,8 @@
     },
     "COOKIE_MODAL": {
         "TITLE":"Use of cookies",
-        "DESCRIPTION":"This web portal only uses its own cookies for technical and analytical purposes. For more information see our privacy policy of",
+        "DESCRIPTION":"This web portal only uses its own cookies for technical and analytical purposes. For more information see our",
+        "LINK": "privacy policy",
         "ACCEPT": "I understand"
     }
 }
