@@ -97,7 +97,7 @@
       </p>
       <nav class="nav social social-muted mb-0 text-md-end">
         <ng-container *ngFor="let socialmedia of data?.socialmedia">
-          <a [href]="socialmedia.fields.href">
+          <a rel="nofollow" [href]="socialmedia.fields.href" target="_blank">
             <i [class]="getSocialMediaClass(socialmedia.fields.title)">
             </i>
           </a>
