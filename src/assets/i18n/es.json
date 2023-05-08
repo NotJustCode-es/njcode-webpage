@@ -6,7 +6,8 @@
     },
     "COOKIE_MODAL": {
         "TITLE":"Uso de cookies",
-        "DESCRIPTION":"Este portal web únicamente utiliza cookies propias con finalidad técnica y analítica. Para más información consulte nuestra política de",
+        "DESCRIPTION":"Este portal web únicamente utiliza cookies propias con finalidad técnica y analítica. Para más información consulte nuestra",
+        "LINK":"política de privacidad",
         "ACCEPT":"Lo entiendo"
     }
 }
