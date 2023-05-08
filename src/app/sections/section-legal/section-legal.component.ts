@@ -22,12 +22,4 @@ export class SectionLegalComponent {
   getRichTextAsHtml(richDocument: Document): string {
     return documentToHtmlString(richDocument);
   }
-
-  getHref(sectionId: string): string {
-    return `#${sectionId}`;
-  }
-
-  scrollTo(sectionId: string): void {
-    this.scroller.scrollToAnchor(sectionId);
-  }
 }
