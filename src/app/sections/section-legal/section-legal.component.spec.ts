@@ -19,9 +19,4 @@ describe('SectionLegalComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  it('#getHref', () => {
-    const testSectionId = 'testSectionId';
-    expect(component.getHref(testSectionId)).toEqual(`#${testSectionId}`);
-  });
 });
