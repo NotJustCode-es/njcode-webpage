@@ -113,7 +113,7 @@ jobs:
       uses: chetan/invalidate-cloudfront-action@v2
       env:
         DISTRIBUTION: ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION }}
-        PATHS: "/"
+        PATHS: "/*"
 
     - name: Delete artifact
       if: always()
