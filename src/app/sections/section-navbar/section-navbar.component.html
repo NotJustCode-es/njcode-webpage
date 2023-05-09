@@ -3,7 +3,9 @@
     <div class="container flex-lg-row flex-nowrap align-items-center">
       <div class="navbar-brand w-100">
         <a [routerLink]="routesEnum.Home">
-          <img [src]="data.navbarLogo?.fields?.logo?.fields?.file?.url" [srcset]="data.navbarLogo?.fields?.logoX2?.fields?.file?.url + ' 2x'" [alt]="data.navbarLogo?.fields?.description"/>
+          <div class="col-lg-4 col-md-6 col-8">
+            <img class="header-logo w-100 pb-3" [src]="data.navbarLogo?.fields?.logo?.fields?.file?.url" [srcset]="data.navbarLogo?.fields?.logoX2?.fields?.file?.url + ' 2x'" [alt]="data.navbarLogo?.fields?.description"/>
+          </div>
         </a>
       </div>
       <div class="collapse navbar-collapse w-100 justify-content-end">
