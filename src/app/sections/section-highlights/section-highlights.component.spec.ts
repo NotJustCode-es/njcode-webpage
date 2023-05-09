@@ -38,9 +38,9 @@ describe('SectionHighlightsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call getIconSolidPath', () => {
+  it('should call getIconLinealPath', () => {
     const icon = 'check';
-    const spySubscribable = spyOn(assetsService, 'getIconSolidPath');
+    const spySubscribable = spyOn(assetsService, 'getIconLinealPath');
     component.getIconPath(icon);
     expect(spySubscribable).toHaveBeenCalled();
   });

@@ -9,6 +9,8 @@ export class AssetsService {
 
   readonly iconsSolidPath = `${this.assetsUrl}/assets/img/icons/solid`;
 
+  readonly iconsLinealPath = `${this.assetsUrl}/assets/img/icons/lineal`;
+
   get assetsUrl(): string {
     return this.configurationService.configurationData.assetsUrl;
   }
@@ -21,5 +23,9 @@ export class AssetsService {
 
   getIconSolidPath(icon: string): string {
     return `${this.iconsSolidPath}/${icon}.svg`;
+  }
+
+  getIconLinealPath(icon: string): string {
+    return `${this.iconsLinealPath}/${icon}.svg`;
   }
 }
