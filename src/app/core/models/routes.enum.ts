@@ -3,4 +3,5 @@ export enum RoutesEnum {
   Home = '/',
   Dynamic = '**',
   Terms = 'terms',
+  Policy = 'policy',
 }
