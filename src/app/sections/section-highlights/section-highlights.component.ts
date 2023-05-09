@@ -16,6 +16,6 @@ export class SectionHighlightsComponent {
   ) { }
 
   getIconPath(icon: string): string {
-    return this.assetsService.getIconSolidPath(icon);
+    return this.assetsService.getIconLinealPath(icon);
   }
 }
