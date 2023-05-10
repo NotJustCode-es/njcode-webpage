@@ -30,6 +30,6 @@ describe('RootService', () => {
 
   it('should create valid robots', () => {
     const hostname = 'http://localhost:4200';
-    expect(service.getRobotsContent(hostname)).toEqual('User-agent: * \nDisallow:/\nSitemap:\nhttp://localhost:4200/sitemap.xml');
+    expect(service.getRobotsContent(hostname)).toEqual(`User-agent: * \nAllow: / \n\nSitemap:\n${hostname}/sitemap.xml`);
   });
 });
