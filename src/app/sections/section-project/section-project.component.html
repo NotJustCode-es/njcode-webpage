@@ -2,10 +2,6 @@
   <div class="row gx-lg-8 gx-xl-12 gy-10 mb-14 mb-md-18 align-items-center" 
     [ngClass]="{ 'flex-row-reverse': !data.imageOnLeftSide }">
     <div class="col-lg-6 position-relative">
-      <div class="shape bg-line leaf rounded-circle rellax w-17 h-17" data-rellax-speed="1">
-      </div>
-      <div class="shape bg-pale-violet rounded-circle rellax w-17 h-17" data-rellax-speed="1">
-      </div>
       <figure class="rounded mb-0">
         <img [src]="data.projectImage?.fields?.file?.url" [alt]="data.projectImage?.fields?.file?.fileName">
       </figure>
@@ -46,7 +42,7 @@
         {{ data.badgesTitle }}
       </h4>
       <ng-container *ngFor="let badge of data?.badges">
-        <span class="badge-lg bg-primary gradient rounded-pill m-1">
+        <span class="badge-lg bg-primary gradient rounded-pill text-white m-1">
           {{ badge }}
         </span>
       </ng-container>
