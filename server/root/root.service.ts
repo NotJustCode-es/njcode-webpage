@@ -29,6 +29,6 @@ export class RootService {
   }
 
   getRobotsContent(hostName: string): string {
-    return `User-agent: * \nAllow: / \nSitemap:\n${hostName}/sitemap.xml`;
+    return `User-agent: * \nAllow: / \n\nSitemap:\n${hostName}/sitemap.xml`;
   }
 }
