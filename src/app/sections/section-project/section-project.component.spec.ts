@@ -13,6 +13,19 @@ describe('SectionProjectComponent', () => {
 
     fixture = TestBed.createComponent(SectionProjectComponent);
     component = fixture.componentInstance;
+    component.data = {
+      imageOnLeftSide: true,
+      title: 'test',
+      name: 'test',
+      needsTitle: 'test',
+      needsText: 'test',
+      resultTitle: 'test',
+      resultText: 'test',
+      deedsTitle: 'test',
+      deedsText: 'test',
+      badgesTitle: 'test',
+      badges: [],
+    };
     fixture.detectChanges();
   });
 

@@ -11,7 +11,7 @@ export interface TypeSection__projectFields {
   deedsText: Contentful.EntryFields.Symbol;
   badgesTitle: Contentful.EntryFields.Symbol;
   badges: Contentful.EntryFields.Array<Contentful.EntryFields.Symbol>[];
-  projectImage: Contentful.Asset;
+  projectImage?: Contentful.Asset;
   imageOnLeftSide: Contentful.EntryFields.Boolean;
 }
 export type TypeSection__project = Contentful.Entry<TypeSection__projectFields>;
