@@ -13,7 +13,7 @@ env:
   # Server configuration
   PORT: 4000
   PREFIX: /api
-  HOSTNAME: https://www.njcode.es/
+  HOSTNAME: https://www.njcode.es
   CONTENTFUL_ENVIRONMENT: master
   # Client configuration
   ASSETS_URL: https://theme.njcode.es
