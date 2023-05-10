@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row gx-lg-8 gx-xl-12 gy-10 mb-14 mb-md-18 align-items-center" 
+    [ngClass]="{ 'flex-row-reverse': !data.imageOnLeftSide }">
+    <div class="col-lg-6 position-relative">
+      <figure class="rounded mb-0">
+        <img [src]="data.projectImage?.fields?.file?.url" [alt]="data.projectImage?.fields?.file?.fileName">
+      </figure>
+    </div>
+    <!--/column -->
+    <div class="col-lg-6">
+      <h3 class="display-4 mb-4">
+        {{ data.title }}
+      </h3>
+      <h4 class="mb-1">
+        {{ data.needsTitle }}
+      </h4>
+      <p class="mb-5">
+        {{ data.needsText }}
+      </p>
+      <div class="row gy-3">
+        <div class="col-xl-6">
+          <h4 class="mb-1">
+            {{ data.deedsTitle }}
+          </h4>
+          <p class="mb-5">
+            {{ data.deedsText }}
+          </p>
+        </div>
+        <!--/column -->
+        <div class="col-xl-6">
+          <h4 class="mb-1">
+            {{ data.resultTitle }}
+          </h4>
+          <p class="mb-5">
+            {{ data.resultText }}
+          </p>
+        </div>
+        <!--/column -->
+      </div>
+      <!--/.row -->
+      <h4 class="mb-3">
+        {{ data.badgesTitle }}
+      </h4>
+      <ng-container *ngFor="let badge of data?.badges">
+        <span class="badge-lg bg-primary gradient rounded-pill text-white m-1">
+          {{ badge }}
+        </span>
+      </ng-container>
+    </div>
+  </div>
+</div>
