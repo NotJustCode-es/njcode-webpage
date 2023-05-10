@@ -28,7 +28,7 @@ export class RootService {
     return streamToPromise(sitemapStream);
   }
 
-  getRobotsContent(): string {
-    return 'User-agent: * \nDisallow:/';
+  getRobotsContent(hostName: string): string {
+    return `User-agent: * \nAllow: / \n\nSitemap:\n${hostName}/sitemap.xml`;
   }
 }
