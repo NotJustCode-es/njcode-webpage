@@ -4,4 +4,5 @@ export enum RoutesEnum {
   Dynamic = '**',
   Terms = 'terms',
   Policy = 'policy',
+  Cookies = 'cookies',
 }
