@@ -41,11 +41,13 @@
       <h4 class="mb-3">
         {{ data.badgesTitle }}
       </h4>
-      <ng-container *ngFor="let badge of data?.badges">
-        <span class="badge-lg bg-primary gradient rounded-pill text-white m-1">
-          {{ badge }}
-        </span>
-      </ng-container>
+      <div class="d-flex gap-1 flex-wrap">
+        <ng-container *ngFor="let badge of data?.badges">
+          <span class="badge-lg bg-primary gradient rounded-pill text-white">
+            {{ badge }}
+          </span>
+        </ng-container>
+      </div>
     </div>
   </div>
 </div>
