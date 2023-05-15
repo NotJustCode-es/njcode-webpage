@@ -8,6 +8,7 @@ import { RootModule } from '@server/root/root.module';
 import { ContactApiModule } from '@server/contact-api/contact-api.module';
 import { ContentfulApiModule } from '@server/contentful-api/contentful-api.module';
 import configFactory from '@server/core/config/config-factory';
+import { PostApiModule } from '@server/post-api/post-api.module';
 import { AppServerModule } from '../src/main.server';
 
 const browserAppLocation = 'dist/njcode-webpage/browser';
@@ -41,6 +42,7 @@ const browserAppLocation = 'dist/njcode-webpage/browser';
     RootModule,
     ContentfulApiModule,
     ContactApiModule,
+    PostApiModule,
   ],
 })
 export class AppModule { }
