@@ -54,6 +54,7 @@
     "express": "~4.17.1",
     "handlebars": "~4.7.7",
     "ng-recaptcha": "~10.0.0",
+    "node-fetch": "^3.3.1",
     "nodemailer": "~6.9.1",
     "rxjs": "~7.5.0",
     "sitemap": "~7.1.1",
