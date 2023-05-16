@@ -8,7 +8,6 @@ import { ContentfulConfiguration } from '@server/core/models/contentful-configur
 import { ContentfulContentTypes } from '@server/models/contentful-content-types.enum';
 import { TypePageFields } from '@server/models/contentful-content-types/page';
 import { ContentfulPageQueryParams } from '@server/models/contentful-page-query-params';
-import { TypeSection__postsFields } from '@server/models/contentful-content-types/section-posts';
 
 @Injectable()
 export class ContentfulApiService {
@@ -46,12 +45,5 @@ export class ContentfulApiService {
 
   getAllPages(limit: number): Observable<EntryCollectionWithLinkResolutionAndWithUnresolvableLinks<TypePageFields>> {
     return this.getFromContentful(ContentfulContentTypes.Page, { limit });
-  }
-
-  getMediumPostsUser(): Observable<EntryCollectionWithLinkResolutionAndWithUnresolvableLinks<TypeSection__postsFields>> {
-    return from(this.contentfulClient.getEntries<TypeSection__postsFields>({
-      content_type: ContentfulContentTypes.sectionPost,
-      limit: 1,
-    }));
   }
 }
