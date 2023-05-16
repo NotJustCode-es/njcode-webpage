@@ -5,7 +5,6 @@ export interface TypeSection__postsFields {
   user: Contentful.EntryFields.Symbol;
   title: Contentful.EntryFields.Symbol;
   subTitle: Contentful.EntryFields.Symbol;
-  image?: Contentful.Asset;
   imageHover: Contentful.EntryFields.Symbol;
 }
 

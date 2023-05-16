@@ -15,7 +15,7 @@
                 <article>
                   <figure class="overlay overlay-1 hover-scale rounded mb-5">
                     <a [href]="post.link"> 
-                      <img *ngIf="data.image" [src]="data.image.fields.file?.url" [alt]="data.image.fields.title"/>
+                      <img [src]="post.thumbnail" [alt]="post.title"/>
                     </a>
                     <figcaption>
                       <h5 class="from-top mb-0">
