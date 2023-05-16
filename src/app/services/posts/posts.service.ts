@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class PostsService {
-  readonly getPostsPath = '/api/post-api/posts/';
+  readonly getPostsPath = '/api/posts-api/posts/';
 
   constructor(private httpClient: HttpClient) { }
 

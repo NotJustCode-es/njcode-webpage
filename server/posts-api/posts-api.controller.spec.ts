@@ -1,21 +1,21 @@
 import { HttpModule } from '@nestjs/axios';
 import { Test, TestingModule } from '@nestjs/testing';
-import { PostApiController } from '@server/post-api/post-api.controller';
-import { PostApiService } from '@server/post-api/post-api.service';
+import { PostsApiController } from '@server/posts-api/posts-api.controller';
+import { PostsApiService } from '@server/posts-api/posts-api.service';
 import { of } from 'rxjs';
 
 describe('PostApiController', () => {
-  let controller: PostApiController;
-  let service: PostApiService;
+  let controller: PostsApiController;
+  let service: PostsApiService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [PostApiController],
-      providers: [PostApiService],
+      controllers: [PostsApiController],
+      providers: [PostsApiService],
       imports: [HttpModule],
     }).compile();
-    service = module.get<PostApiService>(PostApiService);
-    controller = module.get<PostApiController>(PostApiController);
+    service = module.get<PostsApiService>(PostsApiService);
+    controller = module.get<PostsApiController>(PostsApiController);
   });
 
   it('should be defined', () => {

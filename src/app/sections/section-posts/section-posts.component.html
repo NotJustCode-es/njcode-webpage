@@ -1,16 +1,15 @@
 <ng-container *ngIf="posts$ | async as posts">
-<section *ngIf="posts.items" class="wrapper bg-light">
-  <div class="container pb-15 pb-md-17">
-    <h2 class="display-4 mb-3 text-center">
-      {{ data.title }}
-    </h2>
-    <p class="lead fs-lg mb-10 text-center px-md-16 px-lg-21 px-xl-0">
-      {{ data.subTitle }}
-    </p>
-    <div class="swiper-container blog grid-view mb-6" data-margin="30" data-dots="true" data-items-xl="3" data-items-md="2" data-items-xs="1">
-      <div class="swiper">
-        <div class="swiper-wrapper">
-          
+  <section *ngIf="posts.items" class="wrapper bg-light">
+    <div class="container pb-15 pb-md-17">
+      <h2 class="display-4 mb-3 text-center">
+        {{ data.title }}
+      </h2>
+      <p class="lead fs-lg mb-10 text-center px-md-16 px-lg-21 px-xl-0">
+        {{ data.subTitle }}
+      </p>
+      <div class="swiper-container blog grid-view mb-6" data-margin="30" data-dots="true" data-items-xl="3" data-items-md="2" data-items-xs="1">
+        <div class="swiper">
+          <div class="swiper-wrapper">
             <ng-container *ngFor="let post of posts.items">
               <div class="swiper-slide">
                 <article>
@@ -59,15 +58,15 @@
               </div>
               <!-- /article -->
             </ng-container>
-          <!--/.swiper-slide -->
+            <!--/.swiper-slide -->
+          </div>
+          <!--/.swiper-wrapper -->
         </div>
-        <!--/.swiper-wrapper -->
+        <!-- /.swiper -->
       </div>
-      <!-- /.swiper -->
+      <!-- /.swiper-container -->
     </div>
-    <!-- /.swiper-container -->
-  </div>
-  <!-- /.container -->
-</section>
-<!-- /section -->
+    <!-- /.container -->
+  </section>
+  <!-- /section -->
 </ng-container>

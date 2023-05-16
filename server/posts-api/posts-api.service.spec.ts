@@ -1,20 +1,20 @@
 import { HttpModule } from '@nestjs/axios';
 import { Test, TestingModule } from '@nestjs/testing';
-import { PostApiService } from '@server/post-api/post-api.service';
+import { PostsApiService } from '@server/posts-api/posts-api.service';
 
-describe('PostApiService', () => {
-  let service: PostApiService;
+describe('PostsApiService', () => {
+  let service: PostsApiService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        PostApiService,
+        PostsApiService,
       ],
       imports: [
         HttpModule,
       ],
     }).compile();
-    service = module.get<PostApiService>(PostApiService);
+    service = module.get<PostsApiService>(PostsApiService);
   });
 
   it('should be defined', () => {

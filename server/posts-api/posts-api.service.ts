@@ -6,7 +6,7 @@ import {
 } from 'rxjs';
 
 @Injectable()
-export class PostApiService {
+export class PostsApiService {
   constructor(@Inject(HttpService) private readonly httpService: HttpService) {}
 
   getPosts(user: string): Observable<Posts> {
