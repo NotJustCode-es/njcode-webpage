@@ -1,20 +1,17 @@
+import { HttpModule } from '@nestjs/axios';
 import { Module } from '@nestjs/common';
-import { ContentfulApiModule } from '@server/contentful-api/contentful-api.module';
 import { PostApiController } from '@server/post-api/post-api.controller';
-import { PostApiService } from './post-api.service';
+import { PostApiService } from '@server/post-api/post-api.service';
 
 @Module({
   providers: [
     PostApiService,
   ],
-  exports: [
-    PostApiService,
+  imports: [
+    HttpModule,
   ],
   controllers: [
     PostApiController,
-  ],
-  imports: [
-    ContentfulApiModule,
   ],
 })
 export class PostApiModule {}
