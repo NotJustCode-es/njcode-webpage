@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Posts } from '@server/models/posts';
+import { Post } from '@server/models/post';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -11,10 +11,10 @@ export class PostsService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getPosts(user: string): Observable<Posts> {
+  getPosts(user: string): Observable<Post[]> {
     const params = new HttpParams()
       .set('user', user);
-    return this.httpClient.get<Posts>(
+    return this.httpClient.get<Post[]>(
       this.getPostsPath,
       { params },
     );

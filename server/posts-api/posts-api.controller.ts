@@ -1,7 +1,7 @@
 import {
   Controller, Get, Inject, Query,
 } from '@nestjs/common';
-import { Posts } from '@server/models/posts';
+import { Post } from '@server/models/post';
 import { PostsApiService } from '@server/posts-api/posts-api.service';
 import { Observable } from 'rxjs';
 
@@ -14,7 +14,7 @@ export class PostsApiController {
   @Get('/posts')
   getPosts(
     @Query('user') user: string,
-  ): Observable<Posts> {
+  ): Observable<Post[]> {
     return this.postsApiService.getPosts(user);
   }
 }

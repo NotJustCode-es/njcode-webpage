@@ -1,6 +1,6 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { Posts } from '@server/models/posts';
+import { Post } from '@server/models/post';
 import { PostsService } from '@services/posts/posts.service';
 
 describe('PostApiService', () => {
@@ -24,7 +24,7 @@ describe('PostApiService', () => {
       const user = 'test';
       const response = {};
       service.getPosts(user).subscribe(posts => {
-        expect(posts).toEqual({} as Posts);
+        expect(posts).toEqual({} as Post[]);
       });
       controller.expectOne(`${service.getPostsPath}?user=${user}`).flush(response);
     });
