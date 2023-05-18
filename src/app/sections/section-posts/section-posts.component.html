@@ -1,5 +1,5 @@
 <ng-container *ngIf="posts$ | async as posts">
-  <section *ngIf="posts.items" class="wrapper bg-light">
+  <section class="wrapper bg-light">
     <div class="container pb-15 pb-md-17">
       <h2 class="display-4 mb-3 text-center">
         {{ data.title }}
@@ -7,10 +7,10 @@
       <p class="lead fs-lg mb-10 text-center px-md-16 px-lg-21 px-xl-0">
         {{ data.subTitle }}
       </p>
-      <div class="swiper-container blog grid-view mb-6" data-margin="30" data-dots="true" data-items-xl="3" data-items-md="2" data-items-xs="1">
+      <div class="swiper-container nav-bottom nav-color blog grid-view mb-6" data-margin="30" data-dots="false" data-nav="true" data-items-xl="3" data-items-md="2" data-items-xs="1">
         <div class="swiper">
           <div class="swiper-wrapper">
-            <ng-container *ngFor="let post of posts.items">
+            <ng-container *ngFor="let post of posts">
               <div class="swiper-slide">
                 <article>
                   <figure class="overlay overlay-1 hover-scale rounded mb-5">
