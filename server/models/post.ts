@@ -1,4 +1,4 @@
-export interface postsItems {
+export interface Post {
   title: string;
   pubDate: Date;
   link: string;
