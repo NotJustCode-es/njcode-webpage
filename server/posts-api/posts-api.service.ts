@@ -3,7 +3,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { Post } from '@server/models/post';
 import { parseStringPromise } from 'xml2js';
 import {
-  catchError, Observable, of, switchMap,
+  catchError, from, Observable, of, switchMap,
 } from 'rxjs';
 
 @Injectable()
@@ -17,32 +17,26 @@ export class PostsApiService {
     const Posts = this.httpService.get<string>(xmlUrl, {
       headers: { 'Accept-Encoding': 'application/xml' },
     }).pipe(
-      switchMap(response => this.getContent(response.data)),
-      catchError(() => of(null as unknown as Post[])),
+      switchMap(response => from(this.getContent(response.data))),
+      catchError(() => of([])),
     );
     return Posts;
   }
 
-  private async getContent(xmlString: string):Promise<Post[]> {
-    const posts = await parseStringPromise(xmlString, {
+  private async getContent(xmlString: string): Promise<Post[]> {
+    return parseStringPromise(xmlString, {
       tagNameProcessors: [this.normalizeTagsName],
       valueProcessors: [this.getThumbnail],
     }).then(result => Promise.resolve(result.rss.channel[0].item as Post[]))
       .catch(error => Promise.reject(error));
-    return posts;
   }
 
   private normalizeTagsName(name: string): string {
-    const searchContentName = 'content:encoded';
-    const searchCategoriesName = 'category';
-    const desiredContentName = 'thumbnail';
-    const desiredCategoriesName = 'categories';
-
     switch (name) {
-      case searchContentName:
-        return desiredContentName;
-      case searchCategoriesName:
-        return desiredCategoriesName;
+      case 'content:encoded':
+        return 'thumbnail';
+      case 'category':
+        return 'categories';
       default:
         return name;
     }
@@ -52,9 +46,6 @@ export class PostsApiService {
     const regex = /<img[^>]+src="([^">]+)"/;
     const match = name.match(regex);
 
-    if (match) {
-      return match[1];
-    }
-    return name;
+    return match ? match[1] : name;
   }
 }
