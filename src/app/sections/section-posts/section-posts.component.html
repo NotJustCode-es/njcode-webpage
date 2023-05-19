@@ -1,5 +1,5 @@
 <ng-container *ngIf="posts$ | async as posts">
-  <section class="wrapper bg-light">
+  <section *ngIf="posts.length > 0" class="wrapper bg-light">
     <div class="container pb-15 pb-md-17">
       <h2 class="display-4 mb-3 text-center">
         {{ data.title }}
@@ -14,7 +14,7 @@
               <div class="swiper-slide">
                 <article>
                   <figure class="overlay overlay-1 hover-scale rounded mb-5">
-                    <a [href]="post.link"> 
+                    <a [href]="post.link" target="_blank" rel="noopener noreferrer">
                       <img [src]="post.thumbnail" [alt]="post.title"/>
                     </a>
                     <figcaption>
@@ -35,7 +35,7 @@
                     </div>
                     <!-- /.post-category -->
                     <h2 class="post-title h3 mt-1 mb-3">
-                      <a class="link-dark" [href]="post.link">
+                      <a class="link-dark" [href]="post.link" target="_blank" rel="noopener noreferrer">
                         {{ post.title }}
                       </a>
                     </h2>
