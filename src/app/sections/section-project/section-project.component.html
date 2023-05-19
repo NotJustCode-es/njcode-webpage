@@ -3,7 +3,7 @@
     [ngClass]="{ 'flex-row-reverse': !data.imageOnLeftSide }">
     <div class="col-lg-6 position-relative">
       <figure class="rounded mb-0">
-        <img [src]="data.projectImage?.fields?.file?.url" [alt]="data.projectImage?.fields?.file?.fileName">
+        <img *ngIf="data.projectImage" [src]="data.projectImage.fields.file?.url" [alt]="data.projectImage.fields.file?.fileName">
       </figure>
     </div>
     <!--/column -->

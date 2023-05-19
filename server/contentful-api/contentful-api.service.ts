@@ -1,7 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { ContentfulClientApi, createClient, EntryCollectionWithLinkResolutionAndWithUnresolvableLinks } from 'contentful';
-import { from, Observable } from 'rxjs';
+import {
+  from, Observable,
+} from 'rxjs';
 import { ContentfulConfiguration } from '@server/core/models/contentful-configuration';
 import { ContentfulContentTypes } from '@server/models/contentful-content-types.enum';
 import { TypePageFields } from '@server/models/contentful-content-types/page';
