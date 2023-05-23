@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CookieBannerComponent } from '@components/cookie-banner/cookie-banner.component';
+import { LinkComponent } from '@components/link/link.component';
 import { TranslocoModule } from '@ngneat/transloco';
-import { LinkModule } from '@components/link/link.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
-    CookieBannerComponent,
+    LinkComponent,
   ],
   imports: [
     CommonModule,
     TranslocoModule,
-    LinkModule,
+    RouterModule,
   ],
   exports: [
-    CookieBannerComponent,
+    LinkComponent,
   ],
 })
-export class CookieBannerModule { }
+export class LinkModule { }

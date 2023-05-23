@@ -29,9 +29,10 @@
               <ul class="list-unstyled  mb-0">
                 <ng-container *ngFor="let legalPage of data?.legalPages">
                   <li>
-                    <a [routerLink]="legalPage.fields.slug">
-                      {{ legalPage.fields.title }}
-                    </a>
+                    <app-link *ngIf="legalPage.fields.title"
+                      [title] = "legalPage.fields.title"
+                      [href] = "legalPage.fields.slug">
+                    </app-link>
                   </li>
                 </ng-container>
               </ul>

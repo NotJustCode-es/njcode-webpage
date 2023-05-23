@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg center-logo transparent position-absolute navbar-dark">
     <div class="container flex-lg-row flex-nowrap align-items-center">
       <div class="navbar-brand w-100">
-        <a [routerLink]="routesEnum.Home">
+        <a [routerLink]="'/' + activeLang + routesEnum.Home">
           <div class="col-lg-4 col-md-3 col-5">
             <img class="header-logo w-100" [src]="data.navbarLogo?.fields?.logo?.fields?.file?.url" [srcset]="data.navbarLogo?.fields?.logoX2?.fields?.file?.url + ' 2x'" [alt]="data.navbarLogo?.fields?.description"/>
           </div>
@@ -11,15 +11,17 @@
       <div class="collapse navbar-collapse w-100 justify-content-end">
         <ul class="navbar-nav">
           <li class="nav-item pe-5" *ngFor="let item of data.links">
-            <a class="nav-link" [routerLink]="item.fields.href">
-              {{ item.fields.title }}
-            </a>
+            <app-link 
+              [title] = "item.fields.title"
+              [href] = "item.fields.href"
+              [className] = "['nav-link']">
+            </app-link>
           </li>
         </ul>
       </div>
       <div class="offcanvas offcanvas-nav offcanvas-end d-lg-none">
         <div class="offcanvas-header">
-          <a [routerLink]="routesEnum.Home">
+          <a [routerLink]="'/' + activeLang + routesEnum.Home">
             <img [src]="data.navbarLogo?.fields?.logoLight?.fields?.file?.url" [srcset]="data.navbarLogo?.fields?.logoLightX2?.fields?.file?.url + ' 2x'" [alt]="data.navbarLogo?.fields?.description"/>
           </a>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -27,14 +29,18 @@
         <div class="offcanvas-body">
           <ul class="navbar-nav">
             <li class="nav-item" *ngFor="let item of data.links">
-              <a class="nav-link py-2" [routerLink]="item.fields.href">
-                {{ item.fields.title }}
-              </a>
+              <app-link 
+                [title] = "item.fields.title"
+                [href] = "item.fields.href"
+                [className] = "['nav-link', 'py-2']">
+              </app-link>
             </li>
             <li class="nav-item" *ngIf="data.contactLink">
-              <a class="nav-link py-2" [routerLink]="data.contactLink.fields.href">
-                {{ data.contactLink.fields.title }}
-              </a>
+              <app-link 
+                [title] = "data.contactLink.fields.title"
+                [href] = "data.contactLink.fields.href"
+                [className] = "['nav-link', 'py-2']">
+              </app-link>
             </li>
           </ul>
         </div>
@@ -56,9 +62,11 @@
           </li>
           <div class="collapse navbar-collapse">
             <li class="nav-item d-none d-md-block" *ngIf="data.contactLink">
-              <a [routerLink]="data.contactLink.fields.href" class="btn btn-sm btn-primary rounded-pill">
-                {{ data.contactLink.fields.title }}
-              </a>
+              <app-link 
+                [title] = "data.contactLink.fields.title"
+                [href] = "data.contactLink.fields.href"
+                [className] = "['btn', 'btn-sm', 'btn-primary', 'rounded-pill']">
+              </app-link>
             </li>
           </div>
           <li class="nav-item d-lg-none">

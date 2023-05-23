@@ -14,9 +14,11 @@
           <p class="lead mb-7 px-md-12 px-lg-5 px-xl-7">
             {{ t("NOT_FOUND.DESCRIPTION") }}
           </p>
-          <a [routerLink]="homeRoute" class="btn btn-primary rounded-pill">
-            {{ t("NOT_FOUND.BUTTON_TITLE") }}
-          </a>
+          <app-link 
+            [title] = "t('NOT_FOUND.BUTTON_TITLE')"
+            [href] = "routesEnum.Home"
+            [className] = "['btn', 'btn-primary', 'rounded-pill']">
+          </app-link>
         </ng-container>
       </div>
     </div>
