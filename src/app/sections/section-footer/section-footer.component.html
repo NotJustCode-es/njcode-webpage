@@ -30,8 +30,8 @@
                 <ng-container *ngFor="let legalPage of data?.legalPages">
                   <li>
                     <app-link *ngIf="legalPage.fields.title"
-                      [title] = "legalPage.fields.title"
-                      [href] = "legalPage.fields.slug">
+                      [title]="legalPage.fields.title"
+                      [href]="legalPage.fields.slug">
                     </app-link>
                   </li>
                 </ng-container>
