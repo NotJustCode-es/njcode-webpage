@@ -11,7 +11,7 @@ import { I18nService } from '@core/services/i18n/i18n.service';
 export class LinkComponent {
   @Input() href!: string;
 
-  @Input() className?: string[];
+  @Input() className?: string;
 
   @Input() title!: string;
 
