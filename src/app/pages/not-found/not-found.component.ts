@@ -9,9 +9,7 @@ import { AssetsService } from '@services/assets/assets.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NotFoundComponent {
-  get homeRoute(): string {
-    return RoutesEnum.Home;
-  }
+  routesEnum = RoutesEnum;
 
   get notFoundImgPath(): string {
     return this.assetsService.getImgPath('404.png');
