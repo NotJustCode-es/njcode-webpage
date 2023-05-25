@@ -1,7 +1,8 @@
-<div *transloco="let t">
+<ng-container *transloco="let t">
   <a [class]="className" [routerLink]="i18nBasedHref">
-    {{title}}
-    <ng-content>
-    </ng-content>
+    <span *ngIf="title">
+      {{ title }}
+    </span>
+    <ng-content></ng-content>
   </a>
-</div>
+</ng-container>
