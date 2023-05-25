@@ -1,6 +1,7 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { LinkModule } from '@components/link/link.module';
 import { ConfigurationService } from '@core/services/configuration/configuration.service';
 import { SectionNavbarComponent } from '@sections/section-navbar/section-navbar.component';
 import { ConfigurationServiceStub } from '@shared/testing/stubs/configuration.stub';
@@ -24,6 +25,7 @@ describe('SectionNavbarComponent', () => {
         getTranslocoTestingModule(),
         RouterTestingModule,
         HttpClientTestingModule,
+        LinkModule,
       ],
       providers: [
         {

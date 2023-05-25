@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { CookieBannerModule } from '@components/cookie-banner/cookie-banner.module';
 import { PageLoaderModule } from '@components/page-loader/page-loader.module';
+import { getTranslocoTestingModule } from '@shared/testing/transloco-testing.module';
 import { AppComponent } from 'src/app/app.component';
 
 describe('AppComponent', () => {
@@ -10,8 +12,10 @@ describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
+        getTranslocoTestingModule(),
         RouterTestingModule,
         PageLoaderModule,
+        CookieBannerModule,
       ],
       declarations: [
         AppComponent,

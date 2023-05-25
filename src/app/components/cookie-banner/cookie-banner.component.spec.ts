@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CookieBannerComponent } from '@components/cookie-banner/cookie-banner.component';
+import { LinkModule } from '@components/link/link.module';
+import { getTranslocoTestingModule } from '@shared/testing/transloco-testing.module';
 
 describe('CookieBannerComponent', () => {
   let component: CookieBannerComponent;
@@ -8,6 +10,10 @@ describe('CookieBannerComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [CookieBannerComponent],
+      imports: [
+        getTranslocoTestingModule(),
+        LinkModule,
+      ],
     })
       .compileComponents();
 
