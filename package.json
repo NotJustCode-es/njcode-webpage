@@ -1,6 +1,13 @@
 {
   "name": "njcode-webpage",
   "version": "1.0.0",
+  "description": "A project to create Angular SSR pages with Contentful CMS Headless",
+  "author": "contact@njcode.es",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NotJustCode-es/njcode-webpage.git"
+  },
   "scripts": {
     "ng": "ng",
     "start": "node dist/njcode-webpage/server/main.js",
