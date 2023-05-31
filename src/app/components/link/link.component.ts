@@ -13,9 +13,15 @@ export class LinkComponent {
 
   @Input() className?: string;
 
-  @Input() title!: string;
+  @Input() title?: string;
 
   @Input() i18n = true;
+
+  @Input() external!: boolean;
+
+  @Input() targetBlank!: boolean;
+
+  @Input() rel?: string;
 
   constructor(
     private i18nService: I18nService,
