@@ -3,11 +3,14 @@
     <div class="container flex-lg-row flex-nowrap align-items-center">
       <div class="navbar-brand w-100">
         <app-link 
-          [href]="routesEnum.Home">
+          [href]="routesEnum.Home"
+          [targetBlank]="false"
+          [external]="false">
           <div class="col-lg-4 col-md-3 col-5">
             <img class="header-logo w-100" [src]="data.navbarLogo?.fields?.logo?.fields?.file?.url" [srcset]="data.navbarLogo?.fields?.logoX2?.fields?.file?.url + ' 2x'" [alt]="data.navbarLogo?.fields?.description"/>
           </div>
         </app-link>
+        
       </div>
       <div class="collapse navbar-collapse w-100 justify-content-end">
         <ul class="navbar-nav">
@@ -15,6 +18,9 @@
             <app-link 
               [title]="item.fields.title"
               [href]="item.fields.href"
+              [targetBlank]="item.fields.targetBlank"
+              [external]="item.fields.external"
+              [rel]="item.fields.rel"
               className="nav-link">
             </app-link>
           </li>
@@ -23,7 +29,9 @@
       <div class="offcanvas offcanvas-nav offcanvas-end d-lg-none">
         <div class="offcanvas-header">
           <app-link 
-            [href]="routesEnum.Home">
+            [href]="routesEnum.Home"
+            [targetBlank]="false"
+            [external]="false">
             <img [src]="data.navbarLogo?.fields?.logoLight?.fields?.file?.url" [srcset]="data.navbarLogo?.fields?.logoLightX2?.fields?.file?.url + ' 2x'" [alt]="data.navbarLogo?.fields?.description"/>
           </app-link>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -34,6 +42,9 @@
               <app-link 
                 [title]="item.fields.title"
                 [href]="item.fields.href"
+                [targetBlank]="item.fields.targetBlank"
+                [external]="item.fields.external"
+                [rel]="item.fields.rel"
                 className="nav-link py-2">
               </app-link>
             </li>
@@ -41,6 +52,9 @@
               <app-link 
                 [title]="data.contactLink.fields.title"
                 [href]="data.contactLink.fields.href"
+                [targetBlank]="data.contactLink.fields.targetBlank"
+                [external]="data.contactLink.fields.external"
+                [rel]="data.contactLink.fields.rel"
                 className="nav-link py-2">
               </app-link>
             </li>
@@ -67,6 +81,9 @@
               <app-link 
                 [title]="data.contactLink.fields.title"
                 [href]="data.contactLink.fields.href"
+                [targetBlank]="data.contactLink.fields.targetBlank"
+                [external]="data.contactLink.fields.external"
+                [rel]="data.contactLink.fields.rel"
                 className="btn btn-sm btn-primary rounded-pill">
               </app-link>
             </li>

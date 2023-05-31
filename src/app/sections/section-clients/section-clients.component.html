@@ -37,10 +37,14 @@
                       </p>
                       <ng-container *ngFor="let socialMedia of card.fields.socialMedia">
                         <nav class="nav social mb-0">
-                          <a rel="nofollow" [href]="socialMedia.fields.href" target="_blank">
+                          <app-link 
+                            [href]="socialMedia.fields.href"
+                            [targetBlank]="socialMedia.fields.targetBlank"
+                            [external]="socialMedia.fields.external"
+                            [rel]="socialMedia.fields.rel">
                             <i class="uil uil-{{ socialMedia.fields.title }}">
                             </i>
-                          </a>
+                          </app-link>
                         </nav>
                       </ng-container>
                       <!-- /.social -->
