@@ -14,9 +14,13 @@
               <div class="swiper-slide">
                 <article>
                   <figure class="overlay overlay-1 hover-scale rounded mb-5">
-                    <a [href]="post.link" target="_blank" rel="noopener noreferrer">
+                    <app-link 
+                      [href]="post.link"
+                      [targetBlank]="true"
+                      [external]="true"
+                      rel="noopener noreferrer">
                       <img [src]="post.thumbnail" [alt]="post.title"/>
-                    </a>
+                    </app-link>
                     <figcaption>
                       <h5 class="from-top mb-0">
                         {{ data.imageHover }}
@@ -35,9 +39,14 @@
                     </div>
                     <!-- /.post-category -->
                     <h2 class="post-title h3 mt-1 mb-3">
-                      <a class="link-dark" [href]="post.link" target="_blank" rel="noopener noreferrer">
-                        {{ post.title }}
-                      </a>
+                      <app-link 
+                        [title]="post.title"
+                        [href]="post.link"
+                        [targetBlank]="true"
+                        [external]="true"
+                        class="link-dark"
+                        rel="noopener noreferrer">
+                      </app-link>
                     </h2>
                   </div>
                   <!-- /.post-header -->

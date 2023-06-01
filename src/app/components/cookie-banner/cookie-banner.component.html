@@ -11,7 +11,9 @@
               {{ t("COOKIE_MODAL.DESCRIPTION") }}
               <app-link 
                 [title]="t('COOKIE_MODAL.LINK')"
-                [href]="routesEnum.Cookies">
+                [href]="routesEnum.Cookies"
+                [external]="false"
+                [targetBlank]="false">
               </app-link>
             </p>
           </div>
