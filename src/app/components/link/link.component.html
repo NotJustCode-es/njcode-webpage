@@ -1,23 +1,12 @@
 <ng-container *transloco="let t">
-
-  <ng-container *ngIf="!external; then internalLink; else externalLink">
-  </ng-container>
-
-  <ng-template #internalLink>
-    <a [class]="className" [routerLink]="i18nBasedHref" [attr.target]="targetBlank ? '_blank' : null" [attr.rel]="rel ? rel : null">
-      <span *ngIf="title">
-        {{ title }}
-      </span>
-      <ng-content></ng-content>
-    </a>
-  </ng-template>
-  
-  <ng-template #externalLink>
-    <a [class]="className" [href]="href" [attr.target]="targetBlank ? '_blank' : null" [attr.rel]="rel ? rel : null">
-      <span *ngIf="title">
-        {{ title }}
-      </span>
-      <ng-content></ng-content>
-    </a>
-  </ng-template>
+  <a [class]="className"
+    [href]="i18nBasedHref"
+    [attr.target]="targetBlank ? '_blank' : '_self'"
+    [attr.rel]="rel ? rel : null"
+    (click)="onClickLink($event)">
+    <span *ngIf="title">
+      {{ title }}
+    </span>
+    <ng-content></ng-content>
+  </a>
 </ng-container>
