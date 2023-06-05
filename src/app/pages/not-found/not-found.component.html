@@ -1,23 +1,23 @@
-<section class="wrapper bg-light d-flex min-vh-100 align-items-center">
+<section *transloco="let t" class="wrapper bg-light d-flex min-vh-100 align-items-center">
   <div class="container pt-12 pt-md-14 pb-14 pb-md-16">
     <div class="row">
       <div class="col-lg-9 col-xl-8 mx-auto">
         <figure class="mb-10">
-          <img class="img-fluid" [src]="notFoundImgPath" alt="">
+          <img class="img-fluid" [src]="notFoundImgPath" [alt]="t('NOT_FOUND.TITLE')">
         </figure>
       </div>
       <div class="col-lg-8 col-xl-7 col-xxl-6 mx-auto text-center">
-        <ng-container *transloco="let t">
+        <ng-container>
           <h1 class="mb-3">
-            {{ t("NOT_FOUND.TITLE") }}
+            {{ t('NOT_FOUND.TITLE') }}
           </h1>
           <p class="lead mb-7 px-md-12 px-lg-5 px-xl-7">
-            {{ t("NOT_FOUND.DESCRIPTION") }}
+            {{ t('NOT_FOUND.DESCRIPTION') }}
           </p>
-          <app-link 
+          <app-link
+            className="btn btn-primary rounded-pill"
             [title]="t('NOT_FOUND.BUTTON_TITLE')"
             [href]="routesEnum.Home"
-            className="btn btn-primary rounded-pill"
             [external]="false"
             [targetBlank]="false">
           </app-link>

@@ -19,6 +19,7 @@
               [href]="item.fields.href"
               [targetBlank]="item.fields.targetBlank"
               [external]="item.fields.external"
+              [i18n]="!item.fields.external"
               [rel]="item.fields.rel"
               className="nav-link">
             </app-link>
@@ -43,6 +44,7 @@
                 [href]="item.fields.href"
                 [targetBlank]="item.fields.targetBlank"
                 [external]="item.fields.external"
+                [i18n]="!item.fields.external"
                 [rel]="item.fields.rel"
                 className="nav-link py-2">
               </app-link>
@@ -53,6 +55,7 @@
                 [href]="data.contactLink.fields.href"
                 [targetBlank]="data.contactLink.fields.targetBlank"
                 [external]="data.contactLink.fields.external"
+                [i18n]="!data.contactLink.fields.external"
                 [rel]="data.contactLink.fields.rel"
                 className="nav-link py-2">
               </app-link>
@@ -82,6 +85,7 @@
                 [href]="data.contactLink.fields.href"
                 [targetBlank]="data.contactLink.fields.targetBlank"
                 [external]="data.contactLink.fields.external"
+                [i18n]="!data.contactLink.fields.external"
                 [rel]="data.contactLink.fields.rel"
                 className="btn btn-sm btn-primary rounded-pill">
               </app-link>

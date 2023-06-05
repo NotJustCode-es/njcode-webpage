@@ -3,8 +3,9 @@ import {
 } from '@angular/core';
 import { TypeSection__postsFields } from '@server/models/contentful-content-types/section-posts';
 import { Post } from '@server/models/post';
+import { PluginsService } from '@services/plugins/plugins.service';
 import { PostsService } from '@services/posts/posts.service';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 @Component({
   selector: 'app-section-posts',
@@ -17,9 +18,15 @@ export class SectionPostsComponent implements OnInit {
 
   posts$!: Observable<Post[]>;
 
-  constructor(private postService: PostsService) { }
+  constructor(
+    private postService: PostsService,
+    private pluginsService: PluginsService,
+  ) { }
 
   ngOnInit(): void {
-    this.posts$ = this.postService.getPosts(this.data.user);
+    this.posts$ = this.postService.getPosts(this.data.user)
+      .pipe(
+        tap(() => this.pluginsService.loadPlugins()),
+      );
   }
 }

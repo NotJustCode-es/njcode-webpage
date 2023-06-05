@@ -37,11 +37,12 @@
                       </p>
                       <ng-container *ngFor="let socialMedia of card.fields.socialMedia">
                         <nav class="nav social mb-0">
-                          <app-link 
+                          <app-link
                             [href]="socialMedia.fields.href"
                             [targetBlank]="socialMedia.fields.targetBlank"
                             [external]="socialMedia.fields.external"
-                            [rel]="socialMedia.fields.rel">
+                            [rel]="socialMedia.fields.rel"
+                            [i18n]="false">
                             <i class="uil uil-{{ socialMedia.fields.title }}">
                             </i>
                           </app-link>

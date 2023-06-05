@@ -38,7 +38,7 @@ describe('LinkComponent', () => {
     it('should return href when i18n is false', () => {
       component.href = 'test';
       component.i18n = false;
-      expect(component.i18nBasedHref).toEqual('/test');
+      expect(component.i18nBasedHref).toEqual('test');
     });
   });
 });

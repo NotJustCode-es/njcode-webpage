@@ -2,6 +2,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SectionPostsComponent } from '@sections/section-posts/section-posts.component';
 import { PostsService } from '@services/posts/posts.service';
+import { of } from 'rxjs';
 
 describe('SectionPostsComponent', () => {
   let component: SectionPostsComponent;
@@ -11,8 +12,9 @@ describe('SectionPostsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [SectionPostsComponent],
-      imports: [HttpClientTestingModule],
-
+      imports: [
+        HttpClientTestingModule,
+      ],
     })
       .compileComponents();
     fixture = TestBed.createComponent(SectionPostsComponent);
@@ -33,7 +35,7 @@ describe('SectionPostsComponent', () => {
 
   describe('#ngOnInit', () => {
     it('should call postService.getPosts', () => {
-      const getPostsSpy = spyOn(postService, 'getPosts');
+      const getPostsSpy = spyOn(postService, 'getPosts').and.returnValue(of([]));
       component.ngOnInit();
       expect(getPostsSpy).toHaveBeenCalled();
     });

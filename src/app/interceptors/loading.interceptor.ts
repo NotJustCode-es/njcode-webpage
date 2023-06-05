@@ -13,9 +13,17 @@ export class LoadingInterceptor implements HttpInterceptor {
   ) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    if (!this.interceptRequest(request)) {
+      return next.handle(request);
+    }
     this.loadingService.setLoading(true);
     return next.handle(request).pipe(
       finalize(() => this.loadingService.setLoading(false)),
     );
+  }
+
+  private interceptRequest(request: HttpRequest<unknown>): boolean {
+    const interceptRequestHeader = request.headers.get(LoadingService.interceptRequestHeader);
+    return !(interceptRequestHeader && interceptRequestHeader === 'false');
   }
 }

@@ -31,7 +31,7 @@ export class LinkComponent {
   get i18nBasedHref(): string {
     const href = this.href || '';
     const hrefWithoutSlash = href.replace(/^\//, '');
-    return this.i18n ? `/${this.i18nService.activeLanguage}/${hrefWithoutSlash}` : `/${hrefWithoutSlash}`;
+    return this.i18n ? `/${this.i18nService.activeLanguage}/${hrefWithoutSlash}` : hrefWithoutSlash;
   }
 
   onClickLink(event: MouseEvent): void {

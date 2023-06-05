@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Post } from '@server/models/post';
+import { LoadingService } from '@services/loading/loading.service';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -16,7 +17,10 @@ export class PostsService {
       .set('user', user);
     return this.httpClient.get<Post[]>(
       this.getPostsPath,
-      { params },
+      {
+        ...LoadingService.interceptRequest(false),
+        params,
+      },
     );
   }
 }
