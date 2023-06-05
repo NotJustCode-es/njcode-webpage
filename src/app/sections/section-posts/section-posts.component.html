@@ -14,8 +14,8 @@
               <div class="swiper-slide">
                 <article>
                   <figure class="overlay overlay-1 hover-scale rounded mb-5">
-                    <app-link 
-                      [href]="post.link"
+                    <app-link
+                      [href]="post.link[0]"
                       [targetBlank]="true"
                       [external]="true"
                       rel="noopener noreferrer">
@@ -39,9 +39,9 @@
                     </div>
                     <!-- /.post-category -->
                     <h2 class="post-title h3 mt-1 mb-3">
-                      <app-link 
+                      <app-link
                         [title]="post.title"
-                        [href]="post.link"
+                        [href]="post.link[0]"
                         [targetBlank]="true"
                         [external]="true"
                         class="link-dark"
@@ -56,7 +56,7 @@
                         <i class="uil uil-calendar-alt">
                         </i>
                         <span>
-                          {{ post.pubDate| date:'dd/MM/yyyy' }}
+                          {{ post.pubDate | date:'dd/MM/yyyy' }}
                         </span>
                       </li>
                     </ul>

@@ -1,14 +1,14 @@
 import { HttpService } from '@nestjs/axios';
 import { Inject, Injectable } from '@nestjs/common';
 import { Post } from '@server/models/post';
-import { parseStringPromise } from 'xml2js';
 import {
   catchError, from, Observable, of, switchMap,
 } from 'rxjs';
+import { parseStringPromise } from 'xml2js';
 
 @Injectable()
 export class PostsApiService {
-  private readonly RSSU = 'https://medium.com/feed/@';
+  private readonly RSSU = 'https://medium.com/feed/';
 
   constructor(@Inject(HttpService) readonly httpService: HttpService) {}
 
