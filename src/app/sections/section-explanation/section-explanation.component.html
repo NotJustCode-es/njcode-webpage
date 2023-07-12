@@ -1,0 +1,10 @@
+<section class="wrapper bg-light">
+  <app-work-flow [data]="data.explanation.fields" 
+    [imageOnLeftSide]="data.imageOnLeftSide">
+    <div class="col-6 col-lg-3">
+      <figure class="rounded">
+        <img [src]="data.explanation.fields.workflowImage?.fields?.file?.url" [alt]="data.explanation.fields.workflowImage?.fields?.title"/>
+      </figure>
+    </div>
+  </app-work-flow>
+</section>
