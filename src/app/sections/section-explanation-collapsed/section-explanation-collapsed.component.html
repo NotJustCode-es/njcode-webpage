@@ -17,12 +17,12 @@
               <!--/.accordion-item -->
               <div class="card plain accordion-item">
                 <div class="card-header" id="headingTwo">
-                  <button class="collapsed" data-bs-toggle="collapse" [attr.data-bs-target]="getTitleWithPad(entry.fields.title)" aria-expanded="false" [attr.aria-controls]="entry.fields.title"> 
+                  <button class="collapsed" data-bs-toggle="collapse" [attr.data-bs-target]="getTitleWithPad(entry.fields.title.split(' ')[0])" aria-expanded="true" [attr.aria-controls]="entry.fields.title.split(' ')[0]"> 
                     {{ entry.fields.title }} 
                   </button>
                 </div>
                 <!--/.card-header -->
-                <div [id]="entry.fields.title" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                <div [id]="entry.fields.title.split(' ')[0]" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                   <div class="card-body">
                     <p>
                       {{ entry.fields.body }}
