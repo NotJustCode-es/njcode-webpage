@@ -4,12 +4,14 @@
       <ng-container *ngFor="let highlight of data?.highlights">
         <div class="col-lg-4 col-centered">
           <div class="card shadow-lg fs-15">
-            <div class="card-body">
+            <div class="card-body"
+              [ngClass]="{ 'centered-card-content': data.centered }">
               <img [src]="getIconPath(highlight.fields.icon)" class="icon-svg icon-svg-sm mb-3" [alt]="highlight.fields.title"/>
               <h4>
                 {{ highlight.fields.title }}
               </h4>
-              <p class="mb-2">
+              <p class="mb-2" 
+                [ngClass]="{ 'text-center': data.centered }">
                 {{ highlight.fields.description }}
               </p>
             </div>
