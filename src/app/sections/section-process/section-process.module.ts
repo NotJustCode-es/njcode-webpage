@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SectionProcessComponent } from './section-process.component';
+import { WorkFlowModule } from '@components/work-flow/work-flow.module';
+import { SectionProcessComponent } from '@sections/section-process/section-process.component';
 
 @NgModule({
   declarations: [
@@ -8,6 +9,7 @@ import { SectionProcessComponent } from './section-process.component';
   ],
   imports: [
     CommonModule,
+    WorkFlowModule,
   ],
   exports: [
     SectionProcessComponent,

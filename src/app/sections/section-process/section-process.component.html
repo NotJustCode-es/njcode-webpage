@@ -26,35 +26,15 @@
       </ng-container>
     </div>
     <!--/.row -->
-    <div class="tab-content mt-6 mt-lg-8">
-      <div class="row gx-lg-8 gx-xl-12 gy-10 align-items-center">
+    <ng-container *ngIf="data.flow">
+      <app-work-flow [data]="data.flow.fields">
         <div class="col-lg-6">
           <figure class="rounded shadow-lg">
-            <img [src]="data.flow?.fields?.workflowImage?.fields?.file?.url" [alt]="data.flow?.fields?.title"/>
+            <img [src]="data.flow.fields.workflowImage.fields.file?.url" [alt]="data.flow.fields.title"/>
           </figure>
         </div>
-        <!--/column -->
-        <div class="col-lg-6">
-          <h2 class="mb-3">
-            {{ data.flow?.fields?.title }}
-          </h2>
-          <p>
-            {{ data.flow?.fields?.description }}
-          </p>
-          <ng-container *ngFor="let checkitem of data?.flow?.fields?.checklist">
-            <ul class="icon-list bullet-bg bullet-soft-fuchsia">
-              <li>
-                <i class="uil uil-check">
-                </i>
-                {{ checkitem }}
-              </li>
-            </ul>
-          </ng-container>
-        </div>
-        <!--/column -->
-      </div>
-      <!--/.row -->
-    </div>
+      </app-work-flow>
+    </ng-container>
   </div>
 </section>
 <!-- /section -->
