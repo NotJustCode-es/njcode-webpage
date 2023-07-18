@@ -1,10 +1,11 @@
-<div class="container pb-14 pb-md-16">
-  <figure class="rounded mb-4 mb-md-6 ">
-    <img [src]="data.image?.fields?.file?.url" [alt]="data.image?.fields?.file?.fileName"/>
-  </figure>
-  <div class="row">
-    <div class="col-lg-10 offset-lg-1">
-      <div class="row gx-0 g-10 py-5 justify-content-center">
+<div class="container pb-15 pb-md-17">
+  <div class="tab-content mt-6 mt-lg-8">
+    <div class="row gx-lg-8 gx-xl-12 gy-10 d-flex align-items-center justify-content-center">
+      <figure class="rounded mb-4 mb-md-6 col-lg-5">
+        <img [src]="data.image?.fields?.file?.url" [alt]="data.image?.fields?.file?.fileName"/>
+      </figure>
+      <!--/column -->
+      <div class="col-lg-7 d-flex">
         <ng-container *ngFor="let card of data?.cards">
           <div class="col-1 col-centered">
             <img [src]="getIconPath(card.fields.icon)" class="icon-svg icon-svg-sm mb-3" [alt]="card.fields.title"/>
@@ -23,10 +24,9 @@
           </div>
           <!--/column -->
         </ng-container>
-        <!--/column -->
       </div>
-      <!--/.row -->
+      <!--/column -->
     </div>
-    <!-- /column -->
+    <!--/.row -->
   </div>
 </div>
