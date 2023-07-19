@@ -13,7 +13,7 @@
             {{ data.title }}
           </h3>
           <div class="accordion accordion-wrapper" id="accordionExample">
-            <ng-container *ngFor="let entry of data.entries">
+            <ng-container *ngFor="let entry of data.entries; let first = first">
               <!--/.accordion-item -->
               <div class="card plain accordion-item">
                 <div class="card-header" id="headingTwo">
@@ -22,7 +22,7 @@
                   </button>
                 </div>
                 <!--/.card-header -->
-                <div [id]="entry.fields.title.split(' ')[0]" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                <div [id]="entry.fields.title.split(' ')[0]" class="accordion-collapse collapse show" [ngClass]="{ 'show' : first }" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                   <div class="card-body">
                     <p>
                       {{ entry.fields.body }}
