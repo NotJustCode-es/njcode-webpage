@@ -1,6 +1,11 @@
 <section class="wrapper bg-light">
-  <div class="container pt-md-10">
+  <div class="container pt-md-10 pb-10">
     <div class="row gx-md-5 gy-5 mt-n19 mb-14 mb-md-17">
+      <div *ngIf="data.title" class="d-flex justify-content-center pt-17 pb-7">
+        <h1 class="display-1 fs-45 mb-4 px-md-15 px-lg-0">
+          {{ data.title }}
+        </h1>
+      </div>
       <ng-container *ngFor="let highlight of data?.highlights">
         <div class="col-lg-4 col-centered">
           <div class="card shadow-lg fs-15">
