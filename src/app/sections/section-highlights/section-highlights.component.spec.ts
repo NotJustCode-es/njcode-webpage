@@ -30,6 +30,12 @@ describe('SectionHighlightsComponent', () => {
 
     fixture = TestBed.createComponent(SectionHighlightsComponent);
     component = fixture.componentInstance;
+    component.data = {
+      name: 'Section Highlights',
+      highlights: [],
+      centered: false,
+      title: 'Section Highlights',
+    };
     assetsService = TestBed.inject(AssetsService);
     fixture.detectChanges();
   });
