@@ -1,14 +1,14 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ConfigurationService } from '@core/services/configuration/configuration.service';
-import { SectionHighlightsComponent } from '@sections/section-highlights/section-highlights.component';
-import { AssetsService } from '@services/assets/assets.service';
+import { SectionExplanationComponent } from '@sections/section-explanation/section-explanation.component';
 import { ConfigurationServiceStub } from '@shared/testing/stubs/configuration.stub';
+import { createTestEntry } from '@shared/testing/utils/contentful.utils';
+import { Asset } from 'contentful';
 
-describe('SectionHighlightsComponent', () => {
-  let component: SectionHighlightsComponent;
-  let assetsService: AssetsService;
-  let fixture: ComponentFixture<SectionHighlightsComponent>;
+describe('SectionExplanationComponent', () => {
+  let component: SectionExplanationComponent;
+  let fixture: ComponentFixture<SectionExplanationComponent>;
   let configurationServiceStub: ConfigurationServiceStub;
 
   beforeEach(() => {
@@ -17,7 +17,7 @@ describe('SectionHighlightsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SectionHighlightsComponent],
+      declarations: [SectionExplanationComponent],
       imports: [HttpClientTestingModule],
       providers: [
         {
@@ -28,26 +28,24 @@ describe('SectionHighlightsComponent', () => {
     })
       .compileComponents();
 
-    fixture = TestBed.createComponent(SectionHighlightsComponent);
+    fixture = TestBed.createComponent(SectionExplanationComponent);
     component = fixture.componentInstance;
     component.data = {
-      name: 'Section Highlights',
-      highlights: [],
-      centered: false,
-      title: 'Section Highlights',
+      name: 'test',
+      explanation: createTestEntry({
+        name: 'test',
+        title: 'test',
+        description: 'test',
+        checklist: ['test'],
+        workflowImage: null as unknown as Asset,
+      }),
+      imageOnLeftSide: false,
+      zoomImage: false,
     };
-    assetsService = TestBed.inject(AssetsService);
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should call getIconLinealPath', () => {
-    const icon = 'check';
-    const spySubscribable = spyOn(assetsService, 'getIconLinealPath');
-    component.getIconPath(icon);
-    expect(spySubscribable).toHaveBeenCalled();
   });
 });

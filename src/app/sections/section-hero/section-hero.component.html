@@ -1,12 +1,15 @@
 <section class="wrapper gradient bg-overlay bg-overlay-300">
   <div class="container pt-17 pb-19 pt-md-18 pb-md-17 text-center">
     <div class="row">
-      <div class="col-lg-8 col-xl-9 mx-auto">
+      <div class="col-lg-8 col-xl-12 mx-auto">
         <h1 *ngIf="data?.title" class="display-1 text-white fs-45 mb-4 px-md-15 px-lg-0">
           {{ data.title }}
         </h1>
         <p *ngIf="data?.description" class="lead fs-21 text-white lh-sm mb-7 mx-md-13 mx-lg-10">
           {{ data.description }}
+        </p>
+        <p *ngIf="data?.body" class="lead fs-25 text-white lh-sm mb-7 mx-md-13 mx-lg-10">
+          {{ data.body }}
         </p>
       </div>
       <!-- /column -->

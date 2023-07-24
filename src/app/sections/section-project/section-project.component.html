@@ -1,10 +1,23 @@
 <div class="container">
   <div class="row pt-10 gx-lg-8 gx-xl-12 gy-10 mb-7 mb-md-7 align-items-center" 
     [ngClass]="{ 'flex-row-reverse': !data.imageOnLeftSide }">
-    <div class="col-lg-6 position-relative">
+    <div class="col-lg-6 position-relative d-flex flex-column">
       <figure class="rounded mb-0">
         <img *ngIf="data.projectImage" [src]="data.projectImage.fields.file?.url" [alt]="data.projectImage.fields.file?.fileName">
       </figure>
+      <div class="d-flex justify-content-center pt-5" *ngIf="data.learnMore">
+        <span>
+          <app-link
+            [title]="data.learnMore.fields.title"
+            [href]="data.learnMore.fields.href"
+            [targetBlank]="data.learnMore.fields.targetBlank"
+            [external]="data.learnMore.fields.external"
+            [i18n]="!data.learnMore.fields.external"
+            [rel]="data.learnMore.fields.rel"
+            className="btn btn-lg btn-primary rounded-pill mx-1">
+          </app-link>
+        </span>
+      </div>
     </div>
     <!--/column -->
     <div class="col-lg-6">

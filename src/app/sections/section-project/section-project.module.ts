@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SectionProjectComponent } from '@sections/section-project/section-project.component';
+import { LinkModule } from '@components/link/link.module';
 
 @NgModule({
   declarations: [
@@ -8,6 +9,7 @@ import { SectionProjectComponent } from '@sections/section-project/section-proje
   ],
   imports: [
     CommonModule,
+    LinkModule,
   ],
   exports: [
     SectionProjectComponent,

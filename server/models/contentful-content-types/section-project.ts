@@ -1,3 +1,4 @@
+import { TypeRouteLinkFields } from '@server/models/contentful-content-types/route-link';
 import * as Contentful from 'contentful';
 
 export interface TypeSection__projectFields {
@@ -13,5 +14,6 @@ export interface TypeSection__projectFields {
   badges: Contentful.EntryFields.Array<Contentful.EntryFields.Symbol>[];
   projectImage?: Contentful.Asset;
   imageOnLeftSide: Contentful.EntryFields.Boolean;
+  learnMore?: Contentful.Entry<TypeRouteLinkFields>;
 }
 export type TypeSection__project = Contentful.Entry<TypeSection__projectFields>;

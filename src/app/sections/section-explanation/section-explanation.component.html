@@ -1,0 +1,10 @@
+<section class="wrapper bg-light">
+  <app-work-flow [data]="data.explanation.fields" 
+    [imageOnLeftSide]="data.imageOnLeftSide">
+    <div [ngClass]="{'col-6 col-lg-3': !data.zoomImage, 'col-8 col-lg-5': data.zoomImage}">
+      <figure class="rounded" *ngIf ="data.explanation.fields.workflowImage">
+        <img [src]="data.explanation.fields.workflowImage.fields.file?.url" [alt]="data.explanation.fields.workflowImage.fields.title"/>
+      </figure>
+    </div>
+  </app-work-flow>
+</section>

@@ -1,14 +1,12 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ConfigurationService } from '@core/services/configuration/configuration.service';
-import { SectionHighlightsComponent } from '@sections/section-highlights/section-highlights.component';
-import { AssetsService } from '@services/assets/assets.service';
+import { SectionReviewComponent } from '@sections/section-review/section-review.component';
 import { ConfigurationServiceStub } from '@shared/testing/stubs/configuration.stub';
 
-describe('SectionHighlightsComponent', () => {
-  let component: SectionHighlightsComponent;
-  let assetsService: AssetsService;
-  let fixture: ComponentFixture<SectionHighlightsComponent>;
+describe('SectionReviewComponent', () => {
+  let component: SectionReviewComponent;
+  let fixture: ComponentFixture<SectionReviewComponent>;
   let configurationServiceStub: ConfigurationServiceStub;
 
   beforeEach(() => {
@@ -17,7 +15,7 @@ describe('SectionHighlightsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SectionHighlightsComponent],
+      declarations: [SectionReviewComponent],
       imports: [HttpClientTestingModule],
       providers: [
         {
@@ -28,26 +26,16 @@ describe('SectionHighlightsComponent', () => {
     })
       .compileComponents();
 
-    fixture = TestBed.createComponent(SectionHighlightsComponent);
+    fixture = TestBed.createComponent(SectionReviewComponent);
     component = fixture.componentInstance;
     component.data = {
-      name: 'Section Highlights',
-      highlights: [],
-      centered: false,
-      title: 'Section Highlights',
+      name: 'test',
+      cards: [],
     };
-    assetsService = TestBed.inject(AssetsService);
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should call getIconLinealPath', () => {
-    const icon = 'check';
-    const spySubscribable = spyOn(assetsService, 'getIconLinealPath');
-    component.getIconPath(icon);
-    expect(spySubscribable).toHaveBeenCalled();
   });
 });

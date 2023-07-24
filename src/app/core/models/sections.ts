@@ -28,6 +28,19 @@ export const SECTIONS: Map<string, Function> = new Map([
     (): Promise<unknown> => import('@sections/section-process/section-process.module').then(m => m.SectionProcessModule),
   ],
   [
+    'section-explanation',
+    (): Promise<unknown> => import('@sections/section-explanation/section-explanation.module').then(m => m.SectionExplanationModule),
+  ],
+  [
+    'section-explanation-collapsed',
+    (): Promise<unknown> => import('@sections/section-explanation-collapsed/section-explanation-collapsed.module')
+      .then(m => m.SectionExplanationCollapsedModule),
+  ],
+  [
+    'section-review',
+    (): Promise<unknown> => import('@sections/section-review/section-review.module').then(m => m.SectionReviewModule),
+  ],
+  [
     'section-contact-form',
     (): Promise<unknown> => import('@sections/section-contact-form/section-contact-form.module').then(m => m.SectionContactFormModule),
   ],

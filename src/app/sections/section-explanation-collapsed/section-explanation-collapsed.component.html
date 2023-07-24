@@ -1,0 +1,51 @@
+<section class="wrapper bg-light">
+  <div class="container">
+    <div class="tab-content mt-6 mt-lg-8">
+      <div class="row gx-lg-8 gx-xl-12 gy-10 mb-12 mb-md-15 d-flex align-items-center justify-content-center">
+        <div class="col-lg-4 d-flex justify-content-center">
+          <figure>
+            <img class="w-auto" [src]="data.image?.fields?.file?.url" [alt]="data.image?.fields?.file?.fileName"/>
+          </figure>
+        </div>
+        <!--/column -->
+        <div class="col-lg-6">
+          <h3 class="display-4 mt-xxl-8 mb-3">
+            {{ data.title }}
+          </h3>
+          <div class="accordion accordion-wrapper">
+            <ng-container *ngFor="let entry of data.entries; let first = first">
+              <!--/.accordion-item -->
+              <div class="card plain accordion-item">
+                <div class="card-header" id="headingTwo">
+                  <button class="collapsed" data-bs-toggle="collapse" [attr.data-bs-target]="getTitleWithPad(entry.fields.title.split(' ')[0])" aria-expanded="true" [attr.aria-controls]="entry.fields.title.split(' ')[0]"> 
+                    {{ entry.fields.title }} 
+                  </button>
+                </div>
+                <!--/.card-header -->
+                <div [id]="entry.fields.title.split(' ')[0]" class="accordion-collapse collapse show" [ngClass]="{ 'show' : first }" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                  <div class="card-body">
+                    <p>
+                      {{ entry.fields.text }}
+                    </p>
+                  </div>
+                  <!--/.card-body -->
+                </div>
+                <!--/.accordion-collapse -->
+              </div>
+              <!--/.accordion-item -->
+            </ng-container>
+            {{ data.linkText}}
+            <app-link
+              [title]="data.link.fields.title"
+              [href]="data.link.fields.href"
+              [external]="data.link.fields.external"
+              [targetBlank]="data.link.fields.targetBlank">
+            </app-link>
+          </div>
+          <!--/.accordion -->
+        </div>
+        <!--/column -->
+      </div>
+    </div>
+  </div>
+</section>

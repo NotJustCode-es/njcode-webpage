@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WorkFlowModule } from '@components/work-flow/work-flow.module';
-import { SectionProcessComponent } from '@sections/section-process/section-process.component';
+import { SectionExplanationComponent } from '@sections/section-explanation/section-explanation.component';
 
 @NgModule({
   declarations: [
-    SectionProcessComponent,
+    SectionExplanationComponent,
   ],
   imports: [
     CommonModule,
     WorkFlowModule,
   ],
   exports: [
-    SectionProcessComponent,
+    SectionExplanationComponent,
   ],
 })
-export class SectionProcessModule {
-  static component = SectionProcessComponent;
+export class SectionExplanationModule {
+  static component = SectionExplanationComponent;
 }
