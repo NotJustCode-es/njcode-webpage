@@ -12,7 +12,7 @@
           <h3 class="display-4 mt-xxl-8 mb-3">
             {{ data.title }}
           </h3>
-          <div class="accordion accordion-wrapper" id="accordionExample">
+          <div class="accordion accordion-wrapper">
             <ng-container *ngFor="let entry of data.entries; let first = first">
               <!--/.accordion-item -->
               <div class="card plain accordion-item">
@@ -25,7 +25,7 @@
                 <div [id]="entry.fields.title.split(' ')[0]" class="accordion-collapse collapse show" [ngClass]="{ 'show' : first }" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                   <div class="card-body">
                     <p>
-                      {{ entry.fields.body }}
+                      {{ entry.fields.text }}
                     </p>
                   </div>
                   <!--/.card-body -->
@@ -34,6 +34,13 @@
               </div>
               <!--/.accordion-item -->
             </ng-container>
+            {{ data.linkText}}
+            <app-link
+              [title]="data.link.fields.title"
+              [href]="data.link.fields.href"
+              [external]="data.link.fields.external"
+              [targetBlank]="data.link.fields.targetBlank">
+            </app-link>
           </div>
           <!--/.accordion -->
         </div>
