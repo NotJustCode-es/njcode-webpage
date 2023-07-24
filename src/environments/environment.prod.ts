@@ -1,5 +1,5 @@
 export const environment = {
-  production: false,
+  production: true,
   i18n: {
     defaultLang: 'es',
     availableLangs: ['en', 'es'],
