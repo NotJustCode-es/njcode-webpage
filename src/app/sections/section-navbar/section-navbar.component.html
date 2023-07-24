@@ -24,6 +24,25 @@
               className="nav-link">
             </app-link>
           </li>
+          <li *ngIf="data.dropdown" class="nav-item dropdown pe-5">
+            <a class="nav-link dropdown-toggle"
+              data-mdb-toggle="dropdown">
+              {{  data.dropdown.fields.title }}
+            </a>
+            <ul class="dropdown-menu">
+              <ng-container *ngFor="let link of data.dropdown.fields.links"> 
+                <li>
+                  <app-link
+                    [href]="link.fields.href"
+                    [targetBlank]="link.fields.targetBlank"
+                    [external]="link.fields.external"
+                    className="dropdown-item">
+                    {{ link.fields.title }}
+                  </app-link>
+                </li>
+              </ng-container>
+            </ul>
+          </li>
         </ul>
       </div>
       <div class="offcanvas offcanvas-nav offcanvas-end d-lg-none">
