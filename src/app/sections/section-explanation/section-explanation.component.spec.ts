@@ -40,6 +40,7 @@ describe('SectionExplanationComponent', () => {
         workflowImage: null as unknown as Asset,
       }),
       imageOnLeftSide: false,
+      zoomImage: false,
     };
     fixture.detectChanges();
   });

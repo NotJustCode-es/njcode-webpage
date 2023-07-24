@@ -17,10 +17,18 @@ describe('SectionExplanationCollapsedComponent', () => {
     component.data = {
       name: 'test',
       title: 'test',
+      linkText: 'test',
+      link: createTestEntry({
+        name: 'test',
+        title: 'test',
+        href: 'test',
+        external: true,
+        targetBlank: true,
+      }),
       entries: [createTestEntry({
         name: 'test',
         title: 'test',
-        body: 'test',
+        text: 'test',
       })],
     };
     fixture.detectChanges();
