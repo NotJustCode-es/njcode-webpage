@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SectionExplanationCollapsedComponent } from '@sections/section-explanation-collapsed/section-explanation-collapsed.component';
+import { LinkModule } from '@components/link/link.module';
 
 @NgModule({
   declarations: [
@@ -8,6 +9,7 @@ import { SectionExplanationCollapsedComponent } from '@sections/section-explanat
   ],
   imports: [
     CommonModule,
+    LinkModule,
   ],
   exports: [
     SectionExplanationCollapsedComponent,
