@@ -79,6 +79,24 @@
                 className="nav-link py-2">
               </app-link>
             </li>
+            <li *ngIf="data.dropdown" class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                {{ data.dropdown.fields.title }}
+              </a>
+              <ul class="dropdown-menu bg-transparent">
+                <ng-container *ngFor="let link of data.dropdown.fields.links"> 
+                  <li class="nav-item">
+                    <app-link
+                      [href]="link.fields.href"
+                      [targetBlank]="link.fields.targetBlank"
+                      [external]="link.fields.external"
+                      className="text-white">
+                      {{ link.fields.title }}
+                    </app-link>
+                  </li>
+                </ng-container>
+              </ul>
+            </li>
           </ul>
         </div>
       </div>
