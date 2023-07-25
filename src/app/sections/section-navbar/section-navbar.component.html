@@ -11,41 +11,7 @@
           </app-link>
         </div>
       </div>
-      <div class="collapse navbar-collapse w-100 justify-content-end">
-        <ul class="navbar-nav">
-          <li class="nav-item pe-5" *ngFor="let item of data.links">
-            <app-link
-              [title]="item.fields.title"
-              [href]="item.fields.href"
-              [targetBlank]="item.fields.targetBlank"
-              [external]="item.fields.external"
-              [i18n]="!item.fields.external"
-              [rel]="item.fields.rel"
-              className="nav-link">
-            </app-link>
-          </li>
-          <li *ngIf="data.dropdown" class="nav-item dropdown pe-5">
-            <a class="nav-link dropdown-toggle"
-              data-mdb-toggle="dropdown">
-              {{  data.dropdown.fields.title }}
-            </a>
-            <ul class="dropdown-menu">
-              <ng-container *ngFor="let link of data.dropdown.fields.links"> 
-                <li>
-                  <app-link
-                    [href]="link.fields.href"
-                    [targetBlank]="link.fields.targetBlank"
-                    [external]="link.fields.external"
-                    className="dropdown-item">
-                    {{ link.fields.title }}
-                  </app-link>
-                </li>
-              </ng-container>
-            </ul>
-          </li>
-        </ul>
-      </div>
-      <div class="offcanvas offcanvas-nav offcanvas-end d-lg-none">
+      <div class="navbar-collapse offcanvas offcanvas-nav offcanvas-end">
         <div class="offcanvas-header">
           <app-link
             [href]="routesEnum.Home"
@@ -65,10 +31,28 @@
                 [external]="item.fields.external"
                 [i18n]="!item.fields.external"
                 [rel]="item.fields.rel"
-                className="nav-link py-2">
+                className="nav-link">
               </app-link>
             </li>
-            <li class="nav-item" *ngIf="data.contactLink">
+            <li *ngIf="data.dropdown" class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                {{ data.dropdown.fields.title }}
+              </a>
+              <ul class="dropdown-menu">
+                <ng-container *ngFor="let link of data.dropdown.fields.links">
+                  <li class="nav-item">
+                    <app-link
+                      [href]="link.fields.href"
+                      [targetBlank]="link.fields.targetBlank"
+                      [external]="link.fields.external"
+                      className="dropdown-item">
+                      {{ link.fields.title }}
+                    </app-link>
+                  </li>
+                </ng-container>
+              </ul>
+            </li>
+            <li class="nav-item d-lg-none" *ngIf="data.contactLink">
               <app-link
                 [title]="data.contactLink.fields.title"
                 [href]="data.contactLink.fields.href"
@@ -76,26 +60,8 @@
                 [external]="data.contactLink.fields.external"
                 [i18n]="!data.contactLink.fields.external"
                 [rel]="data.contactLink.fields.rel"
-                className="nav-link py-2">
+                className="nav-link">
               </app-link>
-            </li>
-            <li *ngIf="data.dropdown" class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                {{ data.dropdown.fields.title }}
-              </a>
-              <ul class="dropdown-menu bg-transparent">
-                <ng-container *ngFor="let link of data.dropdown.fields.links"> 
-                  <li class="nav-item">
-                    <app-link
-                      [href]="link.fields.href"
-                      [targetBlank]="link.fields.targetBlank"
-                      [external]="link.fields.external"
-                      className="text-white">
-                      {{ link.fields.title }}
-                    </app-link>
-                  </li>
-                </ng-container>
-              </ul>
             </li>
           </ul>
         </div>
@@ -103,7 +69,7 @@
       <!-- /.navbar-collapse -->
       <div class="navbar-other d-flex ms-auto">
         <ul class="navbar-nav flex-row align-items-center ms-auto">
-          <li class="nav-item dropdown language-select text-uppercase pe-5">
+          <li class="nav-item dropdown language-select text-uppercase pe-5 ps-3">
             <button class="nav-link dropdown-item dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               {{ activeLang | uppercase }}
             </button>
@@ -129,7 +95,9 @@
             </li>
           </div>
           <li class="nav-item d-lg-none">
-            <button class="hamburger offcanvas-nav-btn"><span></span></button>
+            <button class="hamburger offcanvas-nav-btn">
+              <span></span>
+            </button>
           </li>
         </ul>
         <!-- /.navbar-nav -->
