@@ -26,6 +26,8 @@ describe('SectionFooterComponent', () => {
       socialmedia: [],
       legalPages: [],
       legalPagesTitle: 'test',
+      partnersTitle: 'test',
+      partners: [],
     };
     fixture.detectChanges();
   });

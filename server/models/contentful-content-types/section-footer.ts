@@ -15,6 +15,8 @@ export interface TypeSection__footerFields {
   socialmedia: Contentful.Entry<TypeRouteLinkFields>[];
   legalPages: Contentful.Entry<TypePageFields>[];
   legalPagesTitle: Contentful.EntryFields.Symbol;
+  partnersTitle: Contentful.EntryFields.Symbol;
+  partners: Contentful.Entry<TypeLogoFields>[];
 }
 
 export type TypeSection__footer = Contentful.Entry<TypeSection__footerFields>;
