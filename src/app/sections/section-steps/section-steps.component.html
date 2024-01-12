@@ -1,0 +1,31 @@
+<div class="container py-7 py-md-9">
+  <div class="row gx-lg-8 gx-xl-12 gy-10 d-flex align-items-center justify-content-center">
+    <figure class="rounded mb-4 mb-md-6 col-lg-5">
+      <img [src]="data.image?.fields?.file?.url" [alt]="data.image?.fields?.file?.fileName"/>
+    </figure>
+    <div class="col-lg-6">
+      <h2 class="fs-15 text-uppercase text-muted mb-3">
+        {{ data.foreword }}
+      </h2>
+      <h3 class="display-4 mb-5">
+        {{ data.title }}
+      </h3>
+      <p class="mb-8">
+        {{ data.description }}
+      </p>
+      <div class="row gy-6 gx-xxl-8 process-wrapper" data-cues="slideInUp" data-group="process">
+        <ng-container *ngFor="let step of data?.steps">
+          <div class="col-md-4"> 
+            <img [src]="getIconPath(step.fields.icon)" class="icon-svg icon-svg-sm mb-3" [alt]="step.fields.title"/>
+            <h4 class="mb-1">
+              {{ step.fields.title }}
+            </h4>
+            <p class="mb-0">
+              {{ step.fields.description }}
+            </p>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
