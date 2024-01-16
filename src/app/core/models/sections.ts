@@ -56,4 +56,8 @@ export const SECTIONS: Map<string, Function> = new Map([
     'section-posts',
     (): Promise<unknown> => import('@sections/section-posts/section-posts.module').then(m => m.SectionPostsModule),
   ],
+  [
+    'section-steps',
+    (): Promise<unknown> => import('@sections/section-steps/section-steps.module').then(m => m.SectionStepsModule),
+  ],
 ]);
