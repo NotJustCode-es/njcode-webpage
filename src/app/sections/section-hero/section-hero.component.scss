@@ -1,0 +1,10 @@
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero__logo {
+  scale: 0.7;
+}

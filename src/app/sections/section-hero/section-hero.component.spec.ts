@@ -13,6 +13,12 @@ describe('SectionHeroComponent', () => {
 
     fixture = TestBed.createComponent(SectionHeroComponent);
     component = fixture.componentInstance;
+    component.data = {
+      name: 'name',
+      title: 'title',
+      description: 'description',
+      body: 'body',
+    };
     fixture.detectChanges();
   });
 
