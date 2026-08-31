@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { TypePageFields } from '@server/models/contentful-content-types/page';
+import { AI_CRAWLER_USER_AGENTS } from '@server/root/ai-crawler-user-agents.const';
 import { EntryCollectionWithLinkResolutionAndWithUnresolvableLinks } from 'contentful';
 import { environment } from '@environments/environment';
 import {
@@ -29,6 +30,20 @@ export class RootService {
   }
 
   getRobotsContent(hostname: string): string {
-    return `User-agent: * \nAllow: / \n\nSitemap: ${hostname}/sitemap.xml`;
+    const aiGroup = AI_CRAWLER_USER_AGENTS
+      .map(agent => `User-agent: ${agent}`)
+      .join('\n');
+
+    return `${aiGroup}
+Disallow: /
+DisallowAITraining: /
+
+User-agent: *
+DisallowAITraining: /
+Content-Usage: ai=n
+Content-Signal: search=yes, ai-input=no, ai-train=no
+Allow: /
+
+Sitemap: ${hostname}/sitemap.xml`;
   }
 }

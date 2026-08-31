@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getTestSitemap } from '@server/shared/testing/snapshots/sitemap.snapshot.xml';
 import { createTestEntryCollection } from '@server/shared/testing/utils/contentful-entry-collection.util';
+import { AI_CRAWLER_USER_AGENTS } from '@server/root/ai-crawler-user-agents.const';
 import { RootService } from '@server/root/root.service';
 
 describe('RootService', () => {
@@ -30,6 +31,20 @@ describe('RootService', () => {
 
   it('should create valid robots', () => {
     const hostname = 'http://localhost:4200';
-    expect(service.getRobotsContent(hostname)).toEqual(`User-agent: * \nAllow: / \n\nSitemap: ${hostname}/sitemap.xml`);
+    const aiGroup = AI_CRAWLER_USER_AGENTS
+      .map(agent => `User-agent: ${agent}`)
+      .join('\n');
+
+    expect(service.getRobotsContent(hostname)).toEqual(`${aiGroup}
+Disallow: /
+DisallowAITraining: /
+
+User-agent: *
+DisallowAITraining: /
+Content-Usage: ai=n
+Content-Signal: search=yes, ai-input=no, ai-train=no
+Allow: /
+
+Sitemap: ${hostname}/sitemap.xml`);
   });
 });
