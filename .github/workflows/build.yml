@@ -28,9 +28,9 @@ jobs:
       matrix:
         node-version: [ 16 ]
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v7
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v7
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
@@ -74,7 +74,7 @@ jobs:
       run: zip -r ${{ env.APPLICATION_NAME }}.zip . -x ".git/*" -x ".github/*" -x ".vscode/*"
 
     - name: Upload zip
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v7
       with:
         name: ${{ env.ARTIFACT_NAME }}
         path: ./${{ env.APPLICATION_NAME }}.zip
@@ -85,7 +85,7 @@ jobs:
     needs: build
     steps:
     - name: Download zip
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v8
       with:
         name: ${{ env.ARTIFACT_NAME }}
 
@@ -117,6 +117,6 @@ jobs:
 
     - name: Delete artifact
       if: always()
-      uses: geekyeggo/delete-artifact@v2
+      uses: geekyeggo/delete-artifact@v6
       with:
         name: ${{ env.ARTIFACT_NAME }}
