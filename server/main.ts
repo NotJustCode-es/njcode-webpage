@@ -2,7 +2,6 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import compression from 'compression';
-import { NextFunction, Request, Response } from 'express';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
@@ -13,24 +12,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe( {
     whitelist: true,
   }));
-
-  const originHeader = process.env['X_FROM_CLOUDFRONT']
-  const expressApp = app.getHttpAdapter().getInstance()
-  expressApp.set('trust proxy', 1)
-  expressApp.use((req: Request, res: Response, next: NextFunction) => {
-    if (!originHeader) {
-      return next()
-    }
-    const ip = req.ip || req.socket?.remoteAddress || ''
-    if (ip === '127.0.0.1' || ip === '::1' || ip === '::ffff:127.0.0.1') {
-      return next()
-    }
-    if (req.headers['x-from-cloudfront'] !== originHeader) {
-      return res.status(403).send('Forbidden');
-    }
-    next()
-  })
-
+  app.getHttpAdapter().getInstance().set('trust proxy', 1)
   await app.listen(process.env['PORT'] || 4000)
 }
 

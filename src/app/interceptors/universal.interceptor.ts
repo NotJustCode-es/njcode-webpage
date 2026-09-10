@@ -22,14 +22,16 @@ export class UniversalInterceptorService implements HttpInterceptor {
     }
 
     const originHeader = this.getCloudFrontOriginHeader();
-    const serverReq = req.clone({
-      url: `${this.serverUrl}${req.url}`,
+    return next.handle(req.clone({
+      url: `${this.toHttpServerUrl()}${req.url}`,
       setHeaders: originHeader
         ? { 'x-from-cloudfront': originHeader }
         : {},
-    });
+    }));
+  }
 
-    return next.handle(serverReq);
+  private toHttpServerUrl(): string {
+    return this.serverUrl.replace(/^https:/, 'http:');
   }
 
   private getCloudFrontOriginHeader(): string | undefined {
