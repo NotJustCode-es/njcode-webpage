@@ -16,8 +16,7 @@ export class OriginVerifyMiddleware implements NestMiddleware {
       return;
     }
 
-    const remoteAddress = req.socket?.remoteAddress || '';
-    if (LOOPBACK_ADDRESSES.has(remoteAddress) || LOOPBACK_ADDRESSES.has(req.ip || '')) {
+    if (this.isLocalProcessRequest(req)) {
       next();
       return;
     }
@@ -30,5 +29,13 @@ export class OriginVerifyMiddleware implements NestMiddleware {
     }
 
     next();
+  }
+
+  private isLocalProcessRequest(req: Request): boolean {
+    const remoteAddress = req.socket?.remoteAddress || '';
+    if (!LOOPBACK_ADDRESSES.has(remoteAddress)) {
+      return false;
+    }
+    return !req.headers['x-forwarded-for'];
   }
 }
