@@ -21,8 +21,8 @@ async function bootstrap() {
     if (!originHeader) {
       return next()
     }
-    const ip = req.ip || ''
-    if (ip === '127.0.0.1' || ip === '::1') {
+    const ip = req.ip || req.socket?.remoteAddress || ''
+    if (ip === '127.0.0.1' || ip === '::1' || ip === '::ffff:127.0.0.1') {
       return next()
     }
     if (req.headers['x-from-cloudfront'] !== originHeader) {
